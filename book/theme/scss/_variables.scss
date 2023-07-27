@@ -1,0 +1,45 @@
+// 印刷用の設定か
+// - true: 印刷用
+// - false: 電子書籍用
+$print_mode: true;
+
+$color_white: #ffffff;
+$color_black: if($print_mode, #000000, #34495e);
+$color_black_dark: if($print_mode, #000000, #2c3e50);
+$color_gray: if($print_mode, #959595, #95a5a6);
+$color_gray_dark: if($print_mode, #7f7f7f, #7f8c8d);
+$color_silver: if($print_mode, #ececec, #ecf0f1);
+$color_silver_dark: if($print_mode, #bdbdbd, #bdc3c7);
+$color_red: if($print_mode, #000000, #e74c3c);
+$color_red_dark: if($print_mode, #000000, #c0392b);
+$color_purple: if($print_mode, #000000, #9b59b6);
+$color_purple_dark: if($print_mode, #000000, #8e44ad);
+$color_orange: if($print_mode, #000000, #e67e22);
+$color_orange_dark: if($print_mode, #000000, #d35400);
+$color_yellow: if($print_mode, #000000, #f1c40f);
+$color_yellow_dark: if($print_mode, #000000, #f39c12);
+$color_blue: if($print_mode, #000000, #3498db);
+$color_blue_dark: if($print_mode, #000000, #2980b9);
+$color_green: if($print_mode, #000000, #2ecc71);
+$color_green_dark: if($print_mode, #000000, #27ae60);
+$color_green2: if($print_mode, #000000, #1abc9c);
+$color_green2_dark: if($print_mode, #000000, #16a085);
+
+$color_page_back: if($print_mode, #ffffff, #fbfcfa);
+$color_page_text: if($print_mode, #000000, #34495e);
+
+$font-family: 'Neue Frutiger World', 'Verdana', 'Yakumono', 'body',
+  'Hiragino Sans', sans-serif;
+
+$master-font-size-for-print: 10px;
+
+// A5
+$page-width: 148mm; // 幅
+$page-height: 210mm; // 高さ
+$page-bleed: 3mm; // 塗り足し（ドブ）。写真や図版などを紙面ギリギリに配置したレイアウトで断裁時に白がでないようにするための余白
+
+// Page
+$page-margin-top: 20mm; // 天
+$page-margin-bottom: 25mm; // 地
+$page-margin-outer: 16mm; // 小口（本の綴じていないほうのマージン）
+$page-margin-inner: 18mm; // のど（本の綴じているほうのマージン）

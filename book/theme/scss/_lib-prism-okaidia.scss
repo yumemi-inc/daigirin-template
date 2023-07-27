@@ -1,0 +1,125 @@
+/**
+ * okaidia theme for JavaScript, CSS and HTML
+ * Loosely based on Monokai textmate theme by http://www.monokai.nl/
+ * @author ocodia
+ */
+
+$okaidai_text_black: #000000;
+
+code[class*='language-'],
+pre[class*='language-'] {
+  color: if($print_mode, $okaidai_text_black, #f8f8f2);
+  background: none;
+  font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+  font-size: 0.95em;
+  text-align: left;
+  white-space: pre-wrap;
+  word-spacing: normal;
+  word-break: normal;
+  word-wrap: normal;
+  line-height: 1.5;
+
+  -moz-tab-size: 2;
+  -o-tab-size: 2;
+  tab-size: 2;
+
+  -webkit-hyphens: none;
+  -moz-hyphens: none;
+  -ms-hyphens: none;
+  hyphens: none;
+}
+
+/* Code blocks */
+pre[class*='language-'] {
+  padding: 1em;
+  margin: 0.5em 0;
+  overflow: auto;
+  border-radius: 0.3em;
+}
+
+:not(pre)>code[class*='language-'],
+pre[class*='language-'] {
+  background: if($print_mode, #CCCCCC, #272822);
+}
+
+/* Inline code */
+:not(pre)>code[class*='language-'] {
+  padding: 0.1em;
+  border-radius: 0.3em;
+  white-space: normal;
+}
+
+.token.comment,
+.token.prolog,
+.token.doctype,
+.token.cdata {
+  color: if($print_mode, $okaidai_text_black, slategray);
+}
+
+.token.punctuation {
+  color: if($print_mode, $okaidai_text_black, #f8f8f2);
+}
+
+.namespace {
+  opacity: 0.7;
+}
+
+.token.property,
+.token.tag,
+.token.constant,
+.token.symbol,
+.token.deleted {
+  color: if($print_mode, $okaidai_text_black, #f92672);
+}
+
+.token.boolean,
+.token.number {
+  color: if($print_mode, $okaidai_text_black, #ae81ff);
+}
+
+.token.selector,
+.token.attr-name,
+.token.string,
+.token.char,
+.token.builtin,
+.token.inserted {
+  color: if($print_mode, $okaidai_text_black, #a6e22e);
+}
+
+.token.operator,
+.token.entity,
+.token.url,
+.language-css .token.string,
+.style .token.string,
+.token.variable {
+  color: if($print_mode, $okaidai_text_black, #f8f8f2);
+}
+
+.token.atrule,
+.token.attr-value,
+.token.function,
+.token.class-name {
+  color: if($print_mode, $okaidai_text_black, #e6db74);
+}
+
+.token.keyword {
+  color: if($print_mode, $okaidai_text_black, #66d9ef);
+}
+
+.token.regex,
+.token.important {
+  color: if($print_mode, $okaidai_text_black, #fd971f);
+}
+
+.token.important,
+.token.bold {
+  font-weight: bold;
+}
+
+.token.italic {
+  font-style: italic;
+}
+
+.token.entity {
+  cursor: help;
+}

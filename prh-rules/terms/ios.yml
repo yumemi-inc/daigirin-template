@@ -1,0 +1,20 @@
+# Rules for iOS
+meta:
+  reviewer:
+    - yumemi
+  related: https://developer.apple.com/jp/develop/
+  rules: https://github.com/prh/rules
+
+version: 1
+rules:
+  - expected: iOS
+    pattern: ios
+  - expected: iPhone
+    pattern: iphone
+  - expected: iPad
+    pattern: ipad
+  - expected: Swift
+    pattern: swift
+  - expected: Xcode
+    pattern: XCode
+    prh: 正式名称は Xcode です
