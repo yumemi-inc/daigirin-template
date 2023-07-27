@@ -1,0 +1,19 @@
+# Rules for Software Development
+meta:
+  reviewer:
+    - vvakame
+    - mhidaka
+    - yumemi
+  rules: https://github.com/prh/rules
+
+version: 1
+rules:
+  - expected: Web
+  - expected: superset
+    pattern: super set
+  - expected: VS Code
+    patterns:
+      - vscode
+      - vs code
+      - VScode
+    prh: Visual Studio Code の略称は VS Code です

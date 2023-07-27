@@ -1,0 +1,5 @@
+FROM node:18-alpine
+WORKDIR /workspaces/daigirin-tbf14
+
+COPY package.json yarn.lock ./
+RUN yarn install --frozen-lockfile && yarn cache clean

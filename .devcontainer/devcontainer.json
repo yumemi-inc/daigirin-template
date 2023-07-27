@@ -1,0 +1,15 @@
+{
+	"name": "textlint for daigirin",
+	"build": {
+		"context": "..",
+		"dockerfile": "../Dockerfile"
+	},
+	"customizations": {
+		"vscode": {
+			"extensions": [
+				"streetsidesoftware.code-spell-checker",
+				"taichi.vscode-textlint"
+			]
+		}
+	}
+}

@@ -1,0 +1,9 @@
+# Ignore file
+
+README.md
+
+# Ignore by glob pattern
+
+.vscode/**
+theme/**
+prh-rules/**
