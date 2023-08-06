@@ -1,0 +1,8 @@
+#!/usr/bin/env sh
+
+# Docker 上で npm を実行するときのためのスクリプト
+# Usage: ./npm [arguments...]
+# Example: ./npm run build
+
+# shellcheck disable=SC2068
+docker compose exec dev npm $@

@@ -1,5 +1,5 @@
-FROM node:20-alpine
-WORKDIR /workspaces/daigirin-template
+FROM ghcr.io/vivliostyle/cli:latest
+WORKDIR /src
 
-COPY package.json yarn.lock ./
-RUN yarn install --frozen-lockfile && yarn cache clean
+COPY package.json package-lock.json ./
+RUN npm ci

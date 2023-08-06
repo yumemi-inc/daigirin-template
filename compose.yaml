@@ -1,23 +1,14 @@
 version: '3.8'
 
 services:
-  lint:
-    build:
-      context: .
-      dockerfile: DockerfileForDockerCompose
-    image: ${TEXT_LINT_IMAGE_NAME}:${TEXT_LINT_IMAGE_TAG}
+  dev:
+    build: .
+    entrypoint: ["/bin/bash"]
+    tty: true
+    stop_grace_period: 0s
     volumes:
-      - .:/workspaces/daigirin-template
-      - /workspaces/daigirin-template/node_modules
-    working_dir: /workspaces/daigirin-template
-    command: yarn lint
-  build_theme:
-    build:
-      context: .
-      dockerfile: DockerfileForDockerCompose
-    image: ${SASS_IMAGE_NAME}:${SASS_IMAGE_TAG}
-    volumes:
-      - .:/workspaces/daigirin-template
-      - /workspaces/daigirin-template/node_modules
-    working_dir: /workspaces/daigirin-template
-    command: yarn build_theme
+      - ./book/cover:/src/book/cover:ro
+      - ./book/manuscripts:/src/book/manuscripts:ro
+      - ./book/theme:/src/book/theme:rw
+      - ./output:/src/output:rw
+      - ./vivliostyle.config.js:/src/vivliostyle.config.js:ro

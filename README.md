@@ -4,7 +4,7 @@
 
 ## PDFの生成方法
 
-1. `make run`
+1. `npm ci && npm start`
 
 ## 書籍の設定
 
@@ -40,7 +40,7 @@
 
 ### ローカル環境で実行する
 
-- `make lint`
+- `npm run lint`
 
 ### VS Code + Docker で実行する
 
