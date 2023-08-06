@@ -57,22 +57,18 @@ lint:
 .PHONY: pdf
 ## pdfを生成
 pdf:
-	@sed -i '' -e "s/print_mode: true/print_mode: false/" ${VARIABLES_FILE_PATH}; 
 	@$(MAKE) build_theme
 	$(VIVLIOSTYLE_CLI) build \
 		--no-sandbox
-	@$(MAKE) reset_variables 
 
 .PHONY: pdf_press
 ## プレス版のpdfを生成
 pdf_press:
-	@sed -i '' -e "s/print_mode: false/print_mode: true/" ${VARIABLES_FILE_PATH}; 
 	@$(MAKE) build_theme
 	$(VIVLIOSTYLE_CLI) build \
 		--no-sandbox \
 		--press-ready \
 		--preflight-option gray-scale
-	@$(MAKE) reset_variables 
 
 .PHONY: open
 ## pdfを開く
@@ -140,7 +136,3 @@ prepare_docker: \
 .PHONY: build_theme
 build_theme:
 	$(DOCKER_COMPOSE) run --rm build_theme
-
-.PHONY: reset_variables
-reset_variables:
-	git checkout ${VARIABLES_FILE_PATH}

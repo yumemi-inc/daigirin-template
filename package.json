@@ -7,7 +7,8 @@
   "license": "MIT",
   "scripts": {
     "lint": "textlint ./book/manuscripts/",
-    "build_theme": "sass ./book/theme/scss:./book/theme"
+    "build_theme": "sass ./book/theme/scss:./book/theme",
+    "build": "cd book && vivliostyle build --no-sandbox"
   },
   "devDependencies": {
     "@vivliostyle/cli": "^8.1.2",
