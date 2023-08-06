@@ -7,17 +7,26 @@
   "license": "MIT",
   "scripts": {
     "lint": "textlint ./book/manuscripts/",
-    "build_theme": "sass ./book/theme/scss:./book/theme",
-    "build": "cd book && vivliostyle build --no-sandbox"
+    "build": "npm-run-all build:scss build:vivliostyle",
+    "build:scss": "sass ./book/theme:./book/theme",
+    "build:vivliostyle": "vivliostyle build",
+    "build:vivliostyle:press": "vivliostyle build --press-ready --preflight-option gray-scale",
+    "build:vivliostyle:screen": "vivliostyle build -T ./book/theme/theme_screen.css",
+    "dev": "npm-run-all -p preview watch:scss",
+    "preview": "vivliostyle preview",
+    "validate": "vivliostyle-theme-scripts validate",
+    "watch:scss": "sass --watch ./book/theme:./book/theme"
   },
   "devDependencies": {
     "@vivliostyle/cli": "^8.1.2",
+    "npm-run-all": "^4.1.5",
     "sass": "^1.62.1",
     "textlint": "^13.3.0",
     "textlint-filter-rule-comments": "^1.2.2",
     "textlint-rule-preset-ja-spacing": "^2.3.0",
     "textlint-rule-preset-ja-technical-writing": "^8.0.0",
     "textlint-rule-prh": "^5.3.0",
-    "textlint-rule-spellcheck-tech-word": "^5.0.0"
+    "textlint-rule-spellcheck-tech-word": "^5.0.0",
+    "vivliostyle-theme-scripts": "^0.3.5"
   }
 }

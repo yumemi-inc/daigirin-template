@@ -8,7 +8,7 @@ $okaidai_text_black: #000000;
 
 code[class*='language-'],
 pre[class*='language-'] {
-  color: if($print_mode, $okaidai_text_black, #f8f8f2);
+  color: #f8f8f2;
   background: none;
   font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
   font-size: 0.95em;
@@ -39,7 +39,7 @@ pre[class*='language-'] {
 
 :not(pre)>code[class*='language-'],
 pre[class*='language-'] {
-  background: if($print_mode, #CCCCCC, #272822);
+  background: #272822;
 }
 
 /* Inline code */
@@ -53,11 +53,11 @@ pre[class*='language-'] {
 .token.prolog,
 .token.doctype,
 .token.cdata {
-  color: if($print_mode, $okaidai_text_black, slategray);
+  color: slategray;
 }
 
 .token.punctuation {
-  color: if($print_mode, $okaidai_text_black, #f8f8f2);
+  color: #f8f8f2;
 }
 
 .namespace {
@@ -69,12 +69,12 @@ pre[class*='language-'] {
 .token.constant,
 .token.symbol,
 .token.deleted {
-  color: if($print_mode, $okaidai_text_black, #f92672);
+  color: #f92672;
 }
 
 .token.boolean,
 .token.number {
-  color: if($print_mode, $okaidai_text_black, #ae81ff);
+  color: #ae81ff;
 }
 
 .token.selector,
@@ -83,7 +83,7 @@ pre[class*='language-'] {
 .token.char,
 .token.builtin,
 .token.inserted {
-  color: if($print_mode, $okaidai_text_black, #a6e22e);
+  color: #a6e22e;
 }
 
 .token.operator,
@@ -92,23 +92,23 @@ pre[class*='language-'] {
 .language-css .token.string,
 .style .token.string,
 .token.variable {
-  color: if($print_mode, $okaidai_text_black, #f8f8f2);
+  color: #f8f8f2;
 }
 
 .token.atrule,
 .token.attr-value,
 .token.function,
 .token.class-name {
-  color: if($print_mode, $okaidai_text_black, #e6db74);
+  color: #e6db74;
 }
 
 .token.keyword {
-  color: if($print_mode, $okaidai_text_black, #66d9ef);
+  color: #66d9ef;
 }
 
 .token.regex,
 .token.important {
-  color: if($print_mode, $okaidai_text_black, #fd971f);
+  color: #fd971f;
 }
 
 .token.important,

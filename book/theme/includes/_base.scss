@@ -1,3 +1,5 @@
+@import '_variables';
+
 :root {
   font-family: $font-family;
   font-weight: 400;
@@ -38,14 +40,14 @@ body.content {
 }
 
 div.doc-header {
-  @if $print_mode {
-    border-left: 4pt solid $color_black;
-    border-bottom: 2pt solid $color_black;
+  @if var(--print-mode) {
+    border-left: 4pt solid var(--color_black);
+    border-bottom: 2pt solid var(--color_black);
   }
 
   @else {
-    border-left: 4pt solid $color_green_dark;
-    border-bottom: 2pt solid $color_green_dark;
+    border-left: 4pt solid var(--color_green_dark);
+    border-bottom: 2pt solid var(--color-green_dark);
   }
 
   padding-top: 5pt;
@@ -65,12 +67,12 @@ div.doc-header::before {
   width: 100%;
   height: calc(100% + 2pt);
 
-  @if $print_mode {
-    border-left: 2pt solid $color_black;
+  @if var(--print-mode) {
+    border-left: 2pt solid var(--color_black);
   }
 
   @else {
-    border-left: 2pt solid $color_green_dark;
+    border-left: 2pt solid var(--color_green_dark);
   }
 
   top: 0pt;
@@ -92,16 +94,16 @@ hr.page-wrap {
 
 a {
   text-decoration: none;
-  color: $color_blue;
+  color: var(--color_blue);
 }
 
 a:visited {
-  color: $color_purple;
+  color: var(--color_purple);
 }
 
 a:hover {
   text-decoration: underline;
-  color: $color_red;
+  color: var(--color_red);
 }
 
 p {
@@ -182,7 +184,7 @@ table {
 
 blockquote {
   margin: 1.5rem 0.5rem;
-  background-color: $color_silver;
+  background-color: var(--color_silver);
   padding: 0.5em 1em;
   border-radius: 0.2rem;
 

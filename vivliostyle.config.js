@@ -3,7 +3,7 @@ module.exports = {
   author: 'ゆめみ大技林製作委員会',
   language: 'ja',
   size: 'A5',
-  theme: 'theme/theme_print.css',
+  theme: './book/theme/theme_print.css',
   entry: [
     // 目次
     'index.md',
@@ -17,7 +17,7 @@ module.exports = {
     // 奥付
     'colophon.md'
   ],
-  entryContext: './manuscripts',
+  entryContext: './book/manuscripts',
   output: [
     'output/ebook.pdf',
   ],

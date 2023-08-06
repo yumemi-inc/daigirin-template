@@ -3,9 +3,13 @@
  */
 
 /* you can import partial SCSS files */
-/* @import '_variables'; */
-/* @import '_toc'; */
-/* ... */
+@import 'includes/_variables';
+@import 'includes/_lib-prism-okaidia';
+@import 'includes/_lib-override';
+@import 'includes/_base';
+@import 'includes/_counter';
+@import 'includes/_media';
+@import 'includes/_toc';
 
 /* and more... 🖋 */
 

@@ -9,6 +9,6 @@ pre[class*='language-'] {
 }
 :not(pre) > code {
   padding: 0.1rem 0.3rem !important;
-  color: $color_black;
-  background-color: $color_silver;
+  color: var(--color_black);
+  background-color: var(--color-silver);
 }

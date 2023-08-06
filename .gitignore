@@ -30,8 +30,8 @@ Temporary Items
 .apdisk
 
 # book
-book/output
-book/.vivliostyle
+output
+.vivliostyle
 
 # theme
 book/theme/*.css
