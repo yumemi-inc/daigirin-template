@@ -4,7 +4,18 @@
 
 ## PDFの生成方法
 
-1. `npm ci && npm start`
+### npm を使った方法 (推奨)
+
+```shell
+npm ci && npm start
+```
+
+### Docker を無理やり使った方法 (非推奨)
+
+```shell
+docker compose up -d
+./npm ci && ./npm start
+```
 
 ## 書籍の設定
 
