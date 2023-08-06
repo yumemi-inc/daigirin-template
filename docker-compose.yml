@@ -7,9 +7,9 @@ services:
       dockerfile: DockerfileForDockerCompose
     image: ${TEXT_LINT_IMAGE_NAME}:${TEXT_LINT_IMAGE_TAG}
     volumes:
-      - .:/workspaces/daigirin-tbf14
-      - /workspaces/daigirin-tbf14/node_modules
-    working_dir: /workspaces/daigirin-tbf14
+      - .:/workspaces/daigirin-template
+      - /workspaces/daigirin-template/node_modules
+    working_dir: /workspaces/daigirin-template
     command: yarn lint
   build_theme:
     build:
@@ -17,7 +17,7 @@ services:
       dockerfile: DockerfileForDockerCompose
     image: ${SASS_IMAGE_NAME}:${SASS_IMAGE_TAG}
     volumes:
-      - .:/workspaces/daigirin-tbf14
-      - /workspaces/daigirin-tbf14/node_modules
-    working_dir: /workspaces/daigirin-tbf14
+      - .:/workspaces/daigirin-template
+      - /workspaces/daigirin-template/node_modules
+    working_dir: /workspaces/daigirin-template
     command: yarn build_theme
