@@ -95,9 +95,10 @@ clean_pdf:
 clean_docker:
 	rm -rf node_modules
 	@for IMAGE in $(ALL_DOCKER_IMAGES) ; do \
-		echo "Removing Docker image $$IMAGE"; \
-		if [ $$(docker images -q $$IMAGE) ]; then \
-			docker rmi $$(docker images -q $$IMAGE); \
+		IMAGE_IDS=$$(docker images -q $$IMAGE); \
+		if [ ! -z "$$IMAGE_IDS" ]; then \
+			echo "Removing Docker image $$IMAGE"; \
+			docker rmi $$IMAGE_IDS; \
 		else \
 			echo "Docker image $$IMAGE does not exist"; \
 		fi; \
