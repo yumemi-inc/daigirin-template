@@ -5,6 +5,7 @@
   "repository": "git@github.com:yumemi/daigirin-template.git",
   "author": "YUMEMI Inc",
   "license": "MIT",
+  "packageManager": "npm@9.8.1",
   "scripts": {
     "lint": "textlint ./book/manuscripts/",
     "build": "npm-run-all build:scss build:vivliostyle",
