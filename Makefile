@@ -15,7 +15,7 @@ export SASS_IMAGE_TAG=latest
 
 ## https://github.com/vivliostyle/vivliostyle-cli/pkgs/container/cli
 VIVLIOSTYLE_CLI_IMAGE_NAME := ghcr.io/vivliostyle/cli
-VIVLIOSTYLE_CLI_IMAGE_TAG := 6.1.0
+VIVLIOSTYLE_CLI_IMAGE_TAG := 8.1.2
 
 ALL_DOCKER_IMAGES := $(TEXT_LINT_IMAGE_NAME) $(VIVLIOSTYLE_CLI_IMAGE_NAME)
 
