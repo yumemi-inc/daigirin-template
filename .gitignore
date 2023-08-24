@@ -33,10 +33,6 @@ Temporary Items
 book/output
 book/.vivliostyle
 
-# theme
-book/theme/*.css
-book/theme/*.css.map
-
 # node.js
 node_modules/
 npm-debug.log
