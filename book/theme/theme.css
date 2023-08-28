@@ -1,0 +1,169 @@
+:root {
+  --dg--chapter-title-decoration-color: #27ae60;
+}
+
+:root {
+  /* 
+   * base font-size
+   */
+  --vs-font-size: 10px;
+  --vs-font-size-on-print: var(--vs-font-size);
+
+  /* 
+   * header
+   */
+  --vs--heading-line-height: 1.3;
+  --vs--h1-font-size: 2.2em;
+  --vs--h2-font-size: 1.6em;
+  --vs--h3-font-size: 1.3em;
+  --vs--h4-font-size: 1.15em;
+  --vs--h5-font-size: 1em;
+  --vs--h6-font-size: 0.83em;
+
+  /* 
+   * header page break
+   */
+  --vs-section--h1-break-before: inherit;
+  --vs-section--h2-break-before: auto;
+  --vs-section--h3-break-before: auto;
+  --vs-section--h4-break-before: auto;
+  --vs-section--h5-break-before: auto;
+  --vs-section--h6-break-before: auto;
+
+  /*
+   * p
+   */
+  --vs--p-margin-block: var(--vs-font-size);
+  
+  /* 
+   * code block
+   */
+  --vs--monospace-line-height: 1.3;
+  --vs--pre-font-size: 95%;
+
+  /*
+   * footnote's font size
+   */
+  --vs-footnote--font-size: calc(var(--vs-font-size) - 1);
+
+  /*
+  * endnote contents's font size
+  */
+  --vs-endnote--section-font-size:  calc(var(--vs-font-size) - 1);
+
+  /* 
+   * page margin box's font size
+   */
+  --vs-page--mbox-font-size: calc(var(--vs-font-size) - 1);
+
+  /* 
+   * toc
+   */
+  --vs-toc--marker-content: counter(vs-counter-toc) '.';
+  --vs-toc--marker-display: block;
+  --vs-toc--marker-text-align: end;
+
+  /* 
+   * prism
+   */
+  --vs-prism--color-string: #a6e22e;
+
+  /* 
+   * page's margins
+   */
+  --vs-page--margin-top: 20mm;
+  --vs-page--margin-bottom: 25mm;
+  --vs-page--margin-inner: 17mm;
+  --vs-page--margin-outer: 17mm;
+}
+
+/* 
+ * code block
+ */
+@media print {
+  pre[class*='language-'] {
+    box-decoration-break: clone;
+  }
+}
+
+/*
+ * figure
+ */
+figure img {
+  max-width: 100%;
+}
+
+/* 
+ * footnote-external-link
+ */
+@media print {
+  :not(.footnote) > a[href^='http']::before {
+    display: none;
+  }
+
+  :not(.footnote) > a[href^='http']::after {
+    display: none;
+  }
+}
+
+/*
+ * toc
+ */
+:is(#toc, [role='doc-toc']) li::before {
+  inset-inline-start: calc(var(--vs-toc--ol-indent-size) * -1.2);
+}
+ 
+/* 
+ * chapter layout
+ */
+.content > section > h1 {
+  display: none;
+}
+
+div.doc-header {
+  border-left: 4pt solid;
+  border-bottom: 2pt solid;
+  border-color: var(--dg--chapter-title-decoration-color);
+  padding-top: 5pt;
+  padding-left: 14pt;
+  padding-bottom: 10pt;
+  margin-bottom: 20pt;
+  position: relative;
+
+  h1 {
+    display: block;
+  }
+}
+
+div.doc-header::before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: calc(100% + 2pt);
+  border-left: 2pt solid;
+  border-color: var(--dg--chapter-title-decoration-color);
+  top: 0pt;
+  left: 2pt;
+}
+
+div.doc-author {
+  text-align: right;
+}
+
+/* 
+ * colophon
+ */
+.colophon {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+}
+
+/* 
+ * page break
+ */
+ hr.page-break {
+  break-after: page;
+  visibility: hidden;
+}
