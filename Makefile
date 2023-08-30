@@ -63,7 +63,9 @@ pdf_press:
 	$(VIVLIOSTYLE_CLI) build \
 		--no-sandbox \
 		--press-ready \
-		--preflight-option gray-scale
+		--preflight-option gray-scale \
+		--style ./theme/theme-press.css \
+		--output ./output/press.pdf
 
 .PHONY: open
 ## pdfを開く
