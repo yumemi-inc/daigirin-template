@@ -78,6 +78,13 @@
 }
 
 /* 
+ * body
+ */
+ body {
+  break-before: recto;
+}
+
+/* 
  * code block
  */
 @media print {
