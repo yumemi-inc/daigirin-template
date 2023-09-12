@@ -7,7 +7,7 @@ on:
   workflow_dispatch: ~
 
 env:
-  IMAGE: ghcr.io/yumemi/daigirin-tbf14
+  IMAGE: ghcr.io/yumemi/daigirin-template
 
 jobs:
   build:
