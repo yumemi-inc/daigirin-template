@@ -452,7 +452,7 @@ section#colophon {
 [Vivliostyle: 技術同人誌をつくって入稿用PDFをビルドする（後編）](https://zenn.dev/sky_y/articles/markdown-advent-2020-vivliostyle4#%E3%83%86%E3%83%BC%E3%83%9E%E3%82%92%E3%82%B3%E3%83%94%E3%83%BC%E3%81%97%E3%81%A6css%E3%82%92%E8%BF%BD%E8%A8%98%E3%81%99%E3%82%8B) で紹介されていたCSSを参考にしました。
         
 ```scss:_base.scss
-hr.page-wrap {
+hr.page-break {
     break-before: page;
     visibility: hidden;
     margin: 0px;
@@ -466,7 +466,7 @@ HTMLタグの上下の空行も必要です。
 
 ```markdown
 
-<hr class="page-wrap" />
+<hr class="page-break" />
 
 ```
 
