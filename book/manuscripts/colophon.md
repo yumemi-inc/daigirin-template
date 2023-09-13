@@ -1,8 +1,6 @@
-　
+<hr class="page-break" />
 
-<hr class="page-wrap" />
-
-<section id="colophon" role="doc-colophon">
+<section class="colophon">
 
 ## ゆめみ大技林 <!--'23-->
 

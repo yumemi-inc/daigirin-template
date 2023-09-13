@@ -3,7 +3,10 @@ module.exports = {
   author: 'ゆめみ大技林製作委員会',
   language: 'ja',
   size: 'A5',
-  theme: 'theme/theme_print.css',
+  theme: [
+    '@vivliostyle/theme-techbook',
+    'theme/theme.css'
+  ],
   entry: [
     // 目次
     'index.md',

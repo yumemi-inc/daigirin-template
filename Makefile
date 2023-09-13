@@ -5,19 +5,16 @@ MAKEFILE_PATH := $(MAKEFILE_DIR)/Makefile
 DOCKER_COMPOSE_PATH := $(MAKEFILE_DIR)/docker-compose.yml
 BOOK_DIR := $(MAKEFILE_DIR)/book
 OUTPUT_DIR := $(BOOK_DIR)/output
-VARIABLES_FILE_PATH := $(BOOK_DIR)/theme/scss/_variables.scss
 BOOK_PATH := $(OUTPUT_DIR)/ebook.pdf
 
 export TEXT_LINT_IMAGE_NAME=textlint
 export TEXT_LINT_IMAGE_TAG=latest
-export SASS_IMAGE_NAME=sass
-export SASS_IMAGE_TAG=latest
 
 ## https://github.com/vivliostyle/vivliostyle-cli/pkgs/container/cli
 VIVLIOSTYLE_CLI_IMAGE_NAME := ghcr.io/vivliostyle/cli
 VIVLIOSTYLE_CLI_IMAGE_TAG := 8.1.2
 
-ALL_DOCKER_IMAGES := $(TEXT_LINT_IMAGE_NAME) $(VIVLIOSTYLE_CLI_IMAGE_NAME) $(SASS_IMAGE_NAME)
+ALL_DOCKER_IMAGES := $(TEXT_LINT_IMAGE_NAME) $(VIVLIOSTYLE_CLI_IMAGE_NAME)
 
 DOCKER = \
 	@$(MAKE) prepare_docker; \
@@ -57,22 +54,18 @@ lint:
 .PHONY: pdf
 ## pdfを生成
 pdf:
-	@sed -i '' -e "s/print_mode: true/print_mode: false/" ${VARIABLES_FILE_PATH}; 
-	@$(MAKE) build_theme
 	$(VIVLIOSTYLE_CLI) build \
 		--no-sandbox
-	@$(MAKE) reset_variables 
 
 .PHONY: pdf_press
 ## プレス版のpdfを生成
 pdf_press:
-	@sed -i '' -e "s/print_mode: false/print_mode: true/" ${VARIABLES_FILE_PATH}; 
-	@$(MAKE) build_theme
 	$(VIVLIOSTYLE_CLI) build \
 		--no-sandbox \
 		--press-ready \
-		--preflight-option gray-scale
-	@$(MAKE) reset_variables 
+		--preflight-option gray-scale \
+		--style ./theme/theme-press.css \
+		--output ./output/press.pdf
 
 .PHONY: open
 ## pdfを開く
@@ -136,11 +129,3 @@ prepare_docker: \
 	install_docker \
 	install_colima \
 	start_colima
-
-.PHONY: build_theme
-build_theme:
-	$(DOCKER_COMPOSE) run --rm build_theme
-
-.PHONY: reset_variables
-reset_variables:
-	git checkout ${VARIABLES_FILE_PATH}

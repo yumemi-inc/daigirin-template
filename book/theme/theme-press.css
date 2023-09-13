@@ -1,0 +1,71 @@
+@import url('./theme.css');
+
+:root {
+  --dg--chapter-title-decoration-color: #000;
+}
+
+:root {
+  --vs-theme--anchor-color-body: #000;
+  --vs-theme--blockquote-color-bg: #ececec;
+  --vs-theme--blockquote-color-body: #000;
+  --vs-theme--inline-code-color-bg: #ececec;
+  --vs-theme--inline-code-color-body: #000;
+}
+
+/*
+ * code block colors
+ */
+ :root {
+  --vs-prism--background: #CCC;
+  --vs-prism--color: #000;
+
+  --vs-prism--color-comment: var(--vs-prism--color);
+  --vs-prism--color-prolog: var(--vs-prism--color);
+  --vs-prism--color-doctype: var(--vs-prism--color);
+  --vs-prism--color-cdata: var(--vs-prism--color);
+
+  --vs-prism--color-punctuation: var(--vs-prism--color);
+
+  --vs-prism--color-namespace: var(--vs-prism--color);
+
+  --vs-prism--color-property: var(--vs-prism--color);
+  --vs-prism--color-tag: var(--vs-prism--color);
+  --vs-prism--color-constant: var(--vs-prism--color);
+  --vs-prism--color-symbol: var(--vs-prism--color);
+  --vs-prism--color-deleted: var(--vs-prism--color);
+
+  --vs-prism--color-boolean: var(--vs-prism--color);
+  --vs-prism--color-number: var(--vs-prism--color);
+
+  --vs-prism--color-selector: var(--vs-prism--color);
+  --vs-prism--color-attr-name: var(--vs-prism--color);
+  --vs-prism--color-string: var(--vs-prism--color);
+  --vs-prism--color-char: var(--vs-prism--color);
+  --vs-prism--color-builtin: var(--vs-prism--color);
+  --vs-prism--color-inserted: var(--vs-prism--color);
+
+  --vs-prism--color-operator: var(--vs-prism--color);
+  --vs-prism--color-entity: var(--vs-prism--color);
+  --vs-prism--color-url: var(--vs-prism--color);
+  --vs-prism--color-variable: var(--vs-prism--color);
+
+  --vs-prism--color-atrule: var(--vs-prism--color);
+  --vs-prism--color-attr-value: var(--vs-prism--color);
+  --vs-prism--color-function: var(--vs-prism--color);
+  --vs-prism--color-class-name: var(--vs-prism--color);
+
+  --vs-prism--color-keyword: var(--vs-prism--color);
+
+  --vs-prism--color-regex: var(--vs-prism--color);
+  --vs-prism--color-important: var(--vs-prism--color);
+
+  --vs-prism--text-shadow: none;
+}
+
+:root {
+  /*
+   * page mark
+   */
+  --vs-page--marks: crop cross;
+  --vs-page--bleed: 3mm;
+}
