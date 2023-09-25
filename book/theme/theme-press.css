@@ -1,7 +1,5 @@
-@import url('./theme.css');
-
 :root {
-  --dg--chapter-title-decoration-color: #000;
+  --mt-chapter-title-decoration-color: #000;
 }
 
 :root {
