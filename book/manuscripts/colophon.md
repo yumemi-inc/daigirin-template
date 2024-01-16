@@ -1,3 +1,7 @@
+---
+class: exclude-hashira
+---
+
 <hr class="page-break" />
 
 <section class="colophon">

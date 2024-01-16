@@ -1,3 +1,7 @@
+---
+class: exclude-hashira
+---
+
 # ゆめみ大技林 <!--'23-->
 
 <nav id="toc" role="doc-toc">

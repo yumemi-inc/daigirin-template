@@ -4,7 +4,8 @@ module.exports = {
   language: 'ja',
   size: 'A5',
   theme: [
-    'vivliostyle-theme-macneko-techbook'
+    'vivliostyle-theme-macneko-techbook',
+    'theme/theme.css'
   ],
   entry: [
     // 目次
