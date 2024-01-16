@@ -111,6 +111,12 @@ install_docker:
 		brew install docker; \
 	fi
 
+.PHONY: install_docker-compose
+install_docker-compose:
+	@if ! command -v docker-compose >/dev/null 2>&1; then \
+		brew install docker-compose; \
+	fi
+
 .PHONY: install_colima
 install_colima:
 	@if ! command -v colima >/dev/null 2>&1; then \
@@ -127,5 +133,6 @@ start_colima:
 prepare_docker: \
 	install_brew \
 	install_docker \
+	install_docker-compose \
 	install_colima \
 	start_colima
