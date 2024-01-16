@@ -6,6 +6,8 @@
 
 1. `make run`
 
+🔖 [グローバル環境を可能な限り汚染せずにMarkdownから組版のPDFを生成（ゆめみ大技林 '23）](https://zenn.dev/yumemi_inc/articles/afe7745cd62af2)
+
 ## 書籍の設定
 
 書籍のタイトルの設定などは、[book/vivliostyle.config.js](book/vivliostyle.config.js) ファイルで行います。
