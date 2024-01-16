@@ -4,11 +4,13 @@
 		"context": "..",
 		"dockerfile": "../Dockerfile"
 	},
+	"postCreateCommand": "apk update && apk add -U --no-cache openssh && apk add -U --no-cache git",
 	"customizations": {
 		"vscode": {
 			"extensions": [
 				"streetsidesoftware.code-spell-checker",
-				"taichi.vscode-textlint"
+				"taichi.vscode-textlint",
+				"github.vscode-pull-request-github"
 			]
 		}
 	}
