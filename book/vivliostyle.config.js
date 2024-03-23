@@ -14,8 +14,9 @@ module.exports = {
     'preface.md',
     // 各章の原稿
 
-    // 紹介
+    // 会社紹介（技術同人誌の場合、会社紹介は削除すること）
     'yumemi.md',
+    // 著者紹介
     'authors.md',
     // 奥付
     'colophon.md'
