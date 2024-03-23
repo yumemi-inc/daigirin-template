@@ -64,3 +64,24 @@ textlint を無効にしたい文章をここに書く
 
 <!-- textlint-enable -->
 ```
+
+## ローカル環境の Node.js でビルドする
+
+ローカル環境に Node.js がインストールされている場合は、Docker を使わずにビルドできます。
+
+### 準備
+
+次のコマンドで、ビルドに必要なツールをローカル環境にインストールします。
+
+```
+npm install
+```
+
+### 実行
+
+- `npm run start` : pdfを生成して開く（`make run` 相当）
+- `npm run lint` : textlintを実行（`make lint` 相当）
+- `npm run build` : pdfを生成（`make pdf` 相当）
+- `npm run build:press` : プレス版のpdfを生成（`make pdf_press` 相当）
+- `npm run open` : pdfを開く（`make open` 相当）
+- `npm run clean` : 生成ファイルをすべて削除（`make clean` 相当）
