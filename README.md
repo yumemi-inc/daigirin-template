@@ -77,6 +77,12 @@ textlint を無効にしたい文章をここに書く
 npm install
 ```
 
+プレス版の PDF をビルドするには、Ghostscript も必要になります。次のコマンドでインストールします。
+
+```
+brew install ghostscript
+```
+
 ### 実行
 
 - `npm run start` : pdfを生成して開く（`make run` 相当）
