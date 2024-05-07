@@ -8,13 +8,45 @@ meta:
 version: 1
 rules:
   - expected: iOS
-    pattern: ios
+    patterns:
+      - /ios/i
+      - /iphoneos/i
+    options:
+      wordBoundary: true
+    specs:
+      - from: ioS simulator
+        to: iOS simulator
+      - from: BIOS
+        to: BIOS
+      - from: 今度のiPhoneOSでは
+        to: 今度のiOSでは
+
   - expected: iPhone
-    pattern: iphone
+    pattern: /iphone/i
+    options:
+      wordBoundary: true
+
   - expected: iPad
-    pattern: ipad
+    pattern: /ipad/i
+    options:
+      wordBoundary: true
+
   - expected: Swift
-    pattern: swift
+    pattern: /swift/i
+    options:
+      wordBoundary: true
+
   - expected: Xcode
-    pattern: XCode
+    pattern: /xcode/i
+    options:
+      wordBoundary: true
     prh: 正式名称は Xcode です
+    specs:
+      - from: Xcode
+        to: Xcode
+      - from: XCode
+        to: Xcode
+      - from: xcode
+        to: Xcode
+      - from: XCODE
+        to: Xcode
