@@ -16,7 +16,6 @@ imports:
   - ../terms/software.yml
   - ../terms/review.yml
   - ../terms/trademark.yml
-  - ../terms/ios.yml # <- 追加しました
 rules:
   - expected: TechBooster
     pattern: てっくぶーすたー

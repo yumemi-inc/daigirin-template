@@ -1,4 +1,7 @@
 version: 1
+imports:
+  - ../terms/ios.yml
+
 rules:
   # [あ行]
 
