@@ -10,7 +10,13 @@
         "space": "always"
       }
     },
-    "preset-ja-technical-writing": true,
+    "preset-ja-technical-writing": {
+      "max-kanji-continuous-len": {
+        "allow": [
+          "大技林製作委員会"
+        ]
+      }
+    },
     "spellcheck-tech-word": true,
     "prh": {
       "rulePaths" :["./prh-rules/media/techbooster.yml"]
