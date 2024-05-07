@@ -1,6 +1,5 @@
 {
-  "plugins": {
-  },
+  "plugins": {},
   "filters": {
     "comments": true
   },
@@ -19,7 +18,10 @@
     },
     "spellcheck-tech-word": true,
     "prh": {
-      "rulePaths" :["./prh-rules/media/techbooster.yml"]
+      "rulePaths": [
+        "./prh-rules/media/techbooster.yml",
+        "./prh-rules/media/yumemi-daigirin.yml"
+      ]
     }
   }
 }
