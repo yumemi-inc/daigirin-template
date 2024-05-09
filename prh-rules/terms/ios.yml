@@ -20,6 +20,8 @@ rules:
         to: BIOS
       - from: 今度のiPhoneOSでは
         to: 今度のiOSでは
+      - from: Vivliostyle
+        to: Vivliostyle
 
   - expected: iPhone
     pattern: /iphone/i
