@@ -14,6 +14,28 @@ rules:
   # [な行]
 
   # [は行]
+  - expected: Vivliostyle
+    patterns:
+      - /(?:v|b)i(?:v|b)liostyle/i
+      - /ビブリオスタイル/i
+    prh: 正式名称は Vivliostyle です。
+    specs:
+      - from: vivliostyle
+        to: Vivliostyle
+      - from: VivlioStyle
+        to: Vivliostyle
+      - from: Vivliostyle
+        to: Vivliostyle
+      - from: 組版にはVivliostyleを使用します。
+        to: 組版にはVivliostyleを使用します。
+      - from: 組版にはvivliostyleを使用します。
+        to: 組版にはVivliostyleを使用します。
+      - from: 組版にはvibliostyleを使用します。
+        to: 組版にはVivliostyleを使用します。
+      - from: 組版にはbibliostyleを使用します。
+        to: 組版にはVivliostyleを使用します。
+      - from: 組版にはビブリオスタイルを使用します。
+        to: 組版にはVivliostyleを使用します。
 
   # [ま行]
   - expected: メールアドレス
