@@ -22,6 +22,8 @@ rules:
         to: 今度のiOSでは
       - from: Vivliostyle
         to: Vivliostyle
+      - from: 今度のiosでは
+        to: 今度のiOSでは
 
   - expected: iPhone
     pattern: /iphone/i
