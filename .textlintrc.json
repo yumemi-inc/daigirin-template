@@ -1,6 +1,5 @@
 {
-  "plugins": {
-  },
+  "plugins": {},
   "filters": {
     "comments": true
   },
@@ -10,10 +9,21 @@
         "space": "always"
       }
     },
-    "preset-ja-technical-writing": true,
+    "preset-ja-technical-writing": {
+      "max-kanji-continuous-len": {
+        "allow": [
+          "大技林製作委員会",
+          "給与自己決定制度",
+          "圧倒的成長環境"
+        ]
+      }
+    },
     "spellcheck-tech-word": true,
     "prh": {
-      "rulePaths" :["./prh-rules/media/techbooster.yml"]
+      "rulePaths": [
+        "./prh-rules/media/techbooster.yml",
+        "./prh-rules/media/yumemi-daigirin.yml"
+      ]
     }
   }
 }

@@ -1,0 +1,73 @@
+version: 1
+imports:
+  - ../terms/ios.yml
+
+rules:
+  # [あ行]
+
+  # [か行]
+
+  # [さ行]
+
+  # [た行]
+
+  # [な行]
+
+  # [は行]
+  - expected: Vivliostyle
+    patterns:
+      - /(?:v|b)i(?:v|b)liostyle/i
+      - /ビブリオスタイル/i
+    prh: 正式名称は Vivliostyle です。
+    specs:
+      - from: vivliostyle
+        to: Vivliostyle
+      - from: VivlioStyle
+        to: Vivliostyle
+      - from: Vivliostyle
+        to: Vivliostyle
+      - from: 組版にはVivliostyleを使用します。
+        to: 組版にはVivliostyleを使用します。
+      - from: 組版にはvivliostyleを使用します。
+        to: 組版にはVivliostyleを使用します。
+      - from: 組版にはvibliostyleを使用します。
+        to: 組版にはVivliostyleを使用します。
+      - from: 組版にはbibliostyleを使用します。
+        to: 組版にはVivliostyleを使用します。
+      - from: 組版にはビブリオスタイルを使用します。
+        to: 組版にはVivliostyleを使用します。
+
+  # [ま行]
+  - expected: メールアドレス
+    pattern: メールドレス
+    prh: 脱字の可能性があります。
+    specs:
+      - from: 名前とメールドレスが未設定の場合
+        to: 名前とメールアドレスが未設定の場合
+
+  # [や行]
+  - expected: ゆめみ大技林製作委員会
+    patterns:
+      - /ゆめみ大技林(?:制作|政策)委員会/
+      - /(?<!ゆめみ)大技林(?:制作|製作|政策)委員会/
+      - /(?:(?<!ゆめみ)|ゆめみ)大技林(?:制作|製作|政策)委員(?!会)/
+    prh: 名称が間違っている可能性があります。
+    specs:
+      - from: さらに、ゆめみ大技林制作委員会のサークル活動から
+        to: さらに、ゆめみ大技林製作委員会のサークル活動から
+      - from: さらに、ゆめみ大技林製作委員会のサークル活動から
+        to: さらに、ゆめみ大技林製作委員会のサークル活動から
+      - from: さらに、大技林制作委員会のサークル活動から
+        to: さらに、ゆめみ大技林製作委員会のサークル活動から
+      - from: ゆめみ大技林製作委員は、株式会社ゆめみの有志メンバー
+        to: ゆめみ大技林製作委員会は、株式会社ゆめみの有志メンバー
+      - from: ゆめみ大技林製作委員は、株式会社ゆめみの有志メンバー
+        to: ゆめみ大技林製作委員会は、株式会社ゆめみの有志メンバー
+      - from: 大技林政策委員は、株式会社ゆめみの有志メンバー
+        to: ゆめみ大技林製作委員会は、株式会社ゆめみの有志メンバー
+
+  # [ら行]
+
+  # [わ行]
+
+  # [数字・記号]
