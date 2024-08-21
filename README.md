@@ -4,7 +4,7 @@
 
 ## PDFの生成方法
 
-```
+```shell
 make run
 ```
 
@@ -44,14 +44,17 @@ make run
 
 ### ローカル環境で実行する
 
-```
+```shell
 make lint
 ```
 
+### VS Code + Node.js で実行する
+
+ローカルに Node.js 環境がある場合は、VS Code のプラグイン `taichi.vscode-textlint` を導入することで、ファイル保存時に textlint が実行されます。
+
 ### VS Code + Docker で実行する
 
-VS Code にプラグイン [Dev Containers](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers) を追加します。コマンドパレット（ショートカットキー Command + Shift + P）を開いて、`Remote-Containers: Reopen in Container` を実行します。コンテナーが立ち上がったら、執筆を始めてください。ファイル保存時に textlint が自動実行されます。
-
+VS Code にプラグイン [Dev Containers](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers) を追加します。コマンドパレット（ショートカットキー Command + Shift + P）を開いて、`Remote-Containers: Reopen in Container` を実行します。コンテナーが立ち上がったら、執筆を始めてください。ファイル保存時に textlint が自動実行されます。ただし、Docker を利用する場合は、ライセンスに注意して利用してください。
 
 ### 無効
 
@@ -73,14 +76,21 @@ textlint を無効にしたい文章をここに書く
 
 次のコマンドで、ビルドに必要なツールをローカル環境にインストールします。
 
-```
+```shell
 npm install
 ```
 
-プレス版の PDF をビルドするには、Ghostscript も必要になります。次のコマンドでインストールします。
+プレス版の PDF をビルドするには、Ghostscript および Xpdf も必要になります。次のコマンドでインストールします。
 
-```
+```shell
 brew install ghostscript
+brew install xpdf
+```
+
+Yarn を利用する場合は corepack を有効にしてください。
+
+```shell
+corepack enable
 ```
 
 ### 実行
