@@ -81,13 +81,13 @@ __metadata:
   linkType: hard
 
 "@babel/types@npm:^7.8.3":
-  version: 7.25.7
-  resolution: "@babel/types@npm:7.25.7"
+  version: 7.25.8
+  resolution: "@babel/types@npm:7.25.8"
   dependencies:
     "@babel/helper-string-parser": "npm:^7.25.7"
     "@babel/helper-validator-identifier": "npm:^7.25.7"
     to-fast-properties: "npm:^2.0.0"
-  checksum: 10c0/e03e1e2e08600fa1e8eb90632ac9c253dd748176c8d670d85f85b0dc83a0573b26ae748a1cbcb81f401903a3d95f43c3f4f8d516a5ed779929db27de56289633
+  checksum: 10c0/55ca2d6df6426c98db2769ce884ce5e9de83a512ea2dd7bcf56c811984dc14351cacf42932a723630c5afcff2455809323decd645820762182f10b7b5252b59f
   languageName: node
   linkType: hard
 
@@ -2281,7 +2281,7 @@ __metadata:
   dependencies:
     "@vivliostyle/cli": "npm:^8.9.1"
     npm-run-all2: "npm:^6.0.0"
-    textlint: "npm:^14.2.1"
+    textlint: "npm:^14.0.0"
     textlint-filter-rule-comments: "npm:^1.2.2"
     textlint-rule-preset-ja-spacing: "npm:^2.3.0"
     textlint-rule-preset-ja-technical-writing: "npm:^10.0.0"
@@ -7710,7 +7710,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"textlint@npm:^14.2.1":
+"textlint@npm:^14.0.0":
   version: 14.2.1
   resolution: "textlint@npm:14.2.1"
   dependencies:
