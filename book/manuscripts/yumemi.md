@@ -1,5 +1,10 @@
 # 株式会社ゆめみの紹介
 
+<!-- 
+この会社紹介は2024年10月21日時点での紹介文です。時間経過または制度変更されたら、広報に内容を確認してください。
+https://www.notion.so/yumemi/c4025f76bd4e472e92e488e2d8c61880
+-->
+
 <!-- textlint-disable -->
 <!-- markdownlint-disable -->
 
