@@ -22,13 +22,67 @@ https://developers.google.com/fonts/faq?hl=ja
 
 */
 
-/* Noto Sans Japanese https://fonts.google.com/noto/specimen/Noto+Sans+JP */
+/* 
+Noto Sans Japanese https://fonts.google.com/noto/specimen/Noto+Sans+JP
+NotoSansJP-VariableFont_wght.ttf は１つで済むが、PDF に埋め込まれない
+*/
 @font-face {
     font-family: 'Noto Sans JP';
-    src: url('./Noto_Sans_JP/NotoSansJP-VariableFont_wght.ttf') format('truetype');
+    src: url('./Noto_Sans_JP/static/NotoSansJP-Thin.ttf') format('truetype');
+    font-weight: 100;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'Noto Sans JP';
+    src: url('./Noto_Sans_JP/static/NotoSansJP-ExtraLight.ttf') format('truetype');
+    font-weight: 200;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'Noto Sans JP';
+    src: url('./Noto_Sans_JP/static/NotoSansJP-Light.ttf') format('truetype');
+    font-weight: 300;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'Noto Sans JP';
+    src: url('./Noto_Sans_JP/static/NotoSansJP-Regular.ttf') format('truetype');
+    font-weight: 400; /* normal */
+    font-style: normal;
+}
+@font-face {
+    font-family: 'Noto Sans JP';
+    src: url('./Noto_Sans_JP/static/NotoSansJP-Medium.ttf') format('truetype');
+    font-weight: 500;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'Noto Sans JP';
+    src: url('./Noto_Sans_JP/static/NotoSansJP-SemiBold.ttf') format('truetype');
+    font-weight: 600;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'Noto Sans JP';
+    src: url('./Noto_Sans_JP/static/NotoSansJP-Bold.ttf') format('truetype');
+    font-weight: 700; /* bold */
+    font-style: normal;
+}
+@font-face {
+    font-family: 'Noto Sans JP';
+    src: url('./Noto_Sans_JP/static/NotoSansJP-ExtraBold.ttf') format('truetype');
+    font-weight: 800;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'Noto Sans JP';
+    src: url('./Noto_Sans_JP/static/NotoSansJP-Black.ttf') format('truetype');
+    font-weight: 900;
+    font-style: normal;
 }
 
 /* すべてのフォントを変更する */
 * {
     font-family: 'Noto Sans JP', sans-serif;
+    font-weight: normal;
 }
