@@ -1,0 +1,34 @@
+/**
+フォント設定用の CSS パッケージ
+
+theme オプションで CSS ファイルを指定する方法は、必要な外部ファイルの場所を解決できないです。
+そのため、フォントファイルを含めたローカルの package として、定義します。
+
+新しくフォントファイルをプロジェクト内に追加する場合は、
+この package で定義して、必要箇所で font-family を指定してください。
+
+なお、Webフォントの場合は絶対パスで定義されるため、ここで定義しなくても動作する
+
+```css
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
+hoge {
+  font-family: "Roboto", sans-serif;
+}
+```
+
+※ Google Fonts は商用や印刷物に利用できます
+https://developers.google.com/fonts/faq?hl=ja
+
+*/
+
+/* Noto Sans Japanese https://fonts.google.com/noto/specimen/Noto+Sans+JP */
+@font-face {
+    font-family: 'Noto Sans JP';
+    src: url('./Noto_Sans_JP/NotoSansJP-VariableFont_wght.ttf') format('truetype');
+}
+
+/* すべてのフォントを変更する */
+* {
+    font-family: 'Noto Sans JP', sans-serif;
+}
