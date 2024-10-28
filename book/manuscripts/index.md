@@ -10,5 +10,6 @@ class: exclude-hashira
 
 1. [はじめに](preface.html)
 1. [留意事項](preface.html)
+1. [サンプル](sample_chapter.html)
 
 </nav>
