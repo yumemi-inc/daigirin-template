@@ -1,0 +1,11 @@
+/*
+  Noto Sans Mono
+  https://fonts.google.com/noto/specimen/Noto+Sans+Mono
+*/
+
+@font-face {
+    font-family: 'Noto Sans Mono';
+    src: url('./Noto_Sans_Mono/static/NotoSansMono-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
