@@ -5,6 +5,7 @@ module.exports = {
   size: 'A5',
   theme: [
     'vivliostyle-theme-macneko-techbook',
+    '@mitsuharu/vivliostyle-theme-noto-sans-jp',
     'theme/theme.css'
   ],
   entry: [
