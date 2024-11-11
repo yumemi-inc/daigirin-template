@@ -1,0 +1,63 @@
+# PR を作成したら、PDF を作成して、その PDF を PR に添付する。
+# 作成される PDF は電子版向けです。
+
+name: Build and Attach PDF on Pull-Request
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+
+jobs:
+  build-and-attach-pdf-on-pr:
+    runs-on: ubuntu-latest
+
+    # 環境変数を定義
+    env:
+      # 生成される PDF のパス
+      PDF_PATH: ./book/output/ebook.pdf
+
+    steps:
+      # リポジトリをチェックアウト
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      # Node.js をセットアップ
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: '.node-version'
+
+      # PDF を作成する
+      - name: make PDF
+        run: |
+          corepack enable
+          yarn install --frozen-lockfile
+          yarn build
+
+      # PDF が生成されたかどうかをチェックする
+      - name: Check if PDF exists
+        run: |
+          if [ ! -f "${PDF_PATH}" ]; then
+            echo "エラー: PDF の生成に失敗しました。"
+            exit 1
+          fi
+
+      # アーティファクトとして PDF をアップロードする
+      - name: Upload PDF as artifact
+        uses: actions/upload-artifact@v4
+        id: artifact-upload-step
+        with:
+          name: "ebook-pdf"
+          path: "${{ env.PDF_PATH }}"
+          if-no-files-found: error
+
+      # PR に PDF のアーティファクトリンクを含むコメントを投稿する
+      - name: Create PR Comment
+        uses: peter-evans/create-or-update-comment@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          repository: ${{ github.repository }}
+          issue-number: ${{ github.event.pull_request.number }}
+          body: |
+            :page_facing_up: PDF が作成されました
+            [ダウンロード](https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}/artifacts/${{ steps.artifact-upload-step.outputs.artifact-id }})
