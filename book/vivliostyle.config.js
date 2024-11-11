@@ -5,6 +5,7 @@ module.exports = {
   size: 'A5',
   theme: [
     'vivliostyle-theme-macneko-techbook',
+    '@mitsuharu/vivliostyle-theme-noto-sans-jp',
     'theme/theme.css'
   ],
   entry: [
@@ -13,6 +14,7 @@ module.exports = {
     // はじめに
     'preface.md',
     // 各章の原稿
+    'sample_chapter.md', // サンプル用ページです。執筆時は削除してください。
 
     // 会社紹介（必要なら以下をアンコメントして利用、掲載時は頒布イベントの出展要項に注意）
     // 'yumemi.md',
