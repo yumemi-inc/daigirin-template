@@ -10,6 +10,16 @@ make run
 
 🔖 [グローバル環境を可能な限り汚染せずにMarkdownから組版のPDFを生成（ゆめみ大技林 '23）](https://zenn.dev/yumemi_inc/articles/afe7745cd62af2)
 
+### リリース
+
+次のコマンドで印刷入稿用 PDF が作成されます。
+
+```shell
+make pdf_press
+```
+
+もしくは、GitHub でタグに「n版」または「n版m刷」（たとえば、`初版`、`初版2刷` や `第二版一刷` など）を付けてプッシュすると、電子版および印刷入稿用 PDF を添付したリリースが作成されます。なお、ここで作成される電子版 PDF には表紙画像はありません。その他のファイル追加など、適宜リリースの Assets を編集してください。
+
 ## 書籍の設定
 
 書籍のタイトルの設定などは、[book/vivliostyle.config.js](book/vivliostyle.config.js) ファイルで行います。
@@ -91,6 +101,8 @@ Yarn を利用する場合は corepack を有効にしてください。
 
 ```shell
 corepack enable
+または
+corepack enable yarn
 ```
 
 ### 実行
