@@ -14,7 +14,7 @@
     "clean": "rm -rf ./book/output/"
   },
   "devDependencies": {
-    "@vivliostyle/cli": "^8.16.1",
+    "@vivliostyle/cli": "^8.16.2",
     "npm-run-all2": "^7.0.1",
     "textlint": "^14.0.0",
     "textlint-filter-rule-comments": "^1.2.2",
