@@ -6,7 +6,7 @@ module.exports = {
   theme: [
     'vivliostyle-theme-macneko-techbook',
     '@mitsuharu/vivliostyle-theme-noto-sans-jp',
-    'theme/theme.css'
+    'theme/theme-custom',
   ],
   entry: [
     // 目次
