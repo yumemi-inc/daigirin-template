@@ -1,0 +1,16 @@
+/* 
+ * exclude-hashira
+ */
+ @page exclude-hashira {
+    @top-left {
+      content: '';
+    }
+    @top-right {
+      content: '';
+    }
+}
+  
+.colophon,
+.exclude-hashira {
+    page: exclude-hashira;
+}

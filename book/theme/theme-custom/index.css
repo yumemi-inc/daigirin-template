@@ -1,0 +1,15 @@
+/**
+ デフォルトテーマに不足するテーマ (CSS) を定義する
+
+ @note
+ 変更が大きくなったら、デフォルトテーマの改修や fork をする
+ */
+
+/* 大技林 */
+@import url(./themes/daigirin.css);
+
+/* 奥付け用 */
+@import url(./themes/colophon.css);
+
+/* スタイル一般 */
+@import url(./themes/styles.css);
