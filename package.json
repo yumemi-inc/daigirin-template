@@ -15,7 +15,7 @@
   },
   "devDependencies": {
     "@vivliostyle/cli": "^8.16.1",
-    "npm-run-all2": "^6.0.0",
+    "npm-run-all2": "^7.0.1",
     "textlint": "^14.0.0",
     "textlint-filter-rule-comments": "^1.2.2",
     "textlint-rule-preset-ja-spacing": "^2.3.0",
