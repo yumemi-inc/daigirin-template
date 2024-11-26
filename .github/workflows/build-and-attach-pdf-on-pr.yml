@@ -57,7 +57,7 @@ jobs:
 
       # PR に PDF のアーティファクトリンクを含むコメントを投稿する
       - name: Create PR Comment
-        uses: peter-evans/create-or-update-comment@71345be0265236311c031f5c7866368bd1eff043
+        uses: peter-evans/create-or-update-comment@71345be0265236311c031f5c7866368bd1eff043 # v4.0.0
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           repository: ${{ github.repository }}
