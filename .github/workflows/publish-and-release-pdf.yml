@@ -1,0 +1,66 @@
+# タグ「n版」または「n版m刷」（たとえば「初版」、「初版2刷」や「第二版一刷」など）をプッシュすると、
+# 電子版および印刷入稿用 PDF を添付したリリースが作成されます。
+#
+# [未対応内容]
+# - 電子版 PDF は本文のみで、表紙画像の結合は未対応です。
+# - 表紙データ PSD など、その他のファイルはリリースを編集して、追加してください。
+
+name: Publish and Release PDF
+
+on:
+  push:
+    tags:
+      - '*版'
+      - '*版*刷'
+
+permissions:
+  contents: write
+
+jobs:
+  publish-and-release-pdf:
+    name: Publish and Release PDF
+    runs-on: ubuntu-latest
+
+    # 環境変数を定義する
+    env:
+      # 生成される PDF のパス
+      EBOOK_PDF_PATH: ./book/output/ebook.pdf
+      PRESS_PDF_PATH: ./book/output/press.pdf
+    
+    steps:
+
+      # リポジトリをチェックアウト
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      # Node.jsをセットアップ
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: '.node-version'
+      
+      # PDFを作成する
+      - name: make PDF
+        run: |
+          corepack enable
+          yarn install --frozen-lockfile
+          yarn build
+          if [ ! -f "${EBOOK_PDF_PATH}" ]; then
+            echo "エラー: 電子版 PDF の生成に失敗しました。"
+            exit 1
+          fi
+
+          make pdf_press
+          if [ ! -f "${PRESS_PDF_PATH}" ]; then
+            echo "エラー: 印刷入稿用 PDF の生成に失敗しました。"
+            exit 1
+          fi
+          
+      # リリースの作成
+      - name: Release
+        uses: softprops/action-gh-release@01570a1f39cb168c169c802c3bceb9e93fb10974 # v2.1.0
+        with:
+          generate_release_notes: true
+          files: |
+            ${{ env.EBOOK_PDF_PATH }}
+            ${{ env.PRESS_PDF_PATH }}
