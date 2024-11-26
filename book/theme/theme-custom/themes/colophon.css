@@ -1,0 +1,22 @@
+/**
+ 奥付け用のカラム表示
+ */
+
+.colophon-container {
+    display: grid;
+    grid-template-columns: max-content auto;
+    column-gap: 1.5em;
+  }
+
+.colophon-row {
+    display: contents;
+}
+
+.colophon-label {
+    text-align: justify;
+    text-align-last: justify;
+}
+
+.colophon-value {
+    text-align: left;
+}
