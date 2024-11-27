@@ -1,0 +1,57 @@
+name: Update Makefile for Vivliostyle CLI
+
+on:
+  pull_request:
+    types:
+      - opened
+      - synchronize
+    branches:
+      - main
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  update-makefile:
+    if: github.actor == 'dependabot[bot]'
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Verify PR title and update Makefile
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          # 確認用ログ
+          echo "Current branch: $(git branch --show-current)"
+          echo "PR title: ${{ github.event.pull_request.title }}"
+
+          # PRタイトルが"@vivliostyle/cli"に一致するか確認
+          if echo "${{ github.event.pull_request.title }}" | grep -q '^Bump @vivliostyle/cli from'; then
+            # PRタイトルから新しいバージョンを抽出
+            NEW_VERSION=$(echo "${{ github.event.pull_request.title }}" | grep -oP '(?<=to )\d+\.\d+\.\d+')
+
+            if [ -n "$NEW_VERSION" ]; then
+              # Makefileの該当行を更新
+              sed -i "s/^VIVLIOSTYLE_CLI_IMAGE_TAG := .*/VIVLIOSTYLE_CLI_IMAGE_TAG := $NEW_VERSION/" Makefile
+
+              # 変更をコミットしてプッシュ
+              git config user.name "github-actions[bot]"
+              git config user.email "github-actions[bot]@users.noreply.github.com"
+              git checkout ${{ github.head_ref }}
+              git add Makefile
+              git commit -m "Update VIVLIOSTYLE_CLI_IMAGE_TAG to $NEW_VERSION"
+              git push origin ${{ github.head_ref }}
+            else
+              echo "Could not extract version from PR title"
+              exit 1
+            fi
+          else
+            echo "PR title does not match Vivliostyle CLI update format, skipping."
+            exit 0
+          fi
