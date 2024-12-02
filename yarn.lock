@@ -1009,9 +1009,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@vivliostyle/cli@npm:^8.16.2":
-  version: 8.16.2
-  resolution: "@vivliostyle/cli@npm:8.16.2"
+"@vivliostyle/cli@npm:^8.17.1":
+  version: 8.17.1
+  resolution: "@vivliostyle/cli@npm:8.17.1"
   dependencies:
     "@babel/code-frame": "npm:^7.24.7"
     "@humanwhocodes/momoa": "npm:^3.2.1"
@@ -1019,7 +1019,7 @@ __metadata:
     "@npmcli/arborist": "npm:^6.1.3"
     "@vivliostyle/jsdom": "npm:22.1.0-vivliostyle-cli.1"
     "@vivliostyle/vfm": "npm:2.2.1"
-    "@vivliostyle/viewer": "npm:2.30.6"
+    "@vivliostyle/viewer": "npm:2.30.7"
     ajv: "npm:^8.11.2"
     ajv-formats: "npm:^2.1.1"
     archiver: "npm:^5.3.1"
@@ -1043,7 +1043,7 @@ __metadata:
     node-stream-zip: "npm:^1.14.0"
     ora: "npm:^5.4.1"
     pdf-lib: "npm:^1.16.0"
-    playwright-core: "npm:1.48.1"
+    playwright-core: "npm:1.49.0"
     portfinder: "npm:^1.0.28"
     press-ready: "npm:^4.0.3"
     prettier: "npm:^3.3.3"
@@ -1061,16 +1061,16 @@ __metadata:
   bin:
     vivliostyle: dist/cli.js
     vs: dist/cli.js
-  checksum: 10c0/b848237d0ed1bd0639f437b41fc585f7f033a9b9ea011c46ee9010d6e6b5d1d6ad1fb46c4544b4a8448b724f8b96107f45de8f29bca5203b9d93a58e8e92c1c0
+  checksum: 10c0/7b30e4962925fdfe36a289430df64753750311d0224fc88d70cfef1421b88b56a0fa87668a9e1302c20a5a3469d4f6f096294a5963e72e0786e2b201cc016725
   languageName: node
   linkType: hard
 
-"@vivliostyle/core@npm:^2.30.6":
-  version: 2.30.6
-  resolution: "@vivliostyle/core@npm:2.30.6"
+"@vivliostyle/core@npm:^2.30.7":
+  version: 2.30.7
+  resolution: "@vivliostyle/core@npm:2.30.7"
   dependencies:
     fast-diff: "npm:^1.2.0"
-  checksum: 10c0/ade36a4a6749656f59d6d6237d8e4cd24e49d73c5c056fba24acd5095662c4676f0bd68be912cfcd08a2c9046e9c027c9c4eb335dbbf2f58dcc411eee6f01e7c
+  checksum: 10c0/eadca95b9b943ec21af94a473cf3ebfa23bf73462c50c79a97725d959cfcd0df3f8345421a038b5453ac701a604587c9380746a3e78b90f7130b193f1462404c
   languageName: node
   linkType: hard
 
@@ -1153,14 +1153,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@vivliostyle/viewer@npm:2.30.6":
-  version: 2.30.6
-  resolution: "@vivliostyle/viewer@npm:2.30.6"
+"@vivliostyle/viewer@npm:2.30.7":
+  version: 2.30.7
+  resolution: "@vivliostyle/viewer@npm:2.30.7"
   dependencies:
-    "@vivliostyle/core": "npm:^2.30.6"
+    "@vivliostyle/core": "npm:^2.30.7"
     i18next-ko: "npm:^3.0.1"
     knockout: "npm:^3.5.0"
-  checksum: 10c0/98481000fd23f7a9f5a0dc9eb9c4696e36ce390de47b62cbe5258394894518e4529ad9091c3f4927edf787d1733fb037eba1d623e4c91684fe24894ac787e654
+  checksum: 10c0/805f79396e37cde39f46b871b6c3d2f72dd45859021c26b9eb75ed060aef02c5638247c136f91d0387c9a8b108e225929d667c987379d736dd4b7c0a026c5655
   languageName: node
   linkType: hard
 
@@ -2190,7 +2190,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "daigirin-template@workspace:."
   dependencies:
-    "@vivliostyle/cli": "npm:^8.16.2"
+    "@vivliostyle/cli": "npm:^8.17.1"
     npm-run-all2: "npm:^7.0.1"
     textlint: "npm:^14.3.0"
     textlint-filter-rule-comments: "npm:^1.2.2"
@@ -5761,12 +5761,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"playwright-core@npm:1.48.1":
-  version: 1.48.1
-  resolution: "playwright-core@npm:1.48.1"
+"playwright-core@npm:1.49.0":
+  version: 1.49.0
+  resolution: "playwright-core@npm:1.49.0"
   bin:
     playwright-core: cli.js
-  checksum: 10c0/2f75532b9b7dfa0e586f5660ac1d8ea729bbdbd28dd2c0711e7cfc1adfe5cf7448d7f15a018ec9851a8f50c0743c3990cb9df23064bed603627baeac4dce3915
+  checksum: 10c0/22c1a72fabdcc87bd1cd4d40a032d2c5b94cf94ba7484dc182048c3fa1c8ec26180b559d8cac4ca9870e8fd6bdf5ef9d9f54e7a31fd60d67d098fcffc5e4253b
   languageName: node
   linkType: hard
 
