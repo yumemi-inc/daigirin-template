@@ -11,7 +11,8 @@
     "build": "cd ./book/ && vivliostyle build",
     "build:press": "cd ./book/ && vivliostyle build --preflight press-ready-local --preflight-option gray-scale --style ./theme/theme-press.css --output ./output/press.pdf",
     "open": "open ./book/output/ebook.pdf",
-    "clean": "rm -rf ./book/output/"
+    "clean": "rm -rf ./book/output/",
+    "cover": "node ./scripts/InsertCoverImage.js"
   },
   "devDependencies": {
     "@vivliostyle/cli": "^8.17.1",
