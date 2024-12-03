@@ -2192,6 +2192,7 @@ __metadata:
   dependencies:
     "@vivliostyle/cli": "npm:^8.17.1"
     npm-run-all2: "npm:^7.0.1"
+    pdf-lib: "npm:^1.17.1"
     textlint: "npm:^14.4.0"
     textlint-filter-rule-comments: "npm:^1.2.2"
     textlint-rule-preset-ja-spacing: "npm:^2.3.0"
@@ -5689,7 +5690,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"pdf-lib@npm:^1.16.0":
+"pdf-lib@npm:^1.16.0, pdf-lib@npm:^1.17.1":
   version: 1.17.1
   resolution: "pdf-lib@npm:1.17.1"
   dependencies:
