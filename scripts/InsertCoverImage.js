@@ -53,19 +53,16 @@ const insertImageAsFirstPage = async () => {
         throw new Error("Unsupported image format. Use PNG or JPG.");
       })();
 
-  // 新しいページを作成 (ページサイズを指定)
-  const newPage = pdfDoc.addPage([pageWidth, pageHeight]);
+  // 新しいページを最初のページに作成する (ページサイズを指定)
+  const newPage = pdfDoc.insertPage(0, [pageWidth, pageHeight]);
 
-  // 画像をページ全体にスケーリングして描画
+  // 画像をページ全体にスケーリングして描画する
   newPage.drawImage(embeddedImage, {
     x: 0,
     y: 0,
     width: pageWidth,
     height: pageHeight,
   });
-
-  // 挿入した新しいページを先頭に移動
-  pdfDoc.insertPage(0, newPage);
 
   // PDFを保存
   const newPdfBytes = await pdfDoc.save();
