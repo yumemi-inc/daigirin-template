@@ -9,7 +9,7 @@
     "lint": "textlint ./book/manuscripts/",
     "start": "run-s build open",
     "build": "cd ./book/ && vivliostyle build",
-    "build:press": "cd ./book/ && vivliostyle build --preflight press-ready-local --preflight-option gray-scale --style ./theme/theme-press.css --output ./output/press.pdf",
+    "build:press": "cd ./book/ && vivliostyle build --config vivliostyle.config.press.local.js",
     "open": "open ./book/output/ebook.pdf",
     "clean": "rm -rf ./book/output/",
     "cover": "node ./scripts/InsertCoverImage.js"
