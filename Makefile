@@ -16,6 +16,10 @@ VIVLIOSTYLE_CLI_IMAGE_TAG := 8.17.1
 
 ALL_DOCKER_IMAGES := $(TEXT_LINT_IMAGE_NAME) $(VIVLIOSTYLE_CLI_IMAGE_NAME)
 
+# https://hub.docker.com/_/node
+NODE_IMAGE_NAME := node
+NODE_IMAGE_TAG := 22-alpine
+
 DOCKER = \
 	@$(MAKE) prepare_docker; \
 	$(shell command -v docker)
@@ -29,6 +33,12 @@ VIVLIOSTYLE_CLI = $(DOCKER) run \
 	-v $(BOOK_DIR):/local \
 	-w /local \
 	$(VIVLIOSTYLE_CLI_IMAGE_NAME):$(VIVLIOSTYLE_CLI_IMAGE_TAG) \
+
+NODE_RUN = $(DOCKER) run \
+	--rm \
+	-v $(MAKEFILE_DIR):/local \
+	-w /local \
+	$(NODE_IMAGE_NAME):$(NODE_IMAGE_TAG) \
 
 # Commands
 
@@ -71,6 +81,11 @@ pdf_press:
 ## pdfを開く
 open:
 	open $(BOOK_PATH)
+
+.PHONY: cover
+## Docker内でカバー画像挿入スクリプトを実行
+cover:
+	$(NODE_RUN) node ./scripts/InsertCoverImage.js
 
 .PHONY: clean
 ## 生成ファイルをすべて削除
