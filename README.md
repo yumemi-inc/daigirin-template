@@ -12,11 +12,13 @@ make run
 
 ### 電子版 PDF に表紙画像を追加する
 
-表紙画像をプロジェクト内の `book/cover/cover.png` に保存している場合は、電子版 PDF と表紙画像の結合をコマンドで実行できます。次のコマンドで、表紙画像を結合した PDF を `output/ebook_covered.pdf` に作成します。
+表紙画像をプロジェクト内の `book/cover/cover.png` に保存している場合は、電子版 PDF と表紙画像の結合をコマンドで実行できます。次のコマンドで、表紙画像を結合した PDF `output/ebook_covered.pdf` を生成します。
 
 ```shell
 make cover
 ```
+
+なお、結合後の PDF の質に問題がある場合や、表紙画像がリポジトリ管理できない場合は、手動で結合（Acrobat Pro で PDF に画像を挿入するなど）してください。
 
 ### リリース
 
@@ -26,8 +28,7 @@ make cover
 make pdf_press
 ```
 
-もしくは、GitHub でタグに「n版」または「n版m刷」（たとえば、`初版`、`初版2刷` や `第二版一刷` など）を付けてプッシュすると、電子版および印刷入稿用 PDF を添付したリリースが作成されます。なお、ここで作成される電子版 PDF には表紙画像はありません。その他のファイル追加など、適宜リリースの Assets を編集してください。
-
+もしくは、GitHub でタグに「n版」または「n版m刷」（たとえば、`初版`、`初版2刷` や `第二版一刷` など）を付けてプッシュすると、電子版および印刷入稿用 PDF を添付したリリースが作成されます。`cover` ディレクトリに表紙画像や PSD ファイルがある場合は、それらもアセットに追加します。
 ## 書籍の設定
 
 書籍のタイトルの設定などは、[book/vivliostyle.config.js](book/vivliostyle.config.js) ファイルで行います。
@@ -122,13 +123,3 @@ corepack enable yarn
 - `npm run cover` : 電子版pdfと表紙画像を結合する（`make cover` 相当）
 - `npm run open` : pdfを開く（`make open` 相当）
 - `npm run clean` : 生成ファイルをすべて削除（`make clean` 相当）
-
-## 試験的機能
-
-### 表紙画像を本文 PDF に挿入する（ローカルのみ）
-
-次のコマンドで、表紙画像を本文 PDF `book/output/ebook.pdf` に挿入します。ただし、表紙画像は `book/cover/cover.png` に限ります。表紙画像を挿入した PDF は `book/output/ebook_covered.pdf` に保存されます。
-
-```shell
-yarn cover
-```
