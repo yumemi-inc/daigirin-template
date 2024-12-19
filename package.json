@@ -16,7 +16,7 @@
   },
   "devDependencies": {
     "@vivliostyle/cli": "^8.17.1",
-    "npm-run-all2": "^7.0.1",
+    "npm-run-all2": "^7.0.2",
     "pdf-lib": "^1.17.1",
     "textlint": "^14.4.0",
     "textlint-filter-rule-comments": "^1.2.2",
