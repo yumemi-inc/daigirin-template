@@ -55,7 +55,7 @@ jobs:
 
           yarn cover
           if [ ! -f "${EBOOK_COVERED_PDF_PATH}" ]; then
-            echo "ワーニング: 電子版 PDF の表紙付けに失敗しました。"
+            echo "ワーニング: 電子版 PDF の表紙付けがされていません。"
           fi
 
           make pdf_press
