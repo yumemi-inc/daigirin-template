@@ -25,7 +25,10 @@ jobs:
     env:
       # 生成される PDF のパス
       EBOOK_PDF_PATH: ./book/output/ebook.pdf
+      EBOOK_COVERED_PDF_PATH: ./book/output/ebook_covered.pdf
       PRESS_PDF_PATH: ./book/output/press.pdf
+      COVER_PNG_PATH: ./book/cover/cover.png
+      COVER_PSD_PATH: ./book/cover/*.psd
     
     steps:
 
@@ -50,6 +53,11 @@ jobs:
             exit 1
           fi
 
+          yarn cover
+          if [ ! -f "${EBOOK_COVERED_PDF_PATH}" ]; then
+            echo "ワーニング: 電子版 PDF の表紙付けがされていません。"
+          fi
+
           make pdf_press
           if [ ! -f "${PRESS_PDF_PATH}" ]; then
             echo "エラー: 印刷入稿用 PDF の生成に失敗しました。"
@@ -61,6 +69,10 @@ jobs:
         uses: softprops/action-gh-release@7b4da11513bf3f43f9999e90eabced41ab8bb048 # v2.2.0
         with:
           generate_release_notes: true
+          fail_on_unmatched_files: false
           files: |
             ${{ env.EBOOK_PDF_PATH }}
+            ${{ env.EBOOK_COVERED_PDF_PATH }}
             ${{ env.PRESS_PDF_PATH }}
+            ${{ env.COVER_PNG_PATH }}
+            ${{ env.COVER_PSD_PATH }}
