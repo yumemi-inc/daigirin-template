@@ -22,14 +22,14 @@ make pdf_press
 
 ## 書籍の設定
 
-書籍のタイトルの設定などは、[book/vivliostyle.config.js](book/vivliostyle.config.js) ファイルで行います。
+書籍のタイトルの設定などは、[book/vivliostyle.config/index.js](book/vivliostyle.config/index.js) ファイルで行います。
 
 またテンプレートの都合上、年号等が最新に設定できないため、`<!-- -->` でコメントアウトしています。必要に応じて修正してコメントアウトを外してください。
 
 ## 原稿の追加方法
 
 * [book/manuscripts](book/manuscripts) ディレクトリの中に、拡張子 `.md` のMarkdownファイルを作成します。
-* [book/vivliostyle.config.js](book/vivliostyle.config.js) ファイル内の `entry` 配列に、そのMarkdownファイル名を追加します。
+* [book/vivliostyle.config/index.js](book/vivliostyle.config/index.js) ファイル内の `entry` 配列に、そのMarkdownファイル名を追加します。
 
 ## 文章校正
 
