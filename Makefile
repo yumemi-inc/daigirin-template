@@ -54,12 +54,12 @@ lint:
 .PHONY: pdf
 ## pdfを生成
 pdf:
-	$(VIVLIOSTYLE_CLI) build
+	$(VIVLIOSTYLE_CLI) build --config vivliostyle.config/ebook.js
 
 .PHONY: pdf_press
 ## プレス版のpdfを生成
 pdf_press:
-	$(VIVLIOSTYLE_CLI) build --config vivliostyle.config.press.docker.js
+	$(VIVLIOSTYLE_CLI) build --config vivliostyle.config/press.docker.js
 
 .PHONY: open
 ## pdfを開く

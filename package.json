@@ -8,8 +8,8 @@
   "scripts": {
     "lint": "textlint ./book/manuscripts/",
     "start": "run-s build open",
-    "build": "cd ./book/ && vivliostyle build",
-    "build:press": "cd ./book/ && vivliostyle build --config vivliostyle.config.press.local.js",
+    "build": "cd ./book/ && vivliostyle build --config vivliostyle.config/ebook.js",
+    "build:press": "cd ./book/ && vivliostyle build --config vivliostyle.config/press.local.js",
     "open": "open ./book/output/ebook.pdf",
     "clean": "rm -rf ./book/output/",
     "cover": "node ./scripts/InsertCoverImage.js"
