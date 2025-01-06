@@ -4,6 +4,8 @@ module.exports = {
   language: 'ja',
   size: 'A5',
   theme: [
+    '@vivliostyle/theme-base@1.0.1',
+    '@vivliostyle/theme-techbook@1.0.1',
     'vivliostyle-theme-macneko-techbook',
     '@mitsuharu/vivliostyle-theme-noto-sans-jp',
     'theme/theme-custom',
