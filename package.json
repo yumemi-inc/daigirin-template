@@ -15,7 +15,7 @@
     "cover": "node ./scripts/InsertCoverImage.js"
   },
   "devDependencies": {
-    "@vivliostyle/cli": "^8.17.1",
+    "@vivliostyle/cli": "^8.17.2",
     "npm-run-all2": "^7.0.2",
     "pdf-lib": "^1.17.1",
     "textlint": "^14.4.2",
