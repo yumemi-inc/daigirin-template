@@ -64,18 +64,12 @@ lint:
 .PHONY: pdf
 ## pdfを生成
 pdf:
-	$(VIVLIOSTYLE_CLI) build \
-		--no-sandbox
+	$(VIVLIOSTYLE_CLI) build
 
 .PHONY: pdf_press
 ## プレス版のpdfを生成
 pdf_press:
-	$(VIVLIOSTYLE_CLI) build \
-		--no-sandbox \
-		--press-ready \
-		--preflight-option gray-scale \
-		--style ./theme/theme-press.css \
-		--output ./output/press.pdf
+	$(VIVLIOSTYLE_CLI) build --config vivliostyle.config.press.docker.js
 
 .PHONY: open
 ## pdfを開く
