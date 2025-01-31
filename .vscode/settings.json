@@ -1,5 +1,8 @@
 {
   "editor.formatOnSave": true,
+  "[javascript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
   "cSpell.words": [
     "baseservice",
     "Bitrise",
