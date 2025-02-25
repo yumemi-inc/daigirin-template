@@ -38,8 +38,8 @@ make pdf_press
 
 ## 原稿の追加方法
 
-* [book/manuscripts](book/manuscripts) ディレクトリの中に、拡張子 `.md` のMarkdownファイルを作成します。
-* [book/vivliostyle.config.js](book/vivliostyle.config.js) ファイル内の `entry` 配列に、そのMarkdownファイル名を追加します。
+- [book/manuscripts](book/manuscripts) ディレクトリの中に、拡張子 `.md` のMarkdownファイルを作成します。
+- [book/vivliostyle.config.js](book/vivliostyle.config.js) ファイル内の `entry` 配列に、そのMarkdownファイル名を追加します。
 
 ## 文章校正
 
@@ -49,16 +49,16 @@ make pdf_press
 
 次のルールを導入しています。
 
-* preset-ja-spacing
-  * 日本語周りにおけるスペースの有無を決定する
-* preset-ja-technical-writing
-  * 技術文書向けの textlint ルールプリセット
-* textlint-rule-spellcheck-tech-word
-  * WEB+DB 用語統一ルールベースの単語チェック
-  * （deprecated になっているので置き換えたい）
-* Rules for TechBooster
-  * TechBooster の [ルール](https://github.com/TechBooster/ReVIEW-Template/tree/master/prh-rules) を使用しています。
-  * iOS に関するルールはほとんどないので適宜追加してください。
+- preset-ja-spacing
+  - 日本語周りにおけるスペースの有無を決定する
+- preset-ja-technical-writing
+  - 技術文書向けの textlint ルールプリセット
+- textlint-rule-spellcheck-tech-word
+  - WEB+DB 用語統一ルールベースの単語チェック
+  - （deprecated になっているので置き換えたい）
+- Rules for TechBooster
+  - TechBooster の [ルール](https://github.com/TechBooster/ReVIEW-Template/tree/master/prh-rules) を使用しています。
+  - iOS に関するルールはほとんどないので適宜追加してください。
 
 その他、スペルチェックのルール `textlint-rule-spellchecker` がありますが、エディターのスペルチェックと競合しやすいので、今回は追加していません。VS Code を利用している場合は、プラグイン [Code Spell Checker](https://marketplace.visualstudio.com/items?itemName=streetsidesoftware.code-spell-checker) を追加すれば、スペルチェックが行われます。
 
@@ -97,7 +97,7 @@ textlint を無効にしたい文章をここに書く
 次のコマンドで、ビルドに必要なツールをローカル環境にインストールします。
 
 ```shell
-npm install
+yarn install
 ```
 
 プレス版の PDF をビルドするには、Ghostscript および Xpdf も必要になります。次のコマンドでインストールします。
@@ -117,10 +117,10 @@ corepack enable yarn
 
 ### 実行
 
-- `npm run start` : pdfを生成して開く（`make run` 相当）
-- `npm run lint` : textlintを実行（`make lint` 相当）
-- `npm run build` : pdfを生成（`make pdf` 相当）
-- `npm run build:press` : プレス版のpdfを生成（`make pdf_press` 相当）
-- `npm run cover` : 電子版pdfと表紙画像を結合する（`make cover` 相当）
-- `npm run open` : pdfを開く（`make open` 相当）
-- `npm run clean` : 生成ファイルをすべて削除（`make clean` 相当）
+- `yarn start` : pdfを生成して開く（`make run` 相当）
+- `yarn lint` : textlintを実行（`make lint` 相当）
+- `yarn build` : pdfを生成（`make pdf` 相当）
+- `yarn build:press` : プレス版のpdfを生成（`make pdf_press` 相当）
+- `yarn cover` : 電子版pdfと表紙画像を結合する（`make cover` 相当）
+- `yarn open` : pdfを開く（`make open` 相当）
+- `yarn clean` : 生成ファイルをすべて削除（`make clean` 相当）
