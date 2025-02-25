@@ -38,8 +38,8 @@ make pdf_press
 
 ## 原稿の追加方法
 
-* [book/manuscripts](book/manuscripts) ディレクトリの中に、拡張子 `.md` のMarkdownファイルを作成します。
-* [book/vivliostyle.config.js](book/vivliostyle.config.js) ファイル内の `entry` 配列に、そのMarkdownファイル名を追加します。
+- [book/manuscripts](book/manuscripts) ディレクトリの中に、拡張子 `.md` のMarkdownファイルを作成します。
+- [book/vivliostyle.config.js](book/vivliostyle.config.js) ファイル内の `entry` 配列に、そのMarkdownファイル名を追加します。
 
 ## 文章校正
 
@@ -49,16 +49,16 @@ make pdf_press
 
 次のルールを導入しています。
 
-* preset-ja-spacing
-  * 日本語周りにおけるスペースの有無を決定する
-* preset-ja-technical-writing
-  * 技術文書向けの textlint ルールプリセット
-* textlint-rule-spellcheck-tech-word
-  * WEB+DB 用語統一ルールベースの単語チェック
-  * （deprecated になっているので置き換えたい）
-* Rules for TechBooster
-  * TechBooster の [ルール](https://github.com/TechBooster/ReVIEW-Template/tree/master/prh-rules) を使用しています。
-  * iOS に関するルールはほとんどないので適宜追加してください。
+- preset-ja-spacing
+  - 日本語周りにおけるスペースの有無を決定する
+- preset-ja-technical-writing
+  - 技術文書向けの textlint ルールプリセット
+- textlint-rule-spellcheck-tech-word
+  - WEB+DB 用語統一ルールベースの単語チェック
+  - （deprecated になっているので置き換えたい）
+- Rules for TechBooster
+  - TechBooster の [ルール](https://github.com/TechBooster/ReVIEW-Template/tree/master/prh-rules) を使用しています。
+  - iOS に関するルールはほとんどないので適宜追加してください。
 
 その他、スペルチェックのルール `textlint-rule-spellchecker` がありますが、エディターのスペルチェックと競合しやすいので、今回は追加していません。VS Code を利用している場合は、プラグイン [Code Spell Checker](https://marketplace.visualstudio.com/items?itemName=streetsidesoftware.code-spell-checker) を追加すれば、スペルチェックが行われます。
 
@@ -124,3 +124,11 @@ corepack enable yarn
 - `npm run cover` : 電子版pdfと表紙画像を結合する（`make cover` 相当）
 - `npm run open` : pdfを開く（`make open` 相当）
 - `npm run clean` : 生成ファイルをすべて削除（`make clean` 相当）
+
+## ライセンス
+
+このプロジェクトはMITライセンスの下で公開されています。
+
+### 注意事項
+
+- このリポジトリのMITライセンスには、株式会社ゆめみの紹介文やコーポレートロゴは含まれません。
