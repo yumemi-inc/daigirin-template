@@ -2,13 +2,13 @@
 
 技術同人誌のテンプレートリポジトリです。新しい同人誌を作成するときは、このリポジトリを利用してください。
 
-## PDFの生成方法
+## PDF の生成方法
 
 ```shell
 make run
 ```
 
-🔖 [グローバル環境を可能な限り汚染せずにMarkdownから組版のPDFを生成（ゆめみ大技林 '23）](https://zenn.dev/yumemi_inc/articles/afe7745cd62af2)
+🔖 [グローバル環境を可能な限り汚染せずに Markdown から組版の PDF を生成（ゆめみ大技林 '23）](https://zenn.dev/yumemi_inc/articles/afe7745cd62af2)
 
 ### 電子版 PDF に表紙画像を追加する
 
@@ -28,7 +28,7 @@ make cover
 make pdf_press
 ```
 
-もしくは、GitHub でタグに「n版」または「n版m刷」（たとえば、`初版`、`初版2刷` や `第二版一刷` など）を付けてプッシュすると、電子版および印刷入稿用 PDF を添付したリリースが作成されます。`cover` ディレクトリに表紙画像や PSD ファイルがある場合は、それらもアセットに追加します。
+もしくは、GitHub でタグに「n 版」または「n 版 m 刷」（たとえば、`初版`、`初版2刷` や `第二版一刷` など）を付けてプッシュすると、電子版および印刷入稿用 PDF を添付したリリースが作成されます。`cover` ディレクトリに表紙画像や PSD ファイルがある場合は、それらもアセットに追加します。
 
 ## 書籍の設定
 
@@ -38,8 +38,8 @@ make pdf_press
 
 ## 原稿の追加方法
 
-- [book/manuscripts](book/manuscripts) ディレクトリの中に、拡張子 `.md` のMarkdownファイルを作成します。
-- [book/vivliostyle.config.js](book/vivliostyle.config.js) ファイル内の `entry` 配列に、そのMarkdownファイル名を追加します。
+- [book/manuscripts](book/manuscripts) ディレクトリの中に、拡張子 `.md` の Markdown ファイルを作成します。
+- [book/vivliostyle.config.js](book/vivliostyle.config.js) ファイル内の `entry` 配列に、その Markdown ファイル名を追加します。
 
 ## 文章校正
 
@@ -117,10 +117,18 @@ corepack enable yarn
 
 ### 実行
 
-- `yarn start` : pdfを生成して開く（`make run` 相当）
-- `yarn lint` : textlintを実行（`make lint` 相当）
-- `yarn build` : pdfを生成（`make pdf` 相当）
-- `yarn build:press` : プレス版のpdfを生成（`make pdf_press` 相当）
-- `yarn cover` : 電子版pdfと表紙画像を結合する（`make cover` 相当）
-- `yarn open` : pdfを開く（`make open` 相当）
+- `yarn start` : pdf を生成して開く（`make run` 相当）
+- `yarn lint` : textlint を実行（`make lint` 相当）
+- `yarn build` : pdf を生成（`make pdf` 相当）
+- `yarn build:press` : プレス版の pdf を生成（`make pdf_press` 相当）
+- `yarn cover` : 電子版 pdf と表紙画像を結合する（`make cover` 相当）
+- `yarn open` : pdf を開く（`make open` 相当）
 - `yarn clean` : 生成ファイルをすべて削除（`make clean` 相当）
+
+## ライセンス
+
+このプロジェクトは MIT ライセンスの下で公開されています。
+
+### 注意事項
+
+- このリポジトリの MIT ライセンスには、株式会社ゆめみの紹介文やコーポレートロゴは含まれません。
