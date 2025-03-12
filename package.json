@@ -14,7 +14,8 @@
     "clean": "rm -rf ./book/output/",
     "cover": "node ./scripts/InsertCoverImage.js",
     "eslint": "eslint ./scripts",
-    "prettier": "prettier --write **/*.js"
+    "prettier": "prettier --write **/*.js",
+    "preinstall": "npx only-allow yarn"
   },
   "devDependencies": {
     "@eslint/js": "^9.21.0",
@@ -31,5 +32,9 @@
     "textlint-rule-prh": "^6.0.0",
     "textlint-rule-spellcheck-tech-word": "^5.0.0"
   },
-  "packageManager": "yarn@4.6.0"
+  "packageManager": "yarn@4.6.0",
+  "engines": {
+    "yarn": "4.6.0",
+    "npm": "please-use-yarn"
+  }
 }
