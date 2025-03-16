@@ -19,7 +19,7 @@
   },
   "devDependencies": {
     "@eslint/js": "^9.21.0",
-    "@vivliostyle/cli": "^8.19.0",
+    "@vivliostyle/cli": "8.18.0",
     "eslint": "^9.21.0",
     "eslint-config-prettier": "^10.0.2",
     "npm-run-all2": "^7.0.2",
@@ -32,7 +32,7 @@
     "textlint-rule-prh": "^6.0.0",
     "textlint-rule-spellcheck-tech-word": "^5.0.0"
   },
-  "packageManager": "yarn@4.6.0",
+  "packageManager": "yarn@4.7.0",
   "engines": {
     "yarn": "4.6.0",
     "npm": "please-use-yarn"
