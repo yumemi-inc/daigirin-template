@@ -19,7 +19,7 @@
   },
   "devDependencies": {
     "@eslint/js": "^9.21.0",
-    "@vivliostyle/cli": "^8.19.0",
+    "@vivliostyle/cli": "8.18.0",
     "eslint": "^9.21.0",
     "eslint-config-prettier": "^10.0.2",
     "npm-run-all2": "^7.0.2",
