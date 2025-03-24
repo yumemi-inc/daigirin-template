@@ -18,7 +18,7 @@
     "preinstall": "npx only-allow yarn"
   },
   "devDependencies": {
-    "@eslint/js": "^9.22.0",
+    "@eslint/js": "^9.23.0",
     "@vivliostyle/cli": "8.19.0",
     "eslint": "^9.22.0",
     "eslint-config-prettier": "^10.1.1",
