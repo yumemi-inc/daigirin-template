@@ -8,4 +8,4 @@ services:
       - .:/workspaces/daigirin-template
       - /workspaces/daigirin-template/node_modules
     working_dir: /workspaces/daigirin-template
-    command: yarn lint
+    command: corepack enable yarn && yarn lint
