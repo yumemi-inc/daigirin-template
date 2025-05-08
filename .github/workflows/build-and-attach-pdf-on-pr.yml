@@ -16,7 +16,8 @@ permissions:
 jobs:
   build-and-attach-pdf-on-pr:
     runs-on: ubuntu-latest
-    if: ${{ github.event_name == 'pull_request' || (github.event_name == 'pull_request_target' && contains(github.event.pull_request.labels.*.name, 'safe to test')) }}
+    if: ( github.event.pull_request.head.repo.fork == false ) ||
+        ( contains(github.event.pull_request.labels.*.name, 'Run CI') )
 
     # 環境変数を定義
     env:
