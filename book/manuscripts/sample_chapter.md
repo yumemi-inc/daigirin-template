@@ -3,7 +3,7 @@ class: content
 ---
 
 <div class="doc-header">
-  <h1>サンプルチャプターのタイトル</h1>
+  <div class="doc-title">サンプルチャプターのタイトル</div>
   <div class="doc-author">サンプルチャプターの著者</div>
 </div>
 
