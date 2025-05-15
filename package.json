@@ -18,10 +18,10 @@
     "preinstall": "npx only-allow yarn"
   },
   "devDependencies": {
-    "@eslint/js": "^9.25.1",
+    "@eslint/js": "^9.26.0",
     "@vivliostyle/cli": "9.0.1",
-    "eslint": "^9.25.1",
-    "eslint-config-prettier": "^10.1.2",
+    "eslint": "^9.26.0",
+    "eslint-config-prettier": "^10.1.5",
     "npm-run-all2": "^8.0.1",
     "pdf-lib": "^1.17.1",
     "prettier": "^3.5.3",
