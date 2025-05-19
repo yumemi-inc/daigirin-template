@@ -1607,9 +1607,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@vivliostyle/cli@npm:9.0.1":
-  version: 9.0.1
-  resolution: "@vivliostyle/cli@npm:9.0.1"
+"@vivliostyle/cli@npm:9.1.1":
+  version: 9.1.1
+  resolution: "@vivliostyle/cli@npm:9.1.1"
   dependencies:
     "@babel/code-frame": "npm:7.26.2"
     "@humanwhocodes/momoa": "npm:3.3.8"
@@ -1617,7 +1617,7 @@ __metadata:
     "@npmcli/arborist": "npm:8.0.0"
     "@vivliostyle/jsdom": "npm:25.0.1-vivliostyle-cli.1"
     "@vivliostyle/vfm": "npm:2.2.1"
-    "@vivliostyle/viewer": "npm:2.31.2"
+    "@vivliostyle/viewer": "npm:2.32.0"
     ajv: "npm:8.17.1"
     ajv-formats: "npm:3.0.1"
     archiver: "npm:7.0.1"
@@ -1639,10 +1639,11 @@ __metadata:
     npm-package-arg: "npm:12.0.2"
     pdf-lib: "npm:1.17.1"
     picomatch: "npm:4.0.2"
-    playwright-core: "npm:1.51.1"
+    playwright-core: "npm:1.52.0"
     press-ready: "npm:4.0.3"
     prettier: "npm:3.5.3"
     resolve-pkg: "npm:2.0.0"
+    semver: "npm:7.7.1"
     sirv: "npm:3.0.1"
     terminal-link: "npm:4.0.0"
     tinyglobby: "npm:0.2.13"
@@ -1661,16 +1662,16 @@ __metadata:
   bin:
     vivliostyle: dist/cli.js
     vs: dist/cli.js
-  checksum: 10c0/b69a28c01153b661728bf105440b2909bd7a4e7a8d2f74f08e1482e75c1b92d7c9866e2a57d43dad3602e67576c4b443a8cff2c97877260292e111a3592afc8b
+  checksum: 10c0/b05405f7ac0f1dc0b5fe78124e363e64c35dd1e46665b9caf54bb6b19247392c3dd204d0b1541a68947d421f63e6e6ec8a7cd6cdcd503e3a5f2919edc4c6fec0
   languageName: node
   linkType: hard
 
-"@vivliostyle/core@npm:^2.31.2":
-  version: 2.31.2
-  resolution: "@vivliostyle/core@npm:2.31.2"
+"@vivliostyle/core@npm:^2.32.0":
+  version: 2.32.0
+  resolution: "@vivliostyle/core@npm:2.32.0"
   dependencies:
     fast-diff: "npm:^1.2.0"
-  checksum: 10c0/540a38419fbe2d8cf454e72473f73dd8a184ba1b50c1382c130c156a11c6b27f45ed6981f6e07af739af55ae90aa261bbc7cb4e9856eafb7c44a53e5b19db144
+  checksum: 10c0/6d9c1ffd332b889788c6a28a4644bf7e25786bbb2ef85f6473fcd59dcde2334b2f449357958ea54d9a34438f798b28d4916a8881fa904e896d84f58408c91213
   languageName: node
   linkType: hard
 
@@ -1751,14 +1752,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@vivliostyle/viewer@npm:2.31.2":
-  version: 2.31.2
-  resolution: "@vivliostyle/viewer@npm:2.31.2"
+"@vivliostyle/viewer@npm:2.32.0":
+  version: 2.32.0
+  resolution: "@vivliostyle/viewer@npm:2.32.0"
   dependencies:
-    "@vivliostyle/core": "npm:^2.31.2"
+    "@vivliostyle/core": "npm:^2.32.0"
     i18next-ko: "npm:^3.0.1"
     knockout: "npm:^3.5.0"
-  checksum: 10c0/e57e48737e9403e083f1ecaf78812a9bb7f8ef506dd1303d73abcf207ebdffcaa32b5beabed7beb30817008646197985a3c1bf404edb278a2ebfa4e4b61448c5
+  checksum: 10c0/5bd2f58ffe32a2b56fdd52cc8ead01a70c5ef7bebe0e0cde861369a8ec52bde5a36b39c22a987caf1d51f769d728250db43b798d709d2950703a05b6fc2571a1
   languageName: node
   linkType: hard
 
@@ -2615,7 +2616,7 @@ __metadata:
   resolution: "daigirin-template@workspace:."
   dependencies:
     "@eslint/js": "npm:^9.26.0"
-    "@vivliostyle/cli": "npm:9.0.1"
+    "@vivliostyle/cli": "npm:9.1.1"
     eslint: "npm:^9.26.0"
     eslint-config-prettier: "npm:^10.1.5"
     npm-run-all2: "npm:^8.0.1"
@@ -6784,12 +6785,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"playwright-core@npm:1.51.1":
-  version: 1.51.1
-  resolution: "playwright-core@npm:1.51.1"
+"playwright-core@npm:1.52.0":
+  version: 1.52.0
+  resolution: "playwright-core@npm:1.52.0"
   bin:
     playwright-core: cli.js
-  checksum: 10c0/4f004d9dea5ecbd76b84c858fa4880ed955600b6cda972a3e8093ea47e150ce20bf2ea806e73e740497d34f4b61b080c208339a661fc75ad04d8f00bedcc21e0
+  checksum: 10c0/640945507e6ca2144e9f596b2a6ecac042c2fd3683ff99e6271e9a7b38f3602d415f282609d569456f66680aab8b3c5bb1b257d8fb63a7fc0ed648261110421f
   languageName: node
   linkType: hard
 
@@ -7691,7 +7692,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"semver@npm:^7.1.1, semver@npm:^7.3.4, semver@npm:^7.3.5, semver@npm:^7.3.7, semver@npm:^7.5.3":
+"semver@npm:7.7.1, semver@npm:^7.1.1, semver@npm:^7.3.4, semver@npm:^7.3.5, semver@npm:^7.3.7, semver@npm:^7.5.3":
   version: 7.7.1
   resolution: "semver@npm:7.7.1"
   bin:
