@@ -32,7 +32,7 @@ jobs:
           echo "PR title: ${{ github.event.pull_request.title }}"
 
           # PRタイトルが"@vivliostyle/cli"に一致するか確認
-          if echo "${{ github.event.pull_request.title }}" | grep -q '^Bump @vivliostyle/cli from'; then
+          if echo "${{ github.event.pull_request.title }}" | grep -iE '^(chore\(deps.*\): )?bump @vivliostyle/cli from'; then
             # PRタイトルから新しいバージョンを抽出
             NEW_VERSION=$(echo "${{ github.event.pull_request.title }}" | grep -oP '(?<=to )\d+\.\d+\.\d+')
 
