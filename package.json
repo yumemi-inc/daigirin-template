@@ -22,7 +22,7 @@
     "@vivliostyle/cli": "9.1.1",
     "eslint": "^9.28.0",
     "eslint-config-prettier": "^10.1.5",
-    "npm-run-all2": "^8.0.1",
+    "npm-run-all2": "^8.0.4",
     "pdf-lib": "^1.17.1",
     "prettier": "^3.5.3",
     "textlint": "^14.7.1",
