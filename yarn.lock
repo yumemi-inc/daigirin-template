@@ -1589,9 +1589,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@vivliostyle/cli@npm:9.1.1":
-  version: 9.1.1
-  resolution: "@vivliostyle/cli@npm:9.1.1"
+"@vivliostyle/cli@npm:9.2.0":
+  version: 9.2.0
+  resolution: "@vivliostyle/cli@npm:9.2.0"
   dependencies:
     "@babel/code-frame": "npm:7.26.2"
     "@humanwhocodes/momoa": "npm:3.3.8"
@@ -1599,7 +1599,7 @@ __metadata:
     "@npmcli/arborist": "npm:8.0.0"
     "@vivliostyle/jsdom": "npm:25.0.1-vivliostyle-cli.1"
     "@vivliostyle/vfm": "npm:2.2.1"
-    "@vivliostyle/viewer": "npm:2.32.0"
+    "@vivliostyle/viewer": "npm:2.32.1"
     ajv: "npm:8.17.1"
     ajv-formats: "npm:3.0.1"
     archiver: "npm:7.0.1"
@@ -1623,7 +1623,6 @@ __metadata:
     picomatch: "npm:4.0.2"
     playwright-core: "npm:1.52.0"
     press-ready: "npm:4.0.3"
-    prettier: "npm:3.5.3"
     resolve-pkg: "npm:2.0.0"
     semver: "npm:7.7.1"
     sirv: "npm:3.0.1"
@@ -1644,16 +1643,16 @@ __metadata:
   bin:
     vivliostyle: dist/cli.js
     vs: dist/cli.js
-  checksum: 10c0/b05405f7ac0f1dc0b5fe78124e363e64c35dd1e46665b9caf54bb6b19247392c3dd204d0b1541a68947d421f63e6e6ec8a7cd6cdcd503e3a5f2919edc4c6fec0
+  checksum: 10c0/752749f91790f836925c5a50be216c36023fe0151eb238b9ee189c0e337fb1e443c85ddd58a9b812f57a5230db0140e387ffb9e580333658889bef71535c79c1
   languageName: node
   linkType: hard
 
-"@vivliostyle/core@npm:^2.32.0":
-  version: 2.32.0
-  resolution: "@vivliostyle/core@npm:2.32.0"
+"@vivliostyle/core@npm:^2.32.1":
+  version: 2.32.1
+  resolution: "@vivliostyle/core@npm:2.32.1"
   dependencies:
     fast-diff: "npm:^1.2.0"
-  checksum: 10c0/6d9c1ffd332b889788c6a28a4644bf7e25786bbb2ef85f6473fcd59dcde2334b2f449357958ea54d9a34438f798b28d4916a8881fa904e896d84f58408c91213
+  checksum: 10c0/dce2e3ed0134ed5f9297034e46f5e7f0bf991a2fda72b73aab52295a95402c9d71819d2c2d281f3a9fdebe2a71f5d4c742d72672e6220e59e102f9516343f48c
   languageName: node
   linkType: hard
 
@@ -1734,14 +1733,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@vivliostyle/viewer@npm:2.32.0":
-  version: 2.32.0
-  resolution: "@vivliostyle/viewer@npm:2.32.0"
+"@vivliostyle/viewer@npm:2.32.1":
+  version: 2.32.1
+  resolution: "@vivliostyle/viewer@npm:2.32.1"
   dependencies:
-    "@vivliostyle/core": "npm:^2.32.0"
+    "@vivliostyle/core": "npm:^2.32.1"
     i18next-ko: "npm:^3.0.1"
     knockout: "npm:^3.5.0"
-  checksum: 10c0/5bd2f58ffe32a2b56fdd52cc8ead01a70c5ef7bebe0e0cde861369a8ec52bde5a36b39c22a987caf1d51f769d728250db43b798d709d2950703a05b6fc2571a1
+  checksum: 10c0/10c8a8bba439d195599b6d7e896785d3c1ead4beca2ecd09362ae6438aa5b57df45dba513e3ec563e7200d5be40ad6e764db8ad28485a443dc7c701ef664ee9b
   languageName: node
   linkType: hard
 
@@ -2524,7 +2523,7 @@ __metadata:
   resolution: "daigirin-template@workspace:."
   dependencies:
     "@eslint/js": "npm:^9.28.0"
-    "@vivliostyle/cli": "npm:9.1.1"
+    "@vivliostyle/cli": "npm:9.2.0"
     eslint: "npm:^9.28.0"
     eslint-config-prettier: "npm:^10.1.5"
     npm-run-all2: "npm:^8.0.4"
@@ -6537,7 +6536,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"prettier@npm:3.5.3, prettier@npm:^3.5.3":
+"prettier@npm:^3.5.3":
   version: 3.5.3
   resolution: "prettier@npm:3.5.3"
   bin:
