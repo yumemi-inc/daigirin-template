@@ -2,7 +2,7 @@
 const config = require('./vivliostyle.config.js')
 module.exports = {
   ...config,
-  theme: [...config.theme, 'theme/theme-press.css'],
+  theme: [...config.theme, 'theme/theme-press'],
   output: {
     path: './output/press.pdf',
     preflight: 'press-ready',
