@@ -18,13 +18,13 @@
     "preinstall": "npx only-allow yarn"
   },
   "devDependencies": {
-    "@eslint/js": "^9.29.0",
+    "@eslint/js": "^9.30.1",
     "@vivliostyle/cli": "9.3.3",
-    "eslint": "^9.29.0",
+    "eslint": "^9.30.1",
     "eslint-config-prettier": "^10.1.5",
     "npm-run-all2": "^8.0.4",
     "pdf-lib": "^1.17.1",
-    "prettier": "^3.6.0",
+    "prettier": "^3.6.2",
     "textlint": "^15.1.0",
     "textlint-filter-rule-comments": "^1.2.2",
     "textlint-rule-preset-ja-spacing": "^2.3.0",
