@@ -11,11 +11,7 @@
     },
     "preset-ja-technical-writing": {
       "max-kanji-continuous-len": {
-        "allow": [
-          "大技林製作委員会",
-          "給与自己決定制度",
-          "圧倒的成長環境"
-        ]
+        "allow": ["大技林製作委員会", "給与自己決定制度", "圧倒的成長環境"]
       }
     },
     "spellcheck-tech-word": true,

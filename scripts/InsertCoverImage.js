@@ -1,4 +1,5 @@
-const fs = require('fs')
+import * as fs from 'node:fs'
+
 const { PDFDocument } = require('pdf-lib')
 
 /**

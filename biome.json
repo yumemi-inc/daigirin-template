@@ -8,7 +8,15 @@
   "files": {
     "ignoreUnknown": false,
     "includes": [
-      "!prh-rules", "!node_modules", "!book/.vivliostyle", "**/*.md", "**/*.js", "**/*.ts", "**/*.json", "**/*.yml", "**/*.yaml"
+      "!prh-rules",
+      "!node_modules",
+      "!book/.vivliostyle",
+      "**/*.md",
+      "**/*.js",
+      "**/*.ts",
+      "**/*.json",
+      "**/*.yml",
+      "**/*.yaml"
     ]
   },
   "formatter": {
