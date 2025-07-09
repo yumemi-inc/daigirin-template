@@ -1,5 +1,5 @@
-import * as fs from 'node:fs'
-
+// biome-ignore lint/style/useNodejsImportProtocol: プロジェクトの都合で CommonJS を使用するため
+const fs = require('fs')
 const { PDFDocument } = require('pdf-lib')
 
 /**
