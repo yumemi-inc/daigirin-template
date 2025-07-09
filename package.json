@@ -13,9 +13,12 @@
     "open": "open ./book/output/ebook.pdf",
     "clean": "rm -rf ./book/output/",
     "cover": "node ./scripts/InsertCoverImage.js",
-    "preinstall": "npx only-allow yarn"
+    "preinstall": "npx only-allow yarn",
+    "check": "biome check",
+    "check-write": "biome check --write"
   },
   "devDependencies": {
+    "@biomejs/biome": "2.1.0",
     "@vivliostyle/cli": "9.3.3",
     "npm-run-all2": "^8.0.4",
     "pdf-lib": "^1.17.1",
