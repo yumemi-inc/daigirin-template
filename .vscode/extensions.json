@@ -2,7 +2,6 @@
   "recommendations": [
     "ms-vscode-remote.remote-containers",
     "streetsidesoftware.code-spell-checker",
-    "3w36zj6.textlint",
-    "esbenp.prettier-vscode"
+    "3w36zj6.textlint"
   ],
 }

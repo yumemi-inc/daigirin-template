@@ -9,12 +9,6 @@ updates:
     schedule:
       interval: "weekly"
     groups:
-      update-eslint:
-        patterns:
-          - "eslint"
-          - "eslint-*"
-          - "@eslint/*"
-          - "prettier"
       update-textlint:
         patterns:
           - "textlint"
