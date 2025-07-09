@@ -10,7 +10,7 @@
     "includes": [
       "!prh-rules",
       "!node_modules",
-      "!book/.vivliostyle",
+      "!**/.vivliostyle",
       "**/*.md",
       "**/*.js",
       "**/*.ts",
