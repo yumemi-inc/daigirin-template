@@ -13,18 +13,15 @@
     "open": "open ./book/output/ebook.pdf",
     "clean": "rm -rf ./book/output/",
     "cover": "node ./scripts/InsertCoverImage.js",
-    "eslint": "eslint ./scripts",
-    "prettier": "prettier --write **/*.js",
-    "preinstall": "npx only-allow yarn"
+    "preinstall": "npx only-allow yarn",
+    "check": "biome check",
+    "check-write": "biome check --write"
   },
   "devDependencies": {
-    "@eslint/js": "^9.30.1",
+    "@biomejs/biome": "2.1.0",
     "@vivliostyle/cli": "9.3.3",
-    "eslint": "^9.30.1",
-    "eslint-config-prettier": "^10.1.5",
     "npm-run-all2": "^8.0.4",
     "pdf-lib": "^1.17.1",
-    "prettier": "^3.6.2",
     "textlint": "^15.2.0",
     "textlint-filter-rule-comments": "^1.2.2",
     "textlint-rule-preset-ja-spacing": "^2.3.0",
@@ -32,9 +29,9 @@
     "textlint-rule-prh": "^6.1.0",
     "textlint-rule-spellcheck-tech-word": "^5.0.0"
   },
-  "packageManager": "yarn@4.9.1",
+  "packageManager": "yarn@4.9.2",
   "engines": {
-    "yarn": "4.9.1",
+    "yarn": "4.9.2",
     "npm": "please-use-yarn"
   }
 }

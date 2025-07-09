@@ -1,7 +1,8 @@
 {
+  "editor.defaultFormatter": "biomejs.biome",
   "editor.formatOnSave": true,
-  "[javascript]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  "editor.codeActionsOnSave": {
+    "source.organizeImports.biome": "explicit"
   },
   "cSpell.words": [
     "baseservice",
