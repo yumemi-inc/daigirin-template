@@ -1,0 +1,9 @@
+{
+  "mcpServers": {
+    "textlint": {
+      "command": "npx",
+      "args": ["textlint", "--mcp"],
+      "env": {}
+    }
+  }
+}
