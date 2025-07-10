@@ -477,6 +477,52 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@kvs/env@npm:^2.1.3":
+  version: 2.2.0
+  resolution: "@kvs/env@npm:2.2.0"
+  dependencies:
+    "@kvs/indexeddb": "npm:^2.1.4"
+    "@kvs/node-localstorage": "npm:^2.2.0"
+  checksum: 10c0/c1597fb0ae4b4c7c5014bfee0df16369450733eb46aa532451e478a8d7031bfe55adddb267f5f1c2fc9ea1738e822c6fe452976e9507f0456019cf7b3f4e3160
+  languageName: node
+  linkType: hard
+
+"@kvs/indexeddb@npm:^2.1.4":
+  version: 2.1.4
+  resolution: "@kvs/indexeddb@npm:2.1.4"
+  dependencies:
+    "@kvs/types": "npm:^2.1.4"
+  checksum: 10c0/f6e187cedd2ab201592c9ac1c392289d9ee0fe2944c8ceec93f416ec934fa38cc4516387accddf5d89f6b23e62bdf3c8e573377cb26ef8493d9998d1b0f3c8cf
+  languageName: node
+  linkType: hard
+
+"@kvs/node-localstorage@npm:^2.2.0":
+  version: 2.2.0
+  resolution: "@kvs/node-localstorage@npm:2.2.0"
+  dependencies:
+    "@kvs/storage": "npm:^2.1.4"
+    app-root-path: "npm:^3.1.0"
+    node-localstorage: "npm:^2.1.6"
+  checksum: 10c0/9e47203661b514692995b10799c76ef9bbc64821aa6468449d0b52a2265e10375af7821758cd1885ec1d42b2a301ec461069eaa253a3afa4e269761108afd58f
+  languageName: node
+  linkType: hard
+
+"@kvs/storage@npm:^2.1.4":
+  version: 2.1.4
+  resolution: "@kvs/storage@npm:2.1.4"
+  dependencies:
+    "@kvs/types": "npm:^2.1.4"
+  checksum: 10c0/dcf36491539bd91bb091037e0bca6b5e38031d9f8119f3dfdea321f89db2f35bc49ede239199b44b2e56da5b85cdeb7abf2ad325091d4a51f36c1117826458b0
+  languageName: node
+  linkType: hard
+
+"@kvs/types@npm:^2.1.4":
+  version: 2.1.4
+  resolution: "@kvs/types@npm:2.1.4"
+  checksum: 10c0/996a408b7a3215b26ab4ac7a5511fe6511b5169fccdb9539b9a50c053a0abb1048bc9e348f7caa2429ee3ce1d51a85f2deeaed1b93c833f8772ddadffdf9071d
+  languageName: node
+  linkType: hard
+
 "@modelcontextprotocol/sdk@npm:^1.13.2":
   version: 1.15.0
   resolution: "@modelcontextprotocol/sdk@npm:1.15.0"
@@ -1035,6 +1081,17 @@ __metadata:
   version: 4.0.0
   resolution: "@sindresorhus/merge-streams@npm:4.0.0"
   checksum: 10c0/482ee543629aa1933b332f811a1ae805a213681ecdd98c042b1c1b89387df63e7812248bb4df3910b02b3cc5589d3d73e4393f30e197c9dde18046ccd471fc6b
+  languageName: node
+  linkType: hard
+
+"@textlint-ja/textlint-rule-preset-ai-writing@npm:^1.5.0":
+  version: 1.5.0
+  resolution: "@textlint-ja/textlint-rule-preset-ai-writing@npm:1.5.0"
+  dependencies:
+    "@textlint/regexp-string-matcher": "npm:^2.0.2"
+    kuromojin: "npm:^3.0.1"
+    textlint-util-to-string: "npm:^3.3.4"
+  checksum: 10c0/6257b30eca80977ae96d1fa1311d794c04236a7712b6f9b848cb702909a7ebc01ad8a3dbe971e013d3a3a4233de7bfb70435068c14ca9f739cf4fb15865b8591
   languageName: node
   linkType: hard
 
@@ -1864,6 +1921,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"app-root-path@npm:^3.1.0":
+  version: 3.1.0
+  resolution: "app-root-path@npm:3.1.0"
+  checksum: 10c0/4a0fd976de1bffcdb18a5e1f8050091f15d0780e0582bca99aaa9d52de71f0e08e5185355fcffc781180bfb898499e787a2f5ed79b9c448b942b31dc947acaa9
+  languageName: node
+  linkType: hard
+
 "archiver-utils@npm:^5.0.0, archiver-utils@npm:^5.0.2":
   version: 5.0.2
   resolution: "archiver-utils@npm:5.0.2"
@@ -2566,6 +2630,7 @@ __metadata:
   resolution: "daigirin-template@workspace:."
   dependencies:
     "@biomejs/biome": "npm:2.1.1"
+    "@textlint-ja/textlint-rule-preset-ai-writing": "npm:^1.5.0"
     "@vivliostyle/cli": "npm:9.3.3"
     npm-run-all2: "npm:^8.0.4"
     pdf-lib: "npm:^1.17.1"
@@ -3698,7 +3763,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"graceful-fs@npm:^4.1.6, graceful-fs@npm:^4.2.0, graceful-fs@npm:^4.2.6":
+"graceful-fs@npm:^4.1.11, graceful-fs@npm:^4.1.6, graceful-fs@npm:^4.2.0, graceful-fs@npm:^4.2.6":
   version: 4.2.11
   resolution: "graceful-fs@npm:4.2.11"
   checksum: 10c0/386d011a553e02bc594ac2ca0bd6d9e4c22d7fa8cfbfc448a6d148c59ea881b092db9dbe3547ae4b88e55f1b01f7c4a2ecc53b310c042793e63aa44cf6c257f2
@@ -4893,6 +4958,17 @@ __metadata:
   languageName: node
   linkType: hard
 
+"kuromojin@npm:^3.0.1":
+  version: 3.0.1
+  resolution: "kuromojin@npm:3.0.1"
+  dependencies:
+    "@kvs/env": "npm:^2.1.3"
+    kuromoji: "npm:0.1.2"
+    lru_map: "npm:^0.4.1"
+  checksum: 10c0/9ea7e99cafd2e64fb58a7c620228735db8efeb68c76d189122a07c509d777bc96a15a3ef98ae0f0137becb0bc14cfd0ac012088a7db46feb80b0827f5699451a
+  languageName: node
+  linkType: hard
+
 "lazystream@npm:^1.0.0":
   version: 1.0.1
   resolution: "lazystream@npm:1.0.1"
@@ -5748,6 +5824,15 @@ __metadata:
   bin:
     node-gyp: bin/node-gyp.js
   checksum: 10c0/c38977ce502f1ea41ba2b8721bd5b49bc3d5b3f813eabfac8414082faf0620ccb5211e15c4daecc23ed9f5e3e9cc4da00e575a0bcfc2a95a069294f2afa1e0cd
+  languageName: node
+  linkType: hard
+
+"node-localstorage@npm:^2.1.6":
+  version: 2.2.1
+  resolution: "node-localstorage@npm:2.2.1"
+  dependencies:
+    write-file-atomic: "npm:^1.1.4"
+  checksum: 10c0/0686e15bacec4e4655ac9fa140e8c3f1f38404c4a4599d17205f0729db7a2b1a7c9565225376b18cf536cba2dd57189d3ce07b686bb3f4f7dcf081b56ff0f83d
   languageName: node
   linkType: hard
 
@@ -7443,6 +7528,13 @@ __metadata:
     astral-regex: "npm:^2.0.0"
     is-fullwidth-code-point: "npm:^3.0.0"
   checksum: 10c0/6c25678db1270d4793e0327620f1e0f9f5bea4630123f51e9e399191bc52c87d6e6de53ed33538609e5eacbd1fab769fae00f3705d08d029f02102a540648918
+  languageName: node
+  linkType: hard
+
+"slide@npm:^1.1.5":
+  version: 1.1.6
+  resolution: "slide@npm:1.1.6"
+  checksum: 10c0/f3bde70fd4c0a2ba6c23c674f010849865ddfacbc0ae3a57522d7ce88e4cc6c186d627943c34004d4f009a3fb477c03307b247ab69a266de4b3c72b271a6a03a
   languageName: node
   linkType: hard
 
@@ -9339,6 +9431,17 @@ __metadata:
   version: 1.0.2
   resolution: "wrappy@npm:1.0.2"
   checksum: 10c0/56fece1a4018c6a6c8e28fbc88c87e0fbf4ea8fd64fc6c63b18f4acc4bd13e0ad2515189786dd2c30d3eec9663d70f4ecf699330002f8ccb547e4a18231fc9f0
+  languageName: node
+  linkType: hard
+
+"write-file-atomic@npm:^1.1.4":
+  version: 1.3.4
+  resolution: "write-file-atomic@npm:1.3.4"
+  dependencies:
+    graceful-fs: "npm:^4.1.11"
+    imurmurhash: "npm:^0.1.4"
+    slide: "npm:^1.1.5"
+  checksum: 10c0/6f6270708f12e9bba36c527da3f06e4e11146681947b00732695f769f23651713e085e88a5e0f8d04f40d131ed1f1f588d9eeade3a0f862fe8a91f4b4a15a23c
   languageName: node
   linkType: hard
 

@@ -13,6 +13,7 @@ updates:
         patterns:
           - "textlint"
           - "textlint-*"
+          - "@textlint-ja/*"
   - package-ecosystem: "github-actions"
     directory: "/"
     open-pull-requests-limit: 10
