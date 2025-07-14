@@ -1640,9 +1640,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@vivliostyle/cli@npm:9.3.3":
-  version: 9.3.3
-  resolution: "@vivliostyle/cli@npm:9.3.3"
+"@vivliostyle/cli@npm:9.4.0":
+  version: 9.4.0
+  resolution: "@vivliostyle/cli@npm:9.4.0"
   dependencies:
     "@babel/code-frame": "npm:7.26.2"
     "@humanwhocodes/momoa": "npm:3.3.8"
@@ -1694,7 +1694,7 @@ __metadata:
   bin:
     vivliostyle: dist/cli.js
     vs: dist/cli.js
-  checksum: 10c0/165985ac57127f5ef18803553a4b8260b48f34e8cc83ae7399bafb27298fe727004d94ea2c7b9dad1214e1d14f10a11e2254849038798b864857ae73e9be9ec1
+  checksum: 10c0/2bdce78406376db5d43fefbbc3b2cb7a9d41412d5e134cde7d962fd1fb528a81c8ebc90b979302b8001f709e34072f272f620db86a435117a941e357cdba91ed
   languageName: node
   linkType: hard
 
@@ -2631,7 +2631,7 @@ __metadata:
   dependencies:
     "@biomejs/biome": "npm:2.1.1"
     "@textlint-ja/textlint-rule-preset-ai-writing": "npm:^1.5.0"
-    "@vivliostyle/cli": "npm:9.3.3"
+    "@vivliostyle/cli": "npm:9.4.0"
     npm-run-all2: "npm:^8.0.4"
     pdf-lib: "npm:^1.17.1"
     textlint: "npm:^15.2.0"
