@@ -12,6 +12,7 @@ on:
 
 jobs:
   check-npm-packages-by-aikidosec-safe-chain:
+    # 2025/12/18 時点では runner を ubuntu-slim にすると、AikidoSec/safe-chain が動作しない
     runs-on: ubuntu-latest
 
     steps:
