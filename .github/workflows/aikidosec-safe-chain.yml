@@ -12,7 +12,7 @@ on:
 
 jobs:
   check-npm-packages-by-aikidosec-safe-chain:
-    runs-on: ubuntu-slim
+    runs-on: ubuntu-latest
 
     steps:
       # リポジトリをチェックアウト
