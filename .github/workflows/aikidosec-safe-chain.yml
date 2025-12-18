@@ -36,4 +36,5 @@ jobs:
       # パッケージに問題がないか検査する
       - name: Install dependencies
         run: |
+          corepack enable
           yarn install --immutable
