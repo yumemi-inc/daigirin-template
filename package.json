@@ -13,7 +13,6 @@
     "open": "open ./book/output/ebook.pdf",
     "clean": "rm -rf ./book/output/",
     "cover": "node ./scripts/InsertCoverImage.js",
-    "preinstall": "npx only-allow yarn",
     "check": "biome check",
     "check-write": "biome check --write"
   },
@@ -30,9 +29,5 @@
     "textlint-rule-prh": "^6.1.0",
     "textlint-rule-spellcheck-tech-word": "^5.0.0"
   },
-  "packageManager": "yarn@4.12.0",
-  "engines": {
-    "yarn": "4.9.2",
-    "npm": "please-use-yarn"
-  }
+  "packageManager": "yarn@4.12.0"
 }
