@@ -18,7 +18,7 @@ ALL_DOCKER_IMAGES := $(TEXT_LINT_IMAGE_NAME) $(VIVLIOSTYLE_CLI_IMAGE_NAME)
 
 # https://hub.docker.com/_/node
 NODE_IMAGE_NAME := node
-NODE_IMAGE_TAG := 22-alpine
+NODE_IMAGE_TAG := 24-alpine
 
 DOCKER = \
 	@$(MAKE) prepare_docker; \
