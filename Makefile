@@ -12,13 +12,13 @@ export TEXT_LINT_IMAGE_TAG=latest
 
 ## https://github.com/vivliostyle/vivliostyle-cli/pkgs/container/cli
 VIVLIOSTYLE_CLI_IMAGE_NAME := ghcr.io/vivliostyle/cli
-VIVLIOSTYLE_CLI_IMAGE_TAG := 9.4.0
+VIVLIOSTYLE_CLI_IMAGE_TAG := 10.0.2
 
 ALL_DOCKER_IMAGES := $(TEXT_LINT_IMAGE_NAME) $(VIVLIOSTYLE_CLI_IMAGE_NAME)
 
 # https://hub.docker.com/_/node
 NODE_IMAGE_NAME := node
-NODE_IMAGE_TAG := 22-alpine
+NODE_IMAGE_TAG := 24-alpine
 
 DOCKER = \
 	@$(MAKE) prepare_docker; \
