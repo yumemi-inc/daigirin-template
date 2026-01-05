@@ -2,8 +2,8 @@
   "name": "daigirin-template",
   "version": "1.0.0",
   "main": "index.js",
-  "repository": "git@github.com:yumemi/daigirin-template.git",
-  "author": "YUMEMI Inc",
+  "repository": "git@github.com:yumemi-inc/daigirin-template.git",
+  "author": "YUMEMI Daigirin Production Committee",
   "license": "MIT",
   "scripts": {
     "lint": "textlint ./book/manuscripts/",
