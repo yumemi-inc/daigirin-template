@@ -1795,9 +1795,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@vivliostyle/cli@npm:10.3.0":
-  version: 10.3.0
-  resolution: "@vivliostyle/cli@npm:10.3.0"
+"@vivliostyle/cli@npm:10.3.1":
+  version: 10.3.1
+  resolution: "@vivliostyle/cli@npm:10.3.1"
   dependencies:
     "@babel/code-frame": "npm:7.26.2"
     "@bluwy/giget-core": "npm:0.1.3"
@@ -1822,7 +1822,7 @@ __metadata:
     dompurify: "npm:3.2.5"
     escape-string-regexp: "npm:5.0.0"
     fast-wrap-ansi: "npm:0.1.3"
-    fast-xml-parser: "npm:5.2.1"
+    fast-xml-parser: "npm:5.3.4"
     fs-extra: "npm:11.2.0"
     github-slugger: "npm:2.0.0"
     handlebars: "npm:4.7.8"
@@ -1862,7 +1862,7 @@ __metadata:
   bin:
     vivliostyle: dist/cli.js
     vs: dist/cli.js
-  checksum: 10c0/390e6cf7c4d6bb6885c6913331a4df67bab24b5f5f51ebd528732335b07f1a728d3a943d993a743106d23e4c4b734213e18105832be5b83685e5e6c510ec577e
+  checksum: 10c0/de2e1c2c603eda9b0b6dd2fe09c7ffb33fe764b624d0e097757bc2ee22cc7def976f7409092549fe4c832ce3bb01c551f22f92cf294261851d944f55396c1fb7
   languageName: node
   linkType: hard
 
@@ -2912,7 +2912,7 @@ __metadata:
   dependencies:
     "@biomejs/biome": "npm:2.3.11"
     "@textlint-ja/textlint-rule-preset-ai-writing": "npm:^1.6.1"
-    "@vivliostyle/cli": "npm:10.3.0"
+    "@vivliostyle/cli": "npm:10.3.1"
     npm-run-all2: "npm:^8.0.4"
     pdf-lib: "npm:^1.17.1"
     textlint: "npm:^15.5.1"
@@ -3766,14 +3766,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"fast-xml-parser@npm:5.2.1":
-  version: 5.2.1
-  resolution: "fast-xml-parser@npm:5.2.1"
+"fast-xml-parser@npm:5.3.4":
+  version: 5.3.4
+  resolution: "fast-xml-parser@npm:5.3.4"
   dependencies:
-    strnum: "npm:^2.0.5"
+    strnum: "npm:^2.1.0"
   bin:
     fxparser: src/cli/cli.js
-  checksum: 10c0/56839040975f66a1b825dd705bbf7fd622b605f59b994c80a5eda2fb971d553dca7341f094b5c04ae5277164f24e93603cc1f0fb90e22a57411bf350bede48b9
+  checksum: 10c0/d77866ca860ad185153e12f6ba12274d32026319ad8064e4681342b8a8e1ffad3f1f98daf04d77239fb12eb1d906ee7185fd328deda74529680e8dae0f3e9327
   languageName: node
   linkType: hard
 
@@ -8351,10 +8351,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"strnum@npm:^2.0.5":
-  version: 2.1.0
-  resolution: "strnum@npm:2.1.0"
-  checksum: 10c0/5e47f0effca692caf46f12436136964189d28aff5146e4be4e219b81a3ca82436d81b51c9d27735423d416c1be216190ca04b50720000a1ff50479c8420b68a7
+"strnum@npm:^2.1.0":
+  version: 2.1.2
+  resolution: "strnum@npm:2.1.2"
+  checksum: 10c0/4e04753b793540d79cd13b2c3e59e298440477bae2b853ab78d548138385193b37d766d95b63b7046475d68d44fb1fca692f0a3f72b03f4168af076c7b246df9
   languageName: node
   linkType: hard
 
