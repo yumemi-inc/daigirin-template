@@ -52,20 +52,21 @@ jobs:
 
       # アーティファクトとして PDF をアップロードする
       - name: Upload PDF as artifact
-        uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # v6.0.0
+        uses: actions/upload-artifact@bbbca2ddaa5d8feaa63e36b76fdaad77386f024f # v7.0.0
         id: artifact-upload-step
         with:
-          name: "ebook-pdf"
+          name: "ebook.pdf"
           path: "${{ env.PDF_PATH }}"
           if-no-files-found: error
 
       # PR に PDF のアーティファクトリンクを含むコメントを投稿する
       - name: Create PR Comment
         uses: peter-evans/create-or-update-comment@e8674b075228eee787fea43ef493e45ece1004c9 # v5.0.0
+        env:
+          ARTIFACT_URL: "https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}/artifacts/${{ steps.artifact-upload-step.outputs.artifact-id }}"
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           repository: ${{ github.repository }}
           issue-number: ${{ github.event.pull_request.number }}
           body: |
-            :page_facing_up: PDF が作成されました
-            [ダウンロード](https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}/artifacts/${{ steps.artifact-upload-step.outputs.artifact-id }})
+            :page_facing_up: [PDF](${{ env.ARTIFACT_URL }}) が作成されました
