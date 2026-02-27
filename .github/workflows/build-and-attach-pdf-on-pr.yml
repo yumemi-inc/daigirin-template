@@ -58,6 +58,7 @@ jobs:
           name: "ebook.pdf"
           path: "${{ env.PDF_PATH }}"
           if-no-files-found: error
+          archive: false
 
       # PR に PDF のアーティファクトリンクを含むコメントを投稿する
       - name: Create PR Comment
