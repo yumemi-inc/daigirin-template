@@ -5,6 +5,10 @@
 const fs = require('node:fs')
 const path = require('node:path')
 
+const manuscriptsDir = path.join(__dirname, '../book/manuscripts')
+const articlesDir = path.join(manuscriptsDir, 'articles')
+const articlesConfigPath = path.join(manuscriptsDir, 'articles.yml')
+
 /**
  * articles.yml または articles ディレクトリから記事ファイルの一覧を取得します。
  * articles.yml が存在する場合はその順番に従います。
@@ -37,4 +41,16 @@ function getArticleFiles(articlesDir, articlesConfigPath) {
     .sort()
 }
 
-module.exports = { getArticleFiles }
+/**
+ * vivliostyle.config.js の entry 配列に渡すための記事エントリを返します。
+ * articles.yml が存在する場合はその順番に従います。
+ * 存在しない場合はアルファベット順で取得します。
+ * @returns {string[]} `articles/filename.md` 形式の配列
+ */
+function getArticleEntries() {
+  return getArticleFiles(articlesDir, articlesConfigPath).map(
+    (file) => `articles/${file}`,
+  )
+}
+
+module.exports = { getArticleFiles, getArticleEntries }

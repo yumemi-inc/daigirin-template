@@ -1,21 +1,4 @@
-const path = require('node:path')
-const { getArticleFiles } = require('../scripts/article-utils.js')
-
-const manuscriptsDir = path.join(__dirname, 'manuscripts')
-const articlesDir = path.join(manuscriptsDir, 'articles')
-const articlesConfigPath = path.join(manuscriptsDir, 'articles.yml')
-
-/**
- * articles ディレクトリのマークダウンファイルをエントリ形式で返します。
- * articles.yml が存在する場合はその順番に従います。
- * 存在しない場合はアルファベット順で取得します。
- * @returns {string[]}
- */
-function getArticleEntries() {
-  return getArticleFiles(articlesDir, articlesConfigPath).map(
-    (file) => `articles/${file}`,
-  )
-}
+const { getArticleEntries } = require('../scripts/article-utils.js')
 
 module.exports = {
   title: 'ゆめみ大技林 ' /*\'23'*/,
