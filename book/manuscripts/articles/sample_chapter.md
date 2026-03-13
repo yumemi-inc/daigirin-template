@@ -1,5 +1,8 @@
 ---
 class: content
+title: サンプルチャプターのタイトル
+author: サンプルチャプターの著者
+author_profile: サンプルの自己紹介文です。サンプルの自己紹介文です。サンプルの自己紹介文です。
 ---
 
 <div class="doc-header">

@@ -8,8 +8,11 @@
   "scripts": {
     "lint": "textlint ./book/manuscripts/",
     "start": "run-s build open",
-    "build": "cd ./book/ && vivliostyle build",
-    "build:press": "cd ./book/ && vivliostyle build --config vivliostyle.config.press.local.js",
+    "generate": "node ./scripts/generate-manuscripts.js",
+    "build": "run-s generate build:ebook",
+    "build:ebook": "cd ./book/ && vivliostyle build",
+    "build:press": "run-s generate build:press:vivliostyle",
+    "build:press:vivliostyle": "cd ./book/ && vivliostyle build --config vivliostyle.config.press.local.js",
     "open": "open ./book/output/ebook.pdf",
     "clean": "rm -rf ./book/output/",
     "cover": "node ./scripts/InsertCoverImage.js",

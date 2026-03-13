@@ -56,6 +56,11 @@ run: \
 	pdf \
 	open
 
+.PHONY: generate
+## マークダウンファイル（index.md, authors.md）を自動生成
+generate:
+	$(NODE_RUN) node ./scripts/generate-manuscripts.js
+
 .PHONY: lint
 ## textlintを実行
 lint:
@@ -63,12 +68,12 @@ lint:
 
 .PHONY: pdf
 ## pdfを生成
-pdf:
+pdf: generate
 	$(VIVLIOSTYLE_CLI) build
 
 .PHONY: pdf_press
 ## プレス版のpdfを生成
-pdf_press:
+pdf_press: generate
 	$(VIVLIOSTYLE_CLI) build --config vivliostyle.config.press.docker.js
 
 .PHONY: open
