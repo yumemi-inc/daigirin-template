@@ -1,44 +1,20 @@
-const fs = require('node:fs')
 const path = require('node:path')
+const { getArticleFiles } = require('../scripts/article-utils.js')
 
 const manuscriptsDir = path.join(__dirname, 'manuscripts')
 const articlesDir = path.join(manuscriptsDir, 'articles')
 const articlesConfigPath = path.join(manuscriptsDir, 'articles.yml')
 
 /**
- * articles ディレクトリのマークダウンファイルを自動取得します。
+ * articles ディレクトリのマークダウンファイルをエントリ形式で返します。
  * articles.yml が存在する場合はその順番に従います。
  * 存在しない場合はアルファベット順で取得します。
  * @returns {string[]}
  */
 function getArticleEntries() {
-  if (!fs.existsSync(articlesDir)) {
-    return []
-  }
-
-  let articleFiles
-
-  if (fs.existsSync(articlesConfigPath)) {
-    // articles.yml の順番に従う
-    const content = fs.readFileSync(articlesConfigPath, 'utf8')
-    articleFiles = content
-      .split('\n')
-      .map((line) => line.trim())
-      .filter((line) => line.startsWith('- '))
-      .map((line) => line.slice(2).trim())
-      .filter((file) => file.endsWith('.md'))
-  } else {
-    // アルファベット順で自動取得
-    articleFiles = fs
-      .readdirSync(articlesDir)
-      .filter((file) => file.endsWith('.md'))
-      .sort()
-  }
-
-  // ファイルが存在するものだけ返す
-  return articleFiles
-    .filter((file) => fs.existsSync(path.join(articlesDir, file)))
-    .map((file) => `articles/${file}`)
+  return getArticleFiles(articlesDir, articlesConfigPath).map(
+    (file) => `articles/${file}`,
+  )
 }
 
 module.exports = {

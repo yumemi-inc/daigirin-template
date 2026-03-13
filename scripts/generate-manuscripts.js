@@ -15,6 +15,7 @@
 
 const fs = require('node:fs')
 const path = require('node:path')
+const { getArticleFiles } = require('./article-utils.js')
 
 const manuscriptsDir = path.join(__dirname, '../book/manuscripts')
 const articlesDir = path.join(manuscriptsDir, 'articles')
@@ -37,40 +38,12 @@ function parseFrontMatter(content) {
       const value = line
         .slice(colonIdx + 1)
         .trim()
-        .replace(/^["']|["']$/g, '')
+        .replace(/^(['"])(.*)\1$/, '$2')
       frontMatter[key] = value
     }
   }
 
   return frontMatter
-}
-
-/**
- * articles.yml または articles ディレクトリから記事ファイルの一覧を取得します。
- * @returns {string[]}
- */
-function getArticleFiles() {
-  if (!fs.existsSync(articlesDir)) {
-    return []
-  }
-
-  if (fs.existsSync(articlesConfigPath)) {
-    const content = fs.readFileSync(articlesConfigPath, 'utf8')
-    return content
-      .split('\n')
-      .map((line) => line.trim())
-      .filter((line) => line.startsWith('- '))
-      .map((line) => line.slice(2).trim())
-      .filter(
-        (file) =>
-          file.endsWith('.md') && fs.existsSync(path.join(articlesDir, file)),
-      )
-  }
-
-  return fs
-    .readdirSync(articlesDir)
-    .filter((file) => file.endsWith('.md'))
-    .sort()
 }
 
 /**
@@ -141,7 +114,7 @@ function generateAuthors(articles) {
 }
 
 // メイン処理
-const articleFiles = getArticleFiles()
+const articleFiles = getArticleFiles(articlesDir, articlesConfigPath)
 const articles = articleFiles.map((file) => {
   const filePath = path.join(articlesDir, file)
   const content = fs.readFileSync(filePath, 'utf8')
