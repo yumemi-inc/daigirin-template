@@ -276,27 +276,38 @@ function generateAuthors(articles, generateConfig) {
 }
 
 // メイン処理
-const vivliostyleConfig = require('../book/vivliostyle.config.js')
-const bookTitle = (vivliostyleConfig.title || 'ゆめみ大技林').trim()
-const tocPages = getTocPages(pagesConfigPath)
-const generateConfig = loadGenerateConfig(generateConfigPath)
+if (require.main === module) {
+  const vivliostyleConfig = require('../book/vivliostyle.config.js')
+  const bookTitle = (vivliostyleConfig.title || 'ゆめみ大技林').trim()
+  const tocPages = getTocPages(pagesConfigPath)
+  const generateConfig = loadGenerateConfig(generateConfigPath)
 
-const articleFiles = getArticleFiles(articlesDir, articlesConfigPath)
-const articles = articleFiles.map((file) => {
-  const filePath = path.join(articlesDir, file)
-  const content = fs.readFileSync(filePath, 'utf8')
-  return {
-    file,
-    frontMatter: parseFrontMatter(content),
-  }
-})
+  const articleFiles = getArticleFiles(articlesDir, articlesConfigPath)
+  const articles = articleFiles.map((file) => {
+    const filePath = path.join(articlesDir, file)
+    const content = fs.readFileSync(filePath, 'utf8')
+    return {
+      file,
+      frontMatter: parseFrontMatter(content),
+    }
+  })
 
-const indexPath = path.join(manuscriptsDir, 'index.md')
-fs.writeFileSync(indexPath, generateIndex(articles, bookTitle, tocPages))
-console.log('Generated: manuscripts/index.md')
+  const indexPath = path.join(manuscriptsDir, 'index.md')
+  fs.writeFileSync(indexPath, generateIndex(articles, bookTitle, tocPages))
+  console.log('Generated: manuscripts/index.md')
 
-const authorsPath = path.join(manuscriptsDir, 'authors.md')
-fs.writeFileSync(authorsPath, generateAuthors(articles, generateConfig))
-console.log('Generated: manuscripts/authors.md')
+  const authorsPath = path.join(manuscriptsDir, 'authors.md')
+  fs.writeFileSync(authorsPath, generateAuthors(articles, generateConfig))
+  console.log('Generated: manuscripts/authors.md')
 
-console.log(`Processed ${articles.length} article(s).`)
+  console.log(`Processed ${articles.length} article(s).`)
+}
+
+module.exports = {
+  parseYamlBlockScalar,
+  parseFrontMatter,
+  getTocPages,
+  loadGenerateConfig,
+  generateIndex,
+  generateAuthors,
+}
