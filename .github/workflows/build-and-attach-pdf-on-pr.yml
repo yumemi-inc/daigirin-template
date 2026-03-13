@@ -14,10 +14,35 @@ permissions:
   pull-requests: write
 
 jobs:
-  build-and-attach-pdf-on-pr:
+  check-mergeable:
     runs-on: ubuntu-latest
     if: ( github.event.pull_request.head.repo.fork == false ) ||
         ( contains(github.event.pull_request.labels.*.name, 'Run CI') )
+    outputs:
+      mergeable: ${{ steps.check.outputs.mergeable }}
+    steps:
+      - name: Check if PR is mergeable
+        id: check
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          for i in $(seq 1 5); do
+            MERGEABLE=$(gh api repos/${{ github.repository }}/pulls/${{ github.event.pull_request.number }} --jq '.mergeable')
+            if [ "$MERGEABLE" != "null" ]; then
+              break
+            fi
+            echo "マージ可否がまだ計算中です。${i} 回目の試行... 10秒後に再試行します。"
+            sleep 10
+          done
+          echo "mergeable=$MERGEABLE" >> $GITHUB_OUTPUT
+          if [ "$MERGEABLE" != "true" ]; then
+            echo "::notice::PR はマージできない状態です（mergeable=$MERGEABLE）。PDF の生成をスキップします。"
+          fi
+
+  build-and-attach-pdf-on-pr:
+    needs: check-mergeable
+    runs-on: ubuntu-latest
+    if: needs.check-mergeable.outputs.mergeable == 'true'
 
     # 環境変数を定義
     env:
