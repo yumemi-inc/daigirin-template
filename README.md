@@ -194,6 +194,7 @@ corepack enable yarn
 
 ### 実行
 
+- `yarn generate` : 原稿ファイルを自動生成（`make generate` 相当）
 - `yarn start` : pdf を生成して開く（`make run` 相当）
 - `yarn lint` : textlint を実行（`make lint` 相当）
 - `yarn build` : pdf を生成（`make pdf` 相当）
