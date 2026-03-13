@@ -38,8 +38,70 @@ make pdf_press
 
 ## 原稿の追加方法
 
-- [book/manuscripts](book/manuscripts) ディレクトリの中に、拡張子 `.md` の Markdown ファイルを作成します。
-- [book/vivliostyle.config.js](book/vivliostyle.config.js) ファイル内の `entry` 配列に、その Markdown ファイル名を追加します。
+[book/manuscripts/articles](book/manuscripts/articles) ディレクトリの中に、拡張子 `.md` の Markdown ファイルを作成します。ファイルは `build` 時に自動で目次・著者紹介に反映されます（手動で設定ファイルを編集する必要はありません）。
+
+### front matter
+
+各記事ファイルの先頭に以下の front matter を記述してください。
+
+```yaml
+---
+class: content
+title: 記事のタイトル
+author: 著者名
+profile: 著者の自己紹介文
+---
+```
+
+`profile` フィールドは、YAML ブロックスカラー `|` を使って複数行で記述できます。
+
+```yaml
+profile: |
+  1 行目の自己紹介文です。
+  2 行目の自己紹介文です。
+```
+
+### 記事の並び順
+
+[book/manuscripts/articles.yml](book/manuscripts/articles.yml) にファイル名を記載した順番で、目次に表示されます。このファイルを削除すると、`articles` ディレクトリ内のファイルがアルファベット順で自動設定されます。
+
+```yaml
+- article1.md
+- article2.md
+```
+
+## 自動生成ファイル
+
+`build` 実行時に [scripts/generate-manuscripts.js](scripts/generate-manuscripts.js) が自動的に呼び出され、以下のファイルが生成されます。
+
+- **`book/manuscripts/index.md`**（目次）: 各記事の `title` を一覧化します。
+- **`book/manuscripts/authors.md`**（著者紹介）: 各記事の `author` と `profile` をまとめます。
+
+> [!NOTE]
+> これらのファイルは自動生成されるため、直接編集しないでください。
+
+手動で生成する場合は次のコマンドを実行します。
+
+```shell
+make generate
+```
+
+### 目次の固定ページ設定
+
+記事以外のページ（「はじめに」など）を目次に追加したい場合は、[book/manuscripts/pages.yml](book/manuscripts/pages.yml) に記述します。
+
+```yaml
+- title: はじめに
+  file: preface.html
+```
+
+### 著者紹介のヘッダーテンプレート設定
+
+[book/manuscripts/generate.yml](book/manuscripts/generate.yml) で、著者紹介セクションのヘッダーテンプレートを変更できます。`{author}` と `{title}` は実際の値に置き換えられます。
+
+```yaml
+author_section_header: "### {author}（{title}）"
+```
 
 ## 文章校正
 
