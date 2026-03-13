@@ -4,7 +4,7 @@ class: exclude-hashira
 
 <!-- このファイルは自動生成されます。直接編集しないでください。 -->
 
-# ゆめみ大技林 <!--'23-->
+# ゆめみ大技林
 
 <nav id="toc" role="doc-toc">
 

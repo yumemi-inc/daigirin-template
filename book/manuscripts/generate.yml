@@ -1,0 +1,5 @@
+# generate-manuscripts.js の動作設定ファイル
+
+# 著者紹介セクションのヘッダーテンプレート
+# 使用可能な変数: {author} (著者名), {title} (記事タイトル)
+author_section_header: "### {author}（{title}）"

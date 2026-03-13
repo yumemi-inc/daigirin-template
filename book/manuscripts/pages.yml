@@ -1,0 +1,9 @@
+# 目次に表示する固定ページの設定（articles ディレクトリとは別管理）
+# 記事以外のページ（はじめに・コラムなど）をここで管理します。
+# フォーマット:
+#   - title: 表示タイトル
+#     file:  リンク先ファイル名.html
+- title: はじめに
+  file: preface.html
+- title: ゆめみ大技林製作委員会とは
+  file: preface.html
