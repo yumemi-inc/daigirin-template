@@ -63,7 +63,7 @@ profile: |
 
 ### 記事の並び順
 
-[book/manuscripts/articles.yml](book/manuscripts/articles.yml) にファイル名を記載した順番で、目次に表示されます。このファイルを削除すると、`articles` ディレクトリ内のファイルがアルファベット順で自動設定されます。
+[book/manuscripts/articles.yml](book/manuscripts/articles.yml) にファイル名を記載した順番で、目次に表示されます。このファイルを削除するか、内容が空の場合は、`articles` ディレクトリ内のファイルがアルファベット順で自動設定されます。
 
 ```yaml
 - article1.md
@@ -95,20 +95,19 @@ make generate
   file: preface.html
 ```
 
-### 著者紹介のヘッダーテンプレート設定
-
-[book/manuscripts/generate.yml](book/manuscripts/generate.yml) で、著者紹介セクションのヘッダーテンプレートを変更できます。`{author}` と `{title}` は実際の値に置き換えられます。
-
-```yaml
-author_section_header: "### {author}（{title}）"
-```
-
 ### 著者紹介のプロフィールテンプレート設定
 
-同じく [book/manuscripts/generate.yml](book/manuscripts/generate.yml) で、プロフィールの出力フォーマットも変更できます。省略した場合は `profile` フィールドの値がそのまま出力されます。`{profile}`、`{author}`、`{title}` を使用できます。
+[book/manuscripts/generate.yml](book/manuscripts/generate.yml) で、著者紹介セクションの出力フォーマットを変更できます。省略した場合はデフォルトのフォーマットが使用されます。使用できる変数は以下のとおりです。
+
+- `{author}`: 著者名
+- `{title}`: 記事タイトル（同じ著者が複数の記事を執筆している場合はコンマ区切りで並べられます）
+- `{profile}`: プロフィール文
 
 ```yaml
-profile_template: "{profile}"
+profile_template: |
+  ### {author}（{title}）
+
+  {profile}
 ```
 
 ## 文章校正

@@ -24,6 +24,44 @@ const pagesConfigPath = path.join(manuscriptsDir, 'pages.yml')
 const generateConfigPath = path.join(manuscriptsDir, 'generate.yml')
 
 /**
+ * YAML リテラルブロックスカラー（`|` 形式）をパースします。
+ * @param {string[]} lines - 行の配列
+ * @param {number} startIndex - ブロック内容の最初の行のインデックス
+ * @returns {{ value: string, nextIndex: number }}
+ */
+function parseYamlBlockScalar(lines, startIndex) {
+  const blockLines = []
+  let i = startIndex
+  let indent = -1
+
+  while (i < lines.length) {
+    const blockLine = lines[i]
+    if (blockLine.trim() === '') {
+      if (indent >= 0) blockLines.push('')
+      i++
+      continue
+    }
+    if (indent < 0) {
+      const m = blockLine.match(/^(\s+)/)
+      indent = m ? m[1].length : 0
+    }
+    if (indent > 0 && blockLine.startsWith(' '.repeat(indent))) {
+      blockLines.push(blockLine.slice(indent))
+      i++
+    } else {
+      break
+    }
+  }
+
+  // 末尾の空行を除去
+  while (blockLines.length && blockLines[blockLines.length - 1] === '') {
+    blockLines.pop()
+  }
+
+  return { value: blockLines.join('\n'), nextIndex: i }
+}
+
+/**
  * マークダウンの front matter をパースして、キーと値のオブジェクトを返します。
  * YAML ブロックスカラー（`|` 形式）による複数行の値もサポートします。
  * @param {string} content - マークダウンの内容
@@ -45,36 +83,9 @@ function parseFrontMatter(content) {
       const rawVal = line.slice(colonIdx + 1).trim()
 
       if (rawVal === '|') {
-        // YAML リテラルブロックスカラー: 以降のインデント行を結合する
-        const blockLines = []
-        i++
-        let indent = -1
-        while (i < lines.length) {
-          const blockLine = lines[i]
-          if (blockLine.trim() === '') {
-            if (indent >= 0) blockLines.push('')
-            i++
-            continue
-          }
-          if (indent < 0) {
-            const m = blockLine.match(/^(\s+)/)
-            indent = m ? m[1].length : 0
-          }
-          if (
-            blockLine.length >= indent &&
-            blockLine.startsWith(' '.repeat(Math.max(indent, 1)))
-          ) {
-            blockLines.push(blockLine.slice(indent))
-            i++
-          } else {
-            break
-          }
-        }
-        // 末尾の空行を除去
-        while (blockLines.length && blockLines[blockLines.length - 1] === '') {
-          blockLines.pop()
-        }
-        frontMatter[key] = blockLines.join('\n')
+        const { value, nextIndex } = parseYamlBlockScalar(lines, i + 1)
+        frontMatter[key] = value
+        i = nextIndex
       } else {
         frontMatter[key] = rawVal.replace(/^(['"])(.*)\1$/, '$2')
         i++
@@ -130,6 +141,7 @@ function getTocPages(configPath) {
 
 /**
  * generate.yml からジェネレーター設定を読み込みます。
+ * YAML リテラルブロックスカラー（`|` 形式）による複数行の値もサポートします。
  * @param {string} configPath - generate.yml のパス
  * @returns {Record<string, string>}
  */
@@ -139,19 +151,34 @@ function loadGenerateConfig(configPath) {
   }
   const content = fs.readFileSync(configPath, 'utf8')
   const config = {}
-  for (const line of content.split(/\r?\n/)) {
+  const lines = content.split(/\r?\n/)
+  let i = 0
+
+  while (i < lines.length) {
+    const line = lines[i]
     const trimmed = line.trim()
-    if (!trimmed || trimmed.startsWith('#')) continue
+    if (!trimmed || trimmed.startsWith('#')) {
+      i++
+      continue
+    }
     const colonIdx = trimmed.indexOf(':')
     if (colonIdx > 0) {
       const key = trimmed.slice(0, colonIdx).trim()
-      const val = trimmed
-        .slice(colonIdx + 1)
-        .trim()
-        .replace(/^(['"])(.*)\1$/, '$2')
-      config[key] = val
+      const rawVal = trimmed.slice(colonIdx + 1).trim()
+
+      if (rawVal === '|') {
+        const { value, nextIndex } = parseYamlBlockScalar(lines, i + 1)
+        config[key] = value
+        i = nextIndex
+      } else {
+        config[key] = rawVal.replace(/^(['"])(.*)\1$/, '$2')
+        i++
+      }
+    } else {
+      i++
     }
   }
+
   return config
 }
 
@@ -197,6 +224,7 @@ function generateIndex(articles, bookTitle, tocPages) {
 
 /**
  * 記事ファイルのリストから著者紹介 (authors.md) の内容を生成します。
+ * 同じ著者が複数の記事を執筆している場合はひとつにまとめ、タイトルをコンマ区切りで表示します。
  * @param {{ file: string, frontMatter: Record<string, string> }[]} articles
  * @param {Record<string, string>} generateConfig - generate.yml から読み込んだ設定
  * @returns {string}
@@ -213,29 +241,35 @@ function generateAuthors(articles, generateConfig) {
     '',
   ]
 
+  // 著者ごとにまとめる（記事の登場順を保持）
+  /** @type {Map<string, { titles: string[], profile: string }>} */
+  const authorMap = new Map()
   for (const article of articles) {
     const fm = article.frontMatter
-    if (fm.author) {
-      const headerTemplate = generateConfig.author_section_header
-      const header = headerTemplate
-        ? headerTemplate
-            .replace('{author}', fm.author)
-            .replace('{title}', fm.title || '')
-        : fm.title
-          ? `### ${fm.author}（${fm.title}）`
-          : `### ${fm.author}`
-      lines.push(header)
-      lines.push('')
-      const profileTemplate = generateConfig.profile_template
-      const profile = profileTemplate
-        ? profileTemplate
-            .replace('{profile}', fm.profile || '')
-            .replace('{author}', fm.author)
-            .replace('{title}', fm.title || '')
-        : fm.profile || '著者の自己紹介を記述してください。'
-      lines.push(profile)
-      lines.push('')
+    if (!fm.author) continue
+    if (!authorMap.has(fm.author)) {
+      authorMap.set(fm.author, { titles: [], profile: fm.profile || '' })
     }
+    const entry = authorMap.get(fm.author)
+    if (fm.title) entry.titles.push(fm.title)
+    if (!entry.profile && fm.profile) entry.profile = fm.profile
+  }
+
+  const DEFAULT_PROFILE_TEMPLATE = '### {author}（{title}）\n\n{profile}'
+  const profileTemplate =
+    generateConfig.profile_template !== undefined
+      ? generateConfig.profile_template
+      : DEFAULT_PROFILE_TEMPLATE
+
+  for (const [author, { titles, profile }] of authorMap) {
+    const title = titles.join('、')
+    const profileText = profile || '著者の自己紹介を記述してください。'
+    const section = profileTemplate
+      .replace('{author}', author)
+      .replace('{title}', title)
+      .replace('{profile}', profileText)
+    lines.push(section)
+    lines.push('')
   }
 
   return lines.join('\n')
