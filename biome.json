@@ -8,7 +8,6 @@
   "files": {
     "ignoreUnknown": false,
     "includes": [
-      "**",
       "!prh-rules",
       "!node_modules",
       "!**/.vivliostyle",
