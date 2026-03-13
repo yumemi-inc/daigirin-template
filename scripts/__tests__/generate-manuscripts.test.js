@@ -137,20 +137,20 @@ describe('generateIndex', () => {
     ]
     const result = generateIndex(articles, 'テスト本', [])
     expect(result).toContain('# テスト本')
-    expect(result).toContain('[記事1](articles/article1.html)')
-    expect(result).toContain('[記事2](articles/article2.html)')
+    expect(result).toContain('[記事1](../articles/article1.html)')
+    expect(result).toContain('[記事2](../articles/article2.html)')
   })
 
   test('タイトルがない場合はファイル名（拡張子なし）を使う', () => {
     const articles = [{ file: 'no-title.md', frontMatter: {} }]
     const result = generateIndex(articles, '本', [])
-    expect(result).toContain('[no-title](articles/no-title.html)')
+    expect(result).toContain('[no-title](../articles/no-title.html)')
   })
 
   test('固定ページ（tocPages）が目次に含まれる', () => {
     const tocPages = [{ title: 'はじめに', file: 'preface.html' }]
     const result = generateIndex([], '本', tocPages)
-    expect(result).toContain('[はじめに](preface.html)')
+    expect(result).toContain('[はじめに](../preface.html)')
   })
 
   test('自動生成コメントが含まれる', () => {

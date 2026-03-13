@@ -19,6 +19,7 @@ const { getArticleFiles } = require('./article-utils.js')
 
 const manuscriptsDir = path.join(__dirname, '../book/manuscripts')
 const articlesDir = path.join(manuscriptsDir, 'articles')
+const generatedDir = path.join(manuscriptsDir, 'generated')
 const configDir = path.join(manuscriptsDir, 'config')
 const articlesConfigPath = path.join(configDir, 'articles.yml')
 const pagesConfigPath = path.join(configDir, 'pages.yml')
@@ -207,13 +208,13 @@ function generateIndex(articles, bookTitle, tocPages) {
   ]
 
   for (const page of tocPages) {
-    lines.push(`1. [${page.title}](${page.file})`)
+    lines.push(`1. [${page.title}](../${page.file})`)
   }
 
   for (const article of articles) {
     const htmlFile = article.file.replace('.md', '.html')
     const title = article.frontMatter.title || article.file.replace('.md', '')
-    lines.push(`1. [${title}](articles/${htmlFile})`)
+    lines.push(`1. [${title}](../articles/${htmlFile})`)
   }
 
   lines.push('')
@@ -293,13 +294,14 @@ if (require.main === module) {
     }
   })
 
-  const indexPath = path.join(manuscriptsDir, 'index.md')
+  const indexPath = path.join(generatedDir, 'index.md')
+  fs.mkdirSync(generatedDir, { recursive: true })
   fs.writeFileSync(indexPath, generateIndex(articles, bookTitle, tocPages))
-  console.log('Generated: manuscripts/index.md')
+  console.log('Generated: manuscripts/generated/index.md')
 
-  const authorsPath = path.join(manuscriptsDir, 'authors.md')
+  const authorsPath = path.join(generatedDir, 'authors.md')
   fs.writeFileSync(authorsPath, generateAuthors(articles, generateConfig))
-  console.log('Generated: manuscripts/authors.md')
+  console.log('Generated: manuscripts/generated/authors.md')
 
   console.log(`Processed ${articles.length} article(s).`)
 }

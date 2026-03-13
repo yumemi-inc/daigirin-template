@@ -74,8 +74,8 @@ profile: |
 
 `build` 実行時に [scripts/generate-manuscripts.js](scripts/generate-manuscripts.js) が自動的に呼び出され、以下のファイルが生成されます。
 
-- **`book/manuscripts/index.md`**（目次）: 各記事の `title` を一覧化します。
-- **`book/manuscripts/authors.md`**（著者紹介）: 各記事の `author` と `profile` をまとめます。
+- **`book/manuscripts/generated/index.md`**（目次）: 各記事の `title` を一覧化します。
+- **`book/manuscripts/generated/authors.md`**（著者紹介）: 各記事の `author` と `profile` をまとめます。
 
 > [!NOTE]
 > これらのファイルは自動生成されるため、直接編集しないでください。
