@@ -90,9 +90,17 @@ make generate
 
 記事以外のページ（「はじめに」など）を目次に追加したい場合は、[book/manuscripts/config/pages.yml](book/manuscripts/config/pages.yml) に記述します。
 
+`position` フィールドで表示位置を制御できます。
+
+- `before`（デフォルト）: 記事一覧の**前**に表示されます。省略した場合も `before` 扱いになります。
+- `after`: 記事一覧の**後ろ**に表示されます。
+
 ```yaml
 - title: はじめに
   file: preface.html
+- title: おわりに
+  file: afterword.html
+  position: after
 ```
 
 ### 著者紹介のプロフィールテンプレート設定

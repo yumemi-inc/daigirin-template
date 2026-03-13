@@ -3,6 +3,7 @@
 const {
   parseYamlBlockScalar,
   parseFrontMatter,
+  getTocPages,
   loadGenerateConfig,
   generateIndex,
   generateAuthors,
@@ -127,6 +128,70 @@ describe('loadGenerateConfig', () => {
 })
 
 // ---------------------------------------------------------------------------
+// getTocPages
+// ---------------------------------------------------------------------------
+describe('getTocPages', () => {
+  let tmpDir
+
+  beforeEach(() => {
+    tmpDir = fs.mkdtempSync(path.join(os.tmpdir(), 'daigirin-test-'))
+  })
+
+  afterEach(() => {
+    fs.rmSync(tmpDir, { recursive: true, force: true })
+  })
+
+  test('ファイルが存在しない場合は空配列を返す', () => {
+    const result = getTocPages(path.join(tmpDir, 'missing.yml'))
+    expect(result).toEqual([])
+  })
+
+  test('position なしのエントリは before になる', () => {
+    const yml = '- title: はじめに\n  file: preface.html\n'
+    fs.writeFileSync(path.join(tmpDir, 'pages.yml'), yml)
+    const result = getTocPages(path.join(tmpDir, 'pages.yml'))
+    expect(result).toHaveLength(1)
+    expect(result[0].position).toBe('before')
+  })
+
+  test('position: before のエントリは before になる', () => {
+    const yml =
+      '- title: はじめに\n  file: preface.html\n  position: before\n'
+    fs.writeFileSync(path.join(tmpDir, 'pages.yml'), yml)
+    const result = getTocPages(path.join(tmpDir, 'pages.yml'))
+    expect(result[0].position).toBe('before')
+  })
+
+  test('position: after のエントリは after になる', () => {
+    const yml =
+      '- title: おわりに\n  file: afterword.html\n  position: after\n'
+    fs.writeFileSync(path.join(tmpDir, 'pages.yml'), yml)
+    const result = getTocPages(path.join(tmpDir, 'pages.yml'))
+    expect(result).toHaveLength(1)
+    expect(result[0].position).toBe('after')
+    expect(result[0].title).toBe('おわりに')
+    expect(result[0].file).toBe('afterword.html')
+  })
+
+  test('before と after が混在するとき両方取得できる', () => {
+    const yml =
+      '- title: はじめに\n  file: preface.html\n- title: おわりに\n  file: afterword.html\n  position: after\n'
+    fs.writeFileSync(path.join(tmpDir, 'pages.yml'), yml)
+    const result = getTocPages(path.join(tmpDir, 'pages.yml'))
+    expect(result).toHaveLength(2)
+    expect(result.filter((p) => p.position === 'before')).toHaveLength(1)
+    expect(result.filter((p) => p.position === 'after')).toHaveLength(1)
+  })
+
+  test('title か file が欠けているエントリは除外される', () => {
+    const yml = '- title: タイトルのみ\n- file: file-only.html\n'
+    fs.writeFileSync(path.join(tmpDir, 'pages.yml'), yml)
+    const result = getTocPages(path.join(tmpDir, 'pages.yml'))
+    expect(result).toHaveLength(0)
+  })
+})
+
+// ---------------------------------------------------------------------------
 // generateIndex
 // ---------------------------------------------------------------------------
 describe('generateIndex', () => {
@@ -147,10 +212,35 @@ describe('generateIndex', () => {
     expect(result).toContain('[no-title](../articles/no-title.html)')
   })
 
-  test('固定ページ（tocPages）が目次に含まれる', () => {
-    const tocPages = [{ title: 'はじめに', file: 'preface.html' }]
-    const result = generateIndex([], '本', tocPages)
+  test('beforePages が目次に含まれる', () => {
+    const beforePages = [{ title: 'はじめに', file: 'preface.html' }]
+    const result = generateIndex([], '本', beforePages)
     expect(result).toContain('[はじめに](../preface.html)')
+  })
+
+  test('afterPages が目次に含まれる', () => {
+    const afterPages = [{ title: 'おわりに', file: 'afterword.html' }]
+    const result = generateIndex([], '本', [], afterPages)
+    expect(result).toContain('[おわりに](../afterword.html)')
+  })
+
+  test('beforePages は articles より前、afterPages は articles より後ろに表示される', () => {
+    const articles = [
+      { file: 'article1.md', frontMatter: { title: '記事1' } },
+    ]
+    const beforePages = [{ title: 'はじめに', file: 'preface.html' }]
+    const afterPages = [{ title: 'おわりに', file: 'afterword.html' }]
+    const result = generateIndex(articles, '本', beforePages, afterPages)
+    const idxBefore = result.indexOf('[はじめに]')
+    const idxArticle = result.indexOf('[記事1]')
+    const idxAfter = result.indexOf('[おわりに]')
+    expect(idxBefore).toBeLessThan(idxArticle)
+    expect(idxArticle).toBeLessThan(idxAfter)
+  })
+
+  test('afterPages を省略しても動作する', () => {
+    const result = generateIndex([], '本', [])
+    expect(result).toBeTruthy()
   })
 
   test('自動生成コメントが含まれる', () => {

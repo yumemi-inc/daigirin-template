@@ -102,8 +102,9 @@ function parseFrontMatter(content) {
 
 /**
  * pages.yml から目次に表示する固定ページの一覧を取得します。
+ * 各エントリに `position: after` を指定すると、articles の後ろに表示されます（省略時は `before`）。
  * @param {string} configPath - pages.yml のパス
- * @returns {{ title: string, file: string }[]}
+ * @returns {{ title: string, file: string, position: 'before' | 'after' }[]}
  */
 function getTocPages(configPath) {
   if (!fs.existsSync(configPath)) {
@@ -138,7 +139,12 @@ function getTocPages(configPath) {
     }
   }
   if (current) items.push(current)
-  return items.filter((item) => item.title && item.file)
+  return items
+    .filter((item) => item.title && item.file)
+    .map((item) => {
+      if (item.position === 'after') return item
+      return item.position === 'before' ? item : { ...item, position: 'before' }
+    })
 }
 
 /**
@@ -188,10 +194,11 @@ function loadGenerateConfig(configPath) {
  * 記事ファイルのリストから目次 (index.md) の内容を生成します。
  * @param {{ file: string, frontMatter: Record<string, string> }[]} articles
  * @param {string} bookTitle - 書籍タイトル（vivliostyle.config.js から取得）
- * @param {{ title: string, file: string }[]} tocPages - 固定ページ一覧（pages.yml から取得）
+ * @param {{ title: string, file: string }[]} beforePages - articles の前に表示する固定ページ一覧
+ * @param {{ title: string, file: string }[]} [afterPages] - articles の後ろに表示する固定ページ一覧
  * @returns {string}
  */
-function generateIndex(articles, bookTitle, tocPages) {
+function generateIndex(articles, bookTitle, beforePages, afterPages = []) {
   const lines = [
     '---',
     'class: exclude-hashira',
@@ -207,7 +214,7 @@ function generateIndex(articles, bookTitle, tocPages) {
     '',
   ]
 
-  for (const page of tocPages) {
+  for (const page of beforePages) {
     lines.push(`1. [${page.title}](../${page.file})`)
   }
 
@@ -215,6 +222,10 @@ function generateIndex(articles, bookTitle, tocPages) {
     const htmlFile = article.file.replace('.md', '.html')
     const title = article.frontMatter.title || article.file.replace('.md', '')
     lines.push(`1. [${title}](../articles/${htmlFile})`)
+  }
+
+  for (const page of afterPages) {
+    lines.push(`1. [${page.title}](../${page.file})`)
   }
 
   lines.push('')
@@ -282,6 +293,17 @@ if (require.main === module) {
   const vivliostyleConfig = require('../book/vivliostyle.config.js')
   const bookTitle = (vivliostyleConfig.title || 'ゆめみ大技林').trim()
   const tocPages = getTocPages(pagesConfigPath)
+  const { beforePages, afterPages } = tocPages.reduce(
+    (acc, page) => {
+      if (page.position === 'after') {
+        acc.afterPages.push(page)
+      } else {
+        acc.beforePages.push(page)
+      }
+      return acc
+    },
+    { beforePages: [], afterPages: [] },
+  )
   const generateConfig = loadGenerateConfig(generateConfigPath)
 
   const articleFiles = getArticleFiles(articlesDir, articlesConfigPath)
@@ -296,7 +318,7 @@ if (require.main === module) {
 
   const indexPath = path.join(generatedDir, 'index.md')
   fs.mkdirSync(generatedDir, { recursive: true })
-  fs.writeFileSync(indexPath, generateIndex(articles, bookTitle, tocPages))
+  fs.writeFileSync(indexPath, generateIndex(articles, bookTitle, beforePages, afterPages))
   console.log('Generated: manuscripts/generated/index.md')
 
   const authorsPath = path.join(generatedDir, 'authors.md')
