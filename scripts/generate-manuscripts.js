@@ -19,9 +19,10 @@ const { getArticleFiles } = require('./article-utils.js')
 
 const manuscriptsDir = path.join(__dirname, '../book/manuscripts')
 const articlesDir = path.join(manuscriptsDir, 'articles')
-const articlesConfigPath = path.join(manuscriptsDir, 'articles.yml')
-const pagesConfigPath = path.join(manuscriptsDir, 'pages.yml')
-const generateConfigPath = path.join(manuscriptsDir, 'generate.yml')
+const configDir = path.join(manuscriptsDir, 'config')
+const articlesConfigPath = path.join(configDir, 'articles.yml')
+const pagesConfigPath = path.join(configDir, 'pages.yml')
+const generateConfigPath = path.join(configDir, 'generate.yml')
 
 /**
  * YAML リテラルブロックスカラー（`|` 形式）をパースします。

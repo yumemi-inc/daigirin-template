@@ -7,7 +7,7 @@ const path = require('node:path')
 
 const manuscriptsDir = path.join(__dirname, '../book/manuscripts')
 const articlesDir = path.join(manuscriptsDir, 'articles')
-const articlesConfigPath = path.join(manuscriptsDir, 'articles.yml')
+const articlesConfigPath = path.join(manuscriptsDir, 'config', 'articles.yml')
 
 /**
  * articles.yml または articles ディレクトリから記事ファイルの一覧を取得します。

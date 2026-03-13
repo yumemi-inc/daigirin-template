@@ -63,7 +63,7 @@ profile: |
 
 ### 記事の並び順
 
-[book/manuscripts/articles.yml](book/manuscripts/articles.yml) にファイル名を記載した順番で、目次に表示されます。このファイルを削除するか、内容が空の場合は、`articles` ディレクトリ内のファイルがアルファベット順で自動設定されます。
+[book/manuscripts/config/articles.yml](book/manuscripts/config/articles.yml) にファイル名を記載した順番で、目次に表示されます。このファイルを削除するか、内容が空の場合は、`articles` ディレクトリ内のファイルがアルファベット順で自動設定されます。
 
 ```yaml
 - article1.md
@@ -88,7 +88,7 @@ make generate
 
 ### 目次の固定ページ設定
 
-記事以外のページ（「はじめに」など）を目次に追加したい場合は、[book/manuscripts/pages.yml](book/manuscripts/pages.yml) に記述します。
+記事以外のページ（「はじめに」など）を目次に追加したい場合は、[book/manuscripts/config/pages.yml](book/manuscripts/config/pages.yml) に記述します。
 
 ```yaml
 - title: はじめに
@@ -97,7 +97,7 @@ make generate
 
 ### 著者紹介のプロフィールテンプレート設定
 
-[book/manuscripts/generate.yml](book/manuscripts/generate.yml) で、著者紹介セクションの出力フォーマットを変更できます。省略した場合はデフォルトのフォーマットが使用されます。使用できる変数は以下のとおりです。
+[book/manuscripts/config/generate.yml](book/manuscripts/config/generate.yml) で、著者紹介セクションの出力フォーマットを変更できます。省略した場合はデフォルトのフォーマットが使用されます。使用できる変数は以下のとおりです。
 
 - `{author}`: 著者名
 - `{title}`: 記事タイトル（同じ著者が複数の記事を執筆している場合はコンマ区切りで並べられます）
