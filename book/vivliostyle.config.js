@@ -14,13 +14,13 @@ module.exports = {
     // 目次
     'generated/index.md',
     // はじめに
-    'preface.md',
+    'pages/preface.md',
     // 各章の原稿（articles ディレクトリから自動取得）
     ...getArticleEntries(),
     // 著者紹介
     'generated/authors.md',
     // 奥付
-    'colophon.md',
+    'pages/colophon.md',
   ],
   entryContext: './manuscripts',
   output: ['output/ebook.pdf'],

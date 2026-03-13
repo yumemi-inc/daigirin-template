@@ -10,8 +10,8 @@ class: exclude-hashira
 
 ## 目次
 
-1. [はじめに](../preface.html)
-1. [ゆめみ大技林製作委員会とは](../preface.html)
+1. [はじめに](../pages/preface.html)
+1. [ゆめみ大技林製作委員会とは](../pages/preface.html)
 1. [サンプルチャプターのタイトル](../articles/sample_chapter.html)
 
 </nav>

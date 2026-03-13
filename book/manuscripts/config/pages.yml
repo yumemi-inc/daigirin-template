@@ -7,6 +7,6 @@
 #              before: 記事一覧の前に表示（省略時も before 扱い）
 #              after:  記事一覧の後ろに表示
 - title: はじめに
-  file: preface.html
+  file: pages/preface.html
 - title: ゆめみ大技林製作委員会とは
-  file: preface.html
+  file: pages/preface.html

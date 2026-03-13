@@ -97,7 +97,7 @@ make generate
 
 ```yaml
 - title: はじめに
-  file: preface.html
+  file: pages/preface.html
 - title: おわりに
   file: afterword.html
   position: after
