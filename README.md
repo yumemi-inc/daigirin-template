@@ -103,6 +103,14 @@ make generate
 author_section_header: "### {author}（{title}）"
 ```
 
+### 著者紹介のプロフィールテンプレート設定
+
+同じく [book/manuscripts/generate.yml](book/manuscripts/generate.yml) で、プロフィールの出力フォーマットも変更できます。省略した場合は `profile` フィールドの値がそのまま出力されます。`{profile}`、`{author}`、`{title}` を使用できます。
+
+```yaml
+profile_template: "{profile}"
+```
+
 ## 文章校正
 
 校正ツール [textlint](https://textlint.github.io/) を利用して、文章校正ができます。なお、この lint ツールの使用は任意です。書き方で悩んだ・校正したい場合など、必要に応じて導入してください。

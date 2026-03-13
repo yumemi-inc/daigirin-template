@@ -226,7 +226,14 @@ function generateAuthors(articles, generateConfig) {
           : `### ${fm.author}`
       lines.push(header)
       lines.push('')
-      lines.push(fm.profile || '著者の自己紹介を記述してください。')
+      const profileTemplate = generateConfig.profile_template
+      const profile = profileTemplate
+        ? profileTemplate
+            .replace('{profile}', fm.profile || '')
+            .replace('{author}', fm.author)
+            .replace('{title}', fm.title || '')
+        : fm.profile || '著者の自己紹介を記述してください。'
+      lines.push(profile)
       lines.push('')
     }
   }

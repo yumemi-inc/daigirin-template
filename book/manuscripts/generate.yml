@@ -3,3 +3,7 @@
 # 著者紹介セクションのヘッダーテンプレート
 # 使用可能な変数: {author} (著者名), {title} (記事タイトル)
 author_section_header: "### {author}（{title}）"
+
+# 著者紹介のプロフィールテンプレート（省略時は profile フィールドの値をそのまま出力）
+# 使用可能な変数: {profile} (プロフィール文), {author} (著者名), {title} (記事タイトル)
+# profile_template: "{profile}"
