@@ -376,8 +376,7 @@ function generateAuthors(articles, generateConfig) {
 /**
  * 奥付 (colophon.md) の内容を生成します。
  * タイトルと著作権の発行名は vivliostyle.config.js から取得し、その他の情報は generate.yml から取得します。
- * `colophon_rows` が設定されている場合はその配列からコンテナ行を生成します。
- * 設定されていない場合は `cover_designer`・`print_company`・`contact` から後方互換の行を生成します。
+ * コンテナ行は `colophon_rows` 配列から生成します。
  * @param {string} bookTitle - 書籍タイトル（vivliostyle.config.js の title）
  * @param {string} publisherName - 発行名（vivliostyle.config.js の author）
  * @param {Record<string, string | Array<Record<string, string>>>} generateConfig - generate.yml から読み込んだ設定
@@ -389,38 +388,15 @@ function generateColophon(bookTitle, publisherName, generateConfig) {
 
   const yearPart = copyrightYear ? `${copyrightYear} ` : ''
 
-  // colophon_rows が定義されていればそれを使い、なければ後方互換の固定行を使う
-  let rowLines
-  if (Array.isArray(generateConfig.colophon_rows)) {
-    rowLines = generateConfig.colophon_rows.flatMap((row) => [
-      '  <div class="colophon-row">',
-      `    <div class="colophon-label">${row.label || ''}</div>`,
-      `    <div class="colophon-value">${row.value || ''}</div>`,
-      '  </div>',
-    ])
-  } else {
-    const coverDesigner = generateConfig.cover_designer || ''
-    const printCompany = generateConfig.print_company || ''
-    const contact = generateConfig.contact || ''
-    rowLines = [
-      '  <div class="colophon-row">',
-      '    <div class="colophon-label">発行</div>',
-      `    <div class="colophon-value">${publisherName}</div>`,
-      '  </div>',
-      '  <div class="colophon-row">',
-      '    <div class="colophon-label">表紙</div>',
-      `    <div class="colophon-value">${coverDesigner}</div>`,
-      '  </div>',
-      '  <div class="colophon-row">',
-      '    <div class="colophon-label">印刷</div>',
-      `    <div class="colophon-value">${printCompany}</div>`,
-      '  </div>',
-      '  <div class="colophon-row">',
-      '    <div class="colophon-label">連絡先</div>',
-      `    <div class="colophon-value">${contact}</div>`,
-      '  </div>',
-    ]
-  }
+  const colophonRows = Array.isArray(generateConfig.colophon_rows)
+    ? generateConfig.colophon_rows
+    : []
+  const rowLines = colophonRows.flatMap((row) => [
+    '  <div class="colophon-row">',
+    `    <div class="colophon-label">${row.label || ''}</div>`,
+    `    <div class="colophon-value">${row.value || ''}</div>`,
+    '  </div>',
+  ])
 
   const lines = [
     '---',
