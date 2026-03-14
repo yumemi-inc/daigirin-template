@@ -288,7 +288,78 @@ function generateAuthors(articles, generateConfig) {
   return lines.join('\n')
 }
 
-// メイン処理
+/**
+ * 奥付 (colophon.md) の内容を生成します。
+ * タイトルと発行名は vivliostyle.config.js から取得し、その他の情報は generate.yml から取得します。
+ * @param {string} bookTitle - 書籍タイトル（vivliostyle.config.js の title）
+ * @param {string} publisherName - 発行名（vivliostyle.config.js の author）
+ * @param {Record<string, string>} generateConfig - generate.yml から読み込んだ設定
+ * @returns {string}
+ */
+function generateColophon(bookTitle, publisherName, generateConfig) {
+  const publicationDate = generateConfig.publication_date || ''
+  const edition = generateConfig.edition || '初版'
+  const coverDesigner = generateConfig.cover_designer || ''
+  const printCompany = generateConfig.print_company || ''
+  const contact = generateConfig.contact || ''
+  const copyrightYear = generateConfig.copyright_year || ''
+
+  const datePart = publicationDate ? `${publicationDate}　` : ''
+  const yearPart = copyrightYear ? `${copyrightYear} ` : ''
+
+  const lines = [
+    '---',
+    'class: exclude-hashira',
+    '---',
+    '',
+    '<!-- このファイルは自動生成されます。直接編集しないでください。 -->',
+    '',
+    '<!-- markdownlint-disable MD041 -->',
+    '<hr class="page-break" />',
+    '<!-- markdownlint-enable MD041 -->',
+    '',
+    '<section class="colophon">',
+    '',
+    `## ${bookTitle}`,
+    '',
+    `${datePart}${edition}`,
+    '',
+    '---',
+    '',
+    '<div class="colophon-container">',
+    '  <div class="colophon-row">',
+    '    <div class="colophon-label">発行</div>',
+    `    <div class="colophon-value">${publisherName}</div>`,
+    '  </div>',
+    '  <div class="colophon-row">',
+    '    <div class="colophon-label">表紙</div>',
+    `    <div class="colophon-value">${coverDesigner}</div>`,
+    '  </div>',
+    '  <div class="colophon-row">',
+    '    <div class="colophon-label">印刷</div>',
+    `    <div class="colophon-value">${printCompany}</div>`,
+    '  </div>',
+    '  <div class="colophon-row">',
+    '    <div class="colophon-label">連絡先</div>',
+    `    <div class="colophon-value">${contact}</div>`,
+    '  </div>',
+    '</div>',
+    '',
+    '---',
+    '',
+    '<!-- textlint-disable ja-technical-writing/ja-no-mixed-period -->',
+    '',
+    `© ${yearPart}${publisherName}`,
+    '',
+    '<!-- textlint-enable: ja-technical-writing/ja-no-mixed-period -->',
+    '',
+    '</section>',
+    '',
+  ]
+
+  return lines.join('\n')
+}
+
 if (require.main === module) {
   const vivliostyleConfig = require('../book/vivliostyle.config.js')
   const bookTitle = (vivliostyleConfig.title || 'ゆめみ大技林').trim()
@@ -318,12 +389,23 @@ if (require.main === module) {
 
   const indexPath = path.join(generatedDir, 'index.md')
   fs.mkdirSync(generatedDir, { recursive: true })
-  fs.writeFileSync(indexPath, generateIndex(articles, bookTitle, beforePages, afterPages))
+  fs.writeFileSync(
+    indexPath,
+    generateIndex(articles, bookTitle, beforePages, afterPages),
+  )
   console.log('Generated: manuscripts/generated/index.md')
 
   const authorsPath = path.join(generatedDir, 'authors.md')
   fs.writeFileSync(authorsPath, generateAuthors(articles, generateConfig))
   console.log('Generated: manuscripts/generated/authors.md')
+
+  const colophonPath = path.join(generatedDir, 'colophon.md')
+  const publisherName = (vivliostyleConfig.author || '').trim()
+  fs.writeFileSync(
+    colophonPath,
+    generateColophon(bookTitle, publisherName, generateConfig),
+  )
+  console.log('Generated: manuscripts/generated/colophon.md')
 
   console.log(`Processed ${articles.length} article(s).`)
 }
@@ -335,4 +417,5 @@ module.exports = {
   loadGenerateConfig,
   generateIndex,
   generateAuthors,
+  generateColophon,
 }

@@ -20,7 +20,7 @@ module.exports = {
     // 著者紹介
     'generated/authors.md',
     // 奥付
-    'pages/colophon.md',
+    'generated/colophon.md',
   ],
   entryContext: './manuscripts',
   output: ['output/ebook.pdf'],

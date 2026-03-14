@@ -7,6 +7,7 @@ const {
   loadGenerateConfig,
   generateIndex,
   generateAuthors,
+  generateColophon,
 } = require('../generate-manuscripts.js')
 
 const fs = require('node:fs')
@@ -353,5 +354,75 @@ describe('generateAuthors', () => {
     expect(result).toContain(
       '<!-- このファイルは自動生成されます。直接編集しないでください。 -->',
     )
+  })
+})
+
+// ---------------------------------------------------------------------------
+// generateColophon
+// ---------------------------------------------------------------------------
+describe('generateColophon', () => {
+  test('書籍タイトルが奥付タイトルに含まれる', () => {
+    const result = generateColophon('ゆめみ大技林 \'23', 'ゆめみ大技林製作委員会', {})
+    expect(result).toContain("## ゆめみ大技林 '23")
+  })
+
+  test('発行名（author）が発行欄に含まれる', () => {
+    const result = generateColophon('テスト本', 'テスト発行社', {})
+    expect(result).toContain('テスト発行社')
+  })
+
+  test('発行日が設定されていれば出力に含まれる', () => {
+    const result = generateColophon('本', '社', { publication_date: '2023年5月15日' })
+    expect(result).toContain('2023年5月15日')
+  })
+
+  test('発行日が空のとき版情報だけ出力される', () => {
+    const result = generateColophon('本', '社', { edition: '初版' })
+    expect(result).toContain('初版')
+    expect(result).not.toContain('undefined')
+  })
+
+  test('edition が未設定のときデフォルト「初版」が使われる', () => {
+    const result = generateColophon('本', '社', {})
+    expect(result).toContain('初版')
+  })
+
+  test('表紙デザイナーが設定されていれば表紙欄に含まれる', () => {
+    const result = generateColophon('本', '社', { cover_designer: '吉森由之助' })
+    expect(result).toContain('吉森由之助')
+  })
+
+  test('印刷会社が設定されていれば印刷欄に含まれる', () => {
+    const result = generateColophon('本', '社', { print_company: '日光企画' })
+    expect(result).toContain('日光企画')
+  })
+
+  test('連絡先が設定されていれば連絡先欄に含まれる', () => {
+    const result = generateColophon('本', '社', { contact: 'https://x.com/yumemiinc' })
+    expect(result).toContain('https://x.com/yumemiinc')
+  })
+
+  test('コピーライト年が設定されていれば copyright 行に含まれる', () => {
+    const result = generateColophon('本', '発行社', { copyright_year: '2023' })
+    expect(result).toContain('© 2023 発行社')
+  })
+
+  test('コピーライト年が未設定のとき年なしで出力される', () => {
+    const result = generateColophon('本', '発行社', {})
+    expect(result).toContain('© 発行社')
+    expect(result).not.toContain('undefined')
+  })
+
+  test('自動生成コメントが含まれる', () => {
+    const result = generateColophon('本', '社', {})
+    expect(result).toContain(
+      '<!-- このファイルは自動生成されます。直接編集しないでください。 -->',
+    )
+  })
+
+  test('colophon セクションタグが含まれる', () => {
+    const result = generateColophon('本', '社', {})
+    expect(result).toContain('<section class="colophon">')
+    expect(result).toContain('</section>')
   })
 })

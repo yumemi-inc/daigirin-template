@@ -6,3 +6,24 @@ profile_template: |
   ### {author}（{title}）
 
   {profile}
+
+# 奥付（colophon.md）の設定
+# title と author は vivliostyle.config.js から自動取得されます。
+
+# 発行日（例: 2023年5月15日）
+publication_date: ''
+
+# 版・刷（例: 初版、第二版一刷）
+edition: 初版
+
+# 表紙デザイナー名（省略可）
+cover_designer: ''
+
+# 印刷会社名（省略可）
+print_company: ''
+
+# 連絡先（URL またはメールアドレスなど）
+contact: https://x.com/yumemiinc
+
+# コピーライト年（例: 2023）
+copyright_year: ''
