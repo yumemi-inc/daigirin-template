@@ -10,11 +10,13 @@ profile_template: |
 # 奥付（colophon.md）の設定
 # title と author は vivliostyle.config.js から自動取得されます。
 
-# 発行日（例: 2023年5月15日）
-publication_date: ''
-
-# 版・刷（例: 初版、第二版一刷）
-edition: 初版
+# 版の履歴（自由文・複数行可）
+# 例:
+#   edition_history: |
+#     2023年5月15日 初版
+#     2023年5月20日 初版 2刷
+#     2023年6月15日 第二版
+edition_history: 初版
 
 # 表紙デザイナー名（省略可）
 cover_designer: ''

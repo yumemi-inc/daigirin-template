@@ -297,14 +297,12 @@ function generateAuthors(articles, generateConfig) {
  * @returns {string}
  */
 function generateColophon(bookTitle, publisherName, generateConfig) {
-  const publicationDate = generateConfig.publication_date || ''
-  const edition = generateConfig.edition || '初版'
+  const editionHistory = generateConfig.edition_history || '初版'
   const coverDesigner = generateConfig.cover_designer || ''
   const printCompany = generateConfig.print_company || ''
   const contact = generateConfig.contact || ''
   const copyrightYear = generateConfig.copyright_year || ''
 
-  const datePart = publicationDate ? `${publicationDate}　` : ''
   const yearPart = copyrightYear ? `${copyrightYear} ` : ''
 
   const lines = [
@@ -322,7 +320,7 @@ function generateColophon(bookTitle, publisherName, generateConfig) {
     '',
     `## ${bookTitle}`,
     '',
-    `${datePart}${edition}`,
+    editionHistory,
     '',
     '---',
     '',

@@ -371,20 +371,25 @@ describe('generateColophon', () => {
     expect(result).toContain('テスト発行社')
   })
 
-  test('発行日が設定されていれば出力に含まれる', () => {
-    const result = generateColophon('本', '社', { publication_date: '2023年5月15日' })
-    expect(result).toContain('2023年5月15日')
+  test('edition_history が設定されていれば出力に含まれる', () => {
+    const result = generateColophon('本', '社', {
+      edition_history: '2023年5月15日 初版',
+    })
+    expect(result).toContain('2023年5月15日 初版')
   })
 
-  test('発行日が空のとき版情報だけ出力される', () => {
-    const result = generateColophon('本', '社', { edition: '初版' })
-    expect(result).toContain('初版')
-    expect(result).not.toContain('undefined')
+  test('edition_history に複数行の版履歴を設定できる', () => {
+    const history = '2023年5月15日 初版\n2023年5月20日 初版 2刷\n2023年6月15日 第二版'
+    const result = generateColophon('本', '社', { edition_history: history })
+    expect(result).toContain('2023年5月15日 初版')
+    expect(result).toContain('2023年5月20日 初版 2刷')
+    expect(result).toContain('2023年6月15日 第二版')
   })
 
-  test('edition が未設定のときデフォルト「初版」が使われる', () => {
+  test('edition_history が未設定のときデフォルト「初版」が使われる', () => {
     const result = generateColophon('本', '社', {})
     expect(result).toContain('初版')
+    expect(result).not.toContain('undefined')
   })
 
   test('表紙デザイナーが設定されていれば表紙欄に含まれる', () => {
