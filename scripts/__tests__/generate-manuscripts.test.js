@@ -2,6 +2,7 @@
 
 const {
   parseYamlBlockScalar,
+  parseYamlObjectArray,
   parseFrontMatter,
   getTocPages,
   loadGenerateConfig,
@@ -48,6 +49,73 @@ describe('parseYamlBlockScalar', () => {
     const { value, nextIndex } = parseYamlBlockScalar([], 0)
     expect(value).toBe('')
     expect(nextIndex).toBe(0)
+  })
+})
+
+// ---------------------------------------------------------------------------
+// parseYamlObjectArray
+// ---------------------------------------------------------------------------
+describe('parseYamlObjectArray', () => {
+  test('label と value のペアをパースする', () => {
+    const lines = [
+      '  - label: 発行',
+      '    value: ゆめみ大技林製作委員会',
+      '  - label: 連絡先',
+      '    value: https://x.com/yumemiinc',
+    ]
+    const { value, nextIndex } = parseYamlObjectArray(lines, 0)
+    expect(value).toHaveLength(2)
+    expect(value[0]).toEqual({ label: '発行', value: 'ゆめみ大技林製作委員会' })
+    expect(value[1]).toEqual({ label: '連絡先', value: 'https://x.com/yumemiinc' })
+    expect(nextIndex).toBe(4)
+  })
+
+  test('空の value を持つアイテムをパースする', () => {
+    const lines = [
+      '  - label: 表紙',
+      "    value: ''",
+    ]
+    const { value } = parseYamlObjectArray(lines, 0)
+    expect(value).toHaveLength(1)
+    expect(value[0]).toEqual({ label: '表紙', value: '' })
+  })
+
+  test('配列の後ろの行では終了して nextIndex を返す', () => {
+    const lines = [
+      '  - label: 発行',
+      '    value: 社',
+      'next_key: foo',
+    ]
+    const { value, nextIndex } = parseYamlObjectArray(lines, 0)
+    expect(value).toHaveLength(1)
+    expect(nextIndex).toBe(2)
+  })
+
+  test('コメント行はスキップする', () => {
+    const lines = [
+      '  # コメント',
+      '  - label: 発行',
+      '    value: 社',
+    ]
+    const { value } = parseYamlObjectArray(lines, 0)
+    expect(value).toHaveLength(1)
+    expect(value[0].label).toBe('発行')
+  })
+
+  test('空配列のときは空配列を返す', () => {
+    const { value, nextIndex } = parseYamlObjectArray([], 0)
+    expect(value).toEqual([])
+    expect(nextIndex).toBe(0)
+  })
+
+  test('複数プロパティを持つアイテムをパースする', () => {
+    const lines = [
+      '  - label: 発行',
+      '    value: 社',
+      '    extra: 追加情報',
+    ]
+    const { value } = parseYamlObjectArray(lines, 0)
+    expect(value[0]).toEqual({ label: '発行', value: '社', extra: '追加情報' })
   })
 })
 
@@ -125,6 +193,38 @@ describe('loadGenerateConfig', () => {
     fs.writeFileSync(path.join(tmpDir, 'generate.yml'), yml)
     const result = loadGenerateConfig(path.join(tmpDir, 'generate.yml'))
     expect(result.profile_template).toBe('### {author}（{title}）\n\n{profile}')
+  })
+
+  test('colophon_rows としてオブジェクト配列をパースする', () => {
+    const yml = [
+      'colophon_rows:',
+      '  - label: 発行',
+      '    value: ゆめみ大技林製作委員会',
+      '  - label: 連絡先',
+      '    value: https://x.com/yumemiinc',
+      '',
+    ].join('\n')
+    fs.writeFileSync(path.join(tmpDir, 'generate.yml'), yml)
+    const result = loadGenerateConfig(path.join(tmpDir, 'generate.yml'))
+    expect(Array.isArray(result.colophon_rows)).toBe(true)
+    expect(result.colophon_rows).toHaveLength(2)
+    expect(result.colophon_rows[0]).toEqual({ label: '発行', value: 'ゆめみ大技林製作委員会' })
+    expect(result.colophon_rows[1]).toEqual({ label: '連絡先', value: 'https://x.com/yumemiinc' })
+  })
+
+  test('colophon_rows の後に続くキーも正しくパースする', () => {
+    const yml = [
+      'colophon_rows:',
+      '  - label: 発行',
+      '    value: 社',
+      'copyright_year: 2023',
+      '',
+    ].join('\n')
+    fs.writeFileSync(path.join(tmpDir, 'generate.yml'), yml)
+    const result = loadGenerateConfig(path.join(tmpDir, 'generate.yml'))
+    expect(Array.isArray(result.colophon_rows)).toBe(true)
+    expect(result.colophon_rows).toHaveLength(1)
+    expect(result.copyright_year).toBe('2023')
   })
 })
 
@@ -429,5 +529,57 @@ describe('generateColophon', () => {
     const result = generateColophon('本', '社', {})
     expect(result).toContain('<section class="colophon">')
     expect(result).toContain('</section>')
+  })
+
+  test('colophon_rows が定義されているとき、その label と value が出力に含まれる', () => {
+    const config = {
+      colophon_rows: [
+        { label: '発行', value: 'ゆめみ大技林製作委員会' },
+        { label: '連絡先', value: 'https://x.com/yumemiinc' },
+      ],
+    }
+    const result = generateColophon('本', '社', config)
+    expect(result).toContain('発行')
+    expect(result).toContain('ゆめみ大技林製作委員会')
+    expect(result).toContain('連絡先')
+    expect(result).toContain('https://x.com/yumemiinc')
+  })
+
+  test('colophon_rows が定義されているとき、HTML 構造が正しく生成される', () => {
+    const config = {
+      colophon_rows: [
+        { label: '発行', value: '出版社' },
+      ],
+    }
+    const result = generateColophon('本', '社', config)
+    expect(result).toContain('<div class="colophon-label">発行</div>')
+    expect(result).toContain('<div class="colophon-value">出版社</div>')
+  })
+
+  test('colophon_rows が定義されているとき、行数がそのままになる', () => {
+    const config = {
+      colophon_rows: [
+        { label: 'A', value: '1' },
+        { label: 'B', value: '2' },
+        { label: 'C', value: '3' },
+      ],
+    }
+    const result = generateColophon('本', '社', config)
+    expect((result.match(/class="colophon-row"/g) || []).length).toBe(3)
+  })
+
+  test('colophon_rows が空配列のとき、行なしで生成される', () => {
+    const result = generateColophon('本', '社', { colophon_rows: [] })
+    expect(result).toContain('<div class="colophon-container">')
+    expect(result).not.toContain('colophon-row')
+  })
+
+  test('colophon_rows が未定義のとき、後方互換の固定行（発行・表紙・印刷・連絡先）が生成される', () => {
+    const result = generateColophon('本', 'テスト発行社', {})
+    expect(result).toContain('発行')
+    expect(result).toContain('テスト発行社')
+    expect(result).toContain('表紙')
+    expect(result).toContain('印刷')
+    expect(result).toContain('連絡先')
   })
 })

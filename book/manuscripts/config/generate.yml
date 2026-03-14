@@ -8,7 +8,7 @@ profile_template: |
   {profile}
 
 # 奥付（colophon.md）の設定
-# title と author は vivliostyle.config.js から自動取得されます。
+# title と著作権の発行名は vivliostyle.config.js から自動取得されます。
 
 # 版の履歴（自由文・複数行可）
 # 例:
@@ -18,14 +18,17 @@ profile_template: |
 #     2023年6月15日 第二版
 edition_history: 初版
 
-# 表紙デザイナー名（省略可）
-cover_designer: ''
-
-# 印刷会社名（省略可）
-print_company: ''
-
-# 連絡先（URL またはメールアドレスなど）
-contact: https://x.com/yumemiinc
+# 奥付の行定義（label と value の組みの配列）
+# 行を自由に追加・変更・削除できます。
+colophon_rows:
+  - label: 発行
+    value: ゆめみ大技林製作委員会
+  - label: 表紙
+    value: ''
+  - label: 印刷
+    value: ''
+  - label: 連絡先
+    value: https://x.com/yumemiinc
 
 # コピーライト年（例: 2023）
 copyright_year: ''

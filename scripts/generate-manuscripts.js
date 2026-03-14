@@ -64,6 +64,74 @@ function parseYamlBlockScalar(lines, startIndex) {
 }
 
 /**
+ * YAML のオブジェクト配列（`- key: value` 形式）をパースします。
+ * 各アイテムは `label` と `value` などの文字列プロパティを持つオブジェクトです。
+ * @param {string[]} lines - 行の配列
+ * @param {number} startIndex - 配列の最初の行のインデックス
+ * @returns {{ value: Array<Record<string, string>>, nextIndex: number }}
+ */
+function parseYamlObjectArray(lines, startIndex) {
+  const items = []
+  let i = startIndex
+  let currentItem = null
+  let arrayIndent = -1
+
+  while (i < lines.length) {
+    const line = lines[i]
+    if (!line.trim()) {
+      i++
+      continue
+    }
+    if (line.trim().startsWith('#')) {
+      i++
+      continue
+    }
+
+    // 新しい配列アイテムの開始: "  - key: value"
+    const itemMatch = line.match(/^(\s+)-\s+(.+)$/)
+    if (itemMatch) {
+      const indent = itemMatch[1].length
+      if (arrayIndent < 0) arrayIndent = indent
+
+      if (indent === arrayIndent) {
+        if (currentItem) items.push(currentItem)
+        currentItem = {}
+        const rest = itemMatch[2]
+        const colonIdx = rest.indexOf(':')
+        if (colonIdx > 0) {
+          const k = rest.slice(0, colonIdx).trim()
+          const v = rest.slice(colonIdx + 1).trim().replace(/^(['"])(.*)\1$/, '$2')
+          currentItem[k] = v
+        }
+        i++
+        continue
+      }
+    }
+
+    // 現在のアイテムのプロパティ続行: "    key: value"（アイテムより深いインデント）
+    if (currentItem !== null && arrayIndent >= 0) {
+      const lineIndent = (line.match(/^(\s*)/) || ['', ''])[1].length
+      if (lineIndent > arrayIndent) {
+        const trimmed = line.trim()
+        const colonIdx = trimmed.indexOf(':')
+        if (colonIdx > 0) {
+          const k = trimmed.slice(0, colonIdx).trim()
+          const v = trimmed.slice(colonIdx + 1).trim().replace(/^(['"])(.*)\1$/, '$2')
+          currentItem[k] = v
+          i++
+          continue
+        }
+      }
+    }
+
+    break
+  }
+
+  if (currentItem) items.push(currentItem)
+  return { value: items, nextIndex: i }
+}
+
+/**
  * マークダウンの front matter をパースして、キーと値のオブジェクトを返します。
  * YAML ブロックスカラー（`|` 形式）による複数行の値もサポートします。
  * @param {string} content - マークダウンの内容
@@ -149,9 +217,10 @@ function getTocPages(configPath) {
 
 /**
  * generate.yml からジェネレーター設定を読み込みます。
- * YAML リテラルブロックスカラー（`|` 形式）による複数行の値もサポートします。
+ * YAML リテラルブロックスカラー（`|` 形式）による複数行の値と、
+ * オブジェクト配列（`- key: value` 形式）もサポートします。
  * @param {string} configPath - generate.yml のパス
- * @returns {Record<string, string>}
+ * @returns {Record<string, string | Array<Record<string, string>>>}
  */
 function loadGenerateConfig(configPath) {
   if (!fs.existsSync(configPath)) {
@@ -178,6 +247,22 @@ function loadGenerateConfig(configPath) {
         const { value, nextIndex } = parseYamlBlockScalar(lines, i + 1)
         config[key] = value
         i = nextIndex
+      } else if (rawVal === '') {
+        // 空値の場合、次の非空行がオブジェクト配列かどうか確認する
+        let j = i + 1
+        while (j < lines.length) {
+          const t = lines[j].trim()
+          if (t && !t.startsWith('#')) break
+          j++
+        }
+        if (j < lines.length && /^\s+-\s+/.test(lines[j])) {
+          const { value, nextIndex } = parseYamlObjectArray(lines, j)
+          config[key] = value
+          i = nextIndex
+        } else {
+          config[key] = ''
+          i++
+        }
       } else {
         config[key] = rawVal.replace(/^(['"])(.*)\1$/, '$2')
         i++
@@ -290,20 +375,52 @@ function generateAuthors(articles, generateConfig) {
 
 /**
  * 奥付 (colophon.md) の内容を生成します。
- * タイトルと発行名は vivliostyle.config.js から取得し、その他の情報は generate.yml から取得します。
+ * タイトルと著作権の発行名は vivliostyle.config.js から取得し、その他の情報は generate.yml から取得します。
+ * `colophon_rows` が設定されている場合はその配列からコンテナ行を生成します。
+ * 設定されていない場合は `cover_designer`・`print_company`・`contact` から後方互換の行を生成します。
  * @param {string} bookTitle - 書籍タイトル（vivliostyle.config.js の title）
  * @param {string} publisherName - 発行名（vivliostyle.config.js の author）
- * @param {Record<string, string>} generateConfig - generate.yml から読み込んだ設定
+ * @param {Record<string, string | Array<Record<string, string>>>} generateConfig - generate.yml から読み込んだ設定
  * @returns {string}
  */
 function generateColophon(bookTitle, publisherName, generateConfig) {
   const editionHistory = generateConfig.edition_history || '初版'
-  const coverDesigner = generateConfig.cover_designer || ''
-  const printCompany = generateConfig.print_company || ''
-  const contact = generateConfig.contact || ''
   const copyrightYear = generateConfig.copyright_year || ''
 
   const yearPart = copyrightYear ? `${copyrightYear} ` : ''
+
+  // colophon_rows が定義されていればそれを使い、なければ後方互換の固定行を使う
+  let rowLines
+  if (Array.isArray(generateConfig.colophon_rows)) {
+    rowLines = generateConfig.colophon_rows.flatMap((row) => [
+      '  <div class="colophon-row">',
+      `    <div class="colophon-label">${row.label || ''}</div>`,
+      `    <div class="colophon-value">${row.value || ''}</div>`,
+      '  </div>',
+    ])
+  } else {
+    const coverDesigner = generateConfig.cover_designer || ''
+    const printCompany = generateConfig.print_company || ''
+    const contact = generateConfig.contact || ''
+    rowLines = [
+      '  <div class="colophon-row">',
+      '    <div class="colophon-label">発行</div>',
+      `    <div class="colophon-value">${publisherName}</div>`,
+      '  </div>',
+      '  <div class="colophon-row">',
+      '    <div class="colophon-label">表紙</div>',
+      `    <div class="colophon-value">${coverDesigner}</div>`,
+      '  </div>',
+      '  <div class="colophon-row">',
+      '    <div class="colophon-label">印刷</div>',
+      `    <div class="colophon-value">${printCompany}</div>`,
+      '  </div>',
+      '  <div class="colophon-row">',
+      '    <div class="colophon-label">連絡先</div>',
+      `    <div class="colophon-value">${contact}</div>`,
+      '  </div>',
+    ]
+  }
 
   const lines = [
     '---',
@@ -325,22 +442,7 @@ function generateColophon(bookTitle, publisherName, generateConfig) {
     '---',
     '',
     '<div class="colophon-container">',
-    '  <div class="colophon-row">',
-    '    <div class="colophon-label">発行</div>',
-    `    <div class="colophon-value">${publisherName}</div>`,
-    '  </div>',
-    '  <div class="colophon-row">',
-    '    <div class="colophon-label">表紙</div>',
-    `    <div class="colophon-value">${coverDesigner}</div>`,
-    '  </div>',
-    '  <div class="colophon-row">',
-    '    <div class="colophon-label">印刷</div>',
-    `    <div class="colophon-value">${printCompany}</div>`,
-    '  </div>',
-    '  <div class="colophon-row">',
-    '    <div class="colophon-label">連絡先</div>',
-    `    <div class="colophon-value">${contact}</div>`,
-    '  </div>',
+    ...rowLines,
     '</div>',
     '',
     '---',
@@ -410,6 +512,7 @@ if (require.main === module) {
 
 module.exports = {
   parseYamlBlockScalar,
+  parseYamlObjectArray,
   parseFrontMatter,
   getTocPages,
   loadGenerateConfig,
