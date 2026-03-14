@@ -30,8 +30,8 @@ DOCKER_COMPOSE = \
 
 VIVLIOSTYLE_CLI = $(DOCKER) run \
 	--rm \
-	-v $(BOOK_DIR):/local \
-	-w /local \
+	-v $(MAKEFILE_DIR):/local \
+	-w /local/book \
 	$(VIVLIOSTYLE_CLI_IMAGE_NAME):$(VIVLIOSTYLE_CLI_IMAGE_TAG) \
 
 NODE_RUN = $(DOCKER) run \
