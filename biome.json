@@ -7,17 +7,7 @@
   },
   "files": {
     "ignoreUnknown": false,
-    "includes": [
-      "!prh-rules",
-      "!node_modules",
-      "!**/.vivliostyle",
-      "**/*.md",
-      "**/*.js",
-      "**/*.ts",
-      "**/*.json",
-      "**/*.yml",
-      "**/*.yaml"
-    ]
+    "includes": ["**", "!prh-rules", "!node_modules", "!**/.vivliostyle"]
   },
   "formatter": {
     "enabled": true,

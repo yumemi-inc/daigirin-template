@@ -38,8 +38,85 @@ make pdf_press
 
 ## 原稿の追加方法
 
-- [book/manuscripts](book/manuscripts) ディレクトリの中に、拡張子 `.md` の Markdown ファイルを作成します。
-- [book/vivliostyle.config.js](book/vivliostyle.config.js) ファイル内の `entry` 配列に、その Markdown ファイル名を追加します。
+[book/manuscripts/articles](book/manuscripts/articles) ディレクトリの中に、拡張子 `.md` の Markdown ファイルを作成します。ファイルは `build` 時に自動で目次・著者紹介に反映されます（手動で設定ファイルを編集する必要はありません）。
+
+### front matter
+
+各記事ファイルの先頭に以下の front matter を記述してください。
+
+```yaml
+---
+class: content
+title: 記事のタイトル
+author: 著者名
+profile: 著者の自己紹介文
+---
+```
+
+`profile` フィールドは、YAML ブロックスカラー `|` を使って複数行で記述できます。
+
+```yaml
+profile: |
+  1 行目の自己紹介文です。
+  2 行目の自己紹介文です。
+```
+
+### 記事の並び順
+
+[book/manuscripts/config/articles.yml](book/manuscripts/config/articles.yml) にファイル名を記載した順番で、目次に表示されます。このファイルを削除するか、内容が空の場合は、`articles` ディレクトリ内のファイルがアルファベット順で自動設定されます。
+
+```yaml
+- article1.md
+- article2.md
+```
+
+## 自動生成ファイル
+
+`build` 実行時に [scripts/generate-manuscripts.js](scripts/generate-manuscripts.js) が自動的に呼び出され、以下のファイルが生成されます。
+
+- **`book/manuscripts/generated/index.md`**（目次）: 各記事の `title` を一覧化します。
+- **`book/manuscripts/generated/authors.md`**（著者紹介）: 各記事の `author` と `profile` をまとめます。
+
+> [!NOTE]
+> これらのファイルは自動生成されるため、直接編集しないでください。
+
+手動で生成する場合は次のコマンドを実行します。
+
+```shell
+make generate
+```
+
+### 目次の固定ページ設定
+
+記事以外のページ（「はじめに」など）を目次に追加したい場合は、[book/manuscripts/config/pages.yml](book/manuscripts/config/pages.yml) に記述します。
+
+`position` フィールドで表示位置を制御できます。
+
+- `before`（デフォルト）: 記事一覧の**前**に表示されます。省略した場合も `before` 扱いになります。
+- `after`: 記事一覧の**後ろ**に表示されます。
+
+```yaml
+- title: はじめに
+  file: pages/preface.html
+- title: おわりに
+  file: afterword.html
+  position: after
+```
+
+### 著者紹介のプロフィールテンプレート設定
+
+[book/manuscripts/config/generate.yml](book/manuscripts/config/generate.yml) で、著者紹介セクションの出力フォーマットを変更できます。省略した場合はデフォルトのフォーマットが使用されます。使用できる変数は以下のとおりです。
+
+- `{author}`: 著者名
+- `{title}`: 記事タイトル（同じ著者が複数の記事を執筆している場合はコンマ区切りで並べられます）
+- `{profile}`: プロフィール文
+
+```yaml
+profile_template: |
+  ### {author}（{title}）
+
+  {profile}
+```
 
 ## 文章校正
 
@@ -117,6 +194,7 @@ corepack enable yarn
 
 ### 実行
 
+- `yarn generate` : 原稿ファイルを自動生成（`make generate` 相当）
 - `yarn start` : pdf を生成して開く（`make run` 相当）
 - `yarn lint` : textlint を実行（`make lint` 相当）
 - `yarn build` : pdf を生成（`make pdf` 相当）

@@ -30,8 +30,8 @@ DOCKER_COMPOSE = \
 
 VIVLIOSTYLE_CLI = $(DOCKER) run \
 	--rm \
-	-v $(BOOK_DIR):/local \
-	-w /local \
+	-v $(MAKEFILE_DIR):/local \
+	-w /local/book \
 	$(VIVLIOSTYLE_CLI_IMAGE_NAME):$(VIVLIOSTYLE_CLI_IMAGE_TAG) \
 
 NODE_RUN = $(DOCKER) run \
@@ -56,20 +56,37 @@ run: \
 	pdf \
 	open
 
+.PHONY: generate
+## マークダウンファイル（index.md, authors.md）を自動生成
+generate:
+	$(NODE_RUN) node ./scripts/generate-manuscripts.js
+
 .PHONY: lint
 ## textlintを実行
 lint:
 	$(DOCKER_COMPOSE) run --rm lint
 
+.PHONY: build_pdf
+build_pdf:
+	$(VIVLIOSTYLE_CLI) build
+
+.PHONY: build_pdf_press
+build_pdf_press:
+	$(VIVLIOSTYLE_CLI) build --config vivliostyle.config.press.docker.js
+
 .PHONY: pdf
 ## pdfを生成
-pdf:
-	$(VIVLIOSTYLE_CLI) build
+pdf: \
+	generate \
+	build_pdf \
+	stop_colima
 
 .PHONY: pdf_press
 ## プレス版のpdfを生成
-pdf_press:
-	$(VIVLIOSTYLE_CLI) build --config vivliostyle.config.press.docker.js
+pdf_press: \
+	generate \
+	build_pdf_press \
+	stop_colima
 
 .PHONY: open
 ## pdfを開く
@@ -136,6 +153,12 @@ install_colima:
 start_colima:
 	@if [ $$(colima status 2>&1 | grep -c "not running") -eq 1 ]; then \
 		colima start; \
+	fi
+
+.PHONY: stop_colima
+stop_colima:
+	@if [ $$(colima status 2>&1 | grep -c "is running") -eq 1 ]; then \
+		colima stop; \
 	fi
 
 .PHONY: prepare_docker

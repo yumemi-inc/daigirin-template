@@ -32,6 +32,7 @@ Temporary Items
 # book
 book/output
 book/.vivliostyle
+book/manuscripts/generated
 
 # node.js
 node_modules/
