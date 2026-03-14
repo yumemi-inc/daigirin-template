@@ -66,15 +66,27 @@ generate:
 lint:
 	$(DOCKER_COMPOSE) run --rm lint
 
+.PHONY: build_pdf
+build_pdf:
+	$(VIVLIOSTYLE_CLI) build
+
+.PHONY: build_pdf_press
+build_pdf_press:
+	$(VIVLIOSTYLE_CLI) build --config vivliostyle.config.press.docker.js
+
 .PHONY: pdf
 ## pdfを生成
-pdf: generate
-	$(VIVLIOSTYLE_CLI) build
+pdf: \
+	generate \
+	build_pdf \
+	stop_colima
 
 .PHONY: pdf_press
 ## プレス版のpdfを生成
-pdf_press: generate
-	$(VIVLIOSTYLE_CLI) build --config vivliostyle.config.press.docker.js
+pdf_press: \
+	generate \
+	build_pdf_press \
+	stop_colima
 
 .PHONY: open
 ## pdfを開く
@@ -141,6 +153,12 @@ install_colima:
 start_colima:
 	@if [ $$(colima status 2>&1 | grep -c "not running") -eq 1 ]; then \
 		colima start; \
+	fi
+
+.PHONY: stop_colima
+stop_colima:
+	@if [ $$(colima status 2>&1 | grep -c "is running") -eq 1 ]; then \
+		colima stop; \
 	fi
 
 .PHONY: prepare_docker
