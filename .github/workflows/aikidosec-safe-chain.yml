@@ -59,7 +59,7 @@ jobs:
       # AikidoSec Safe Chain をセットアップ
       - name: Install safe-chain
         run: |
-          export SAFE_CHAIN_VERSION=1.3.2
+          export SAFE_CHAIN_VERSION=1.4.4
           curl -fsSL "https://raw.githubusercontent.com/AikidoSec/safe-chain/$SAFE_CHAIN_VERSION/install-scripts/install-safe-chain.sh" | sh -s -- --ci
 
       # AikidoSec Safe Chain を実行 (npm)
