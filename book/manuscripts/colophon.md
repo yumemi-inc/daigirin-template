@@ -8,7 +8,7 @@ class: exclude-hashira
 
 <section class="colophon">
 
-## ゆめみ大技林 <!--'23-->
+## ゆめみより <!--'23-->
 
 <!--2023年5月15日--> 初版
 
@@ -17,7 +17,7 @@ class: exclude-hashira
 <div class="colophon-container">
   <div class="colophon-row">
     <div class="colophon-label">発行</div>
-    <div class="colophon-value">ゆめみ大技林製作委員会</div>
+    <div class="colophon-value">ゆめみより製作委員会</div>
   </div>
   <div class="colophon-row">
     <div class="colophon-label">表紙</div>
@@ -37,7 +37,7 @@ class: exclude-hashira
 
 <!-- textlint-disable ja-technical-writing/ja-no-mixed-period -->
 
-© <!--2023--> ゆめみ大技林製作委員会
+© <!--2023--> ゆめみより製作委員会
 
 <!-- textlint-enable: ja-technical-writing/ja-no-mixed-period -->
 
