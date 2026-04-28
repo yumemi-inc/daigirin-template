@@ -42,6 +42,10 @@ jobs:
         with:
           node-version-file: '.node-version'
       
+      # vivliostyle-cli コンテナ（UID 1000）が book/ に書き込めるようにする
+      - name: Fix workspace ownership for vivliostyle container
+        run: sudo chown -R 1000:1000 ${{ github.workspace }}
+      
       # PDFを作成する
       - name: make PDF
         run: |
@@ -64,7 +68,12 @@ jobs:
             echo "エラー: 印刷入稿用 PDF の生成に失敗しました。"
             exit 1
           fi
-          
+      
+      # リリース作成のために所有権を runner に戻す
+      - name: Restore workspace ownership
+        if: always()
+        run: sudo chown -R $(id -u):$(id -g) ${{ github.workspace }}
+      
       # リリースの作成
       - name: Release
         uses: softprops/action-gh-release@153bb8e04406b158c6c84fc1615b65b24149a1fe # v2.6.1
