@@ -42,7 +42,7 @@ class: exclude-hashira
 そこで、本誌の製作に利用している執筆テンプレートを公開しました。執筆テンプレートは GitHub で Template Repository として管理しています。次の URL から、あなたの執筆プロジェクトを作成できます。
 
 ```url
-https://github.com/yumemi-inc/daigirin-template
+https://github.com/ymm-oss/daigirin-template
 ```
 
 ![執筆テンプレートの GitHub URL](./images_preface/qr-code-daigirin-template-url.png)

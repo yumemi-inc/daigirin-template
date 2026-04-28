@@ -2,7 +2,7 @@
   "name": "daigirin-template",
   "version": "1.0.0",
   "main": "index.js",
-  "repository": "git@github.com:yumemi-inc/daigirin-template.git",
+  "repository": "git@github.com:ymm-oss/daigirin-template.git",
   "author": "YUMEMI Daigirin Production Committee",
   "license": "MIT",
   "scripts": {
