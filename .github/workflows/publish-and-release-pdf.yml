@@ -42,10 +42,6 @@ jobs:
         with:
           node-version-file: '.node-version'
       
-      # vivliostyle-cli コンテナ（UID 1000）が book/ に書き込めるようにする
-      - name: Fix workspace ownership for vivliostyle container
-        run: sudo chown -R 1000:1000 ${{ github.workspace }}
-      
       # PDFを作成する
       - name: make PDF
         run: |
@@ -62,7 +58,14 @@ jobs:
           if [ ! -f "${EBOOK_COVERED_PDF_PATH}" ]; then
             echo "ワーニング: 電子版 PDF の表紙付けがされていません。"
           fi
+      
+      # vivliostyle-cli コンテナ（UID 1000）が book/ に書き込めるようにする
+      - name: Fix workspace ownership for vivliostyle container
+        run: sudo chown -R 1000:1000 ${{ github.workspace }}/book
 
+      # 印刷入稿用 PDF を作成（Docker コンテナ内 UID 1000 で実行）
+      - name: Build press PDF
+        run: |
           make pdf_press
           if [ ! -f "${PRESS_PDF_PATH}" ]; then
             echo "エラー: 印刷入稿用 PDF の生成に失敗しました。"
@@ -72,7 +75,7 @@ jobs:
       # リリース作成のために所有権を runner に戻す
       - name: Restore workspace ownership
         if: always()
-        run: sudo chown -R $(id -u):$(id -g) ${{ github.workspace }}
+        run: sudo chown -R $(id -u):$(id -g) ${{ github.workspace }}/book
       
       # リリースの作成
       - name: Release
