@@ -1781,9 +1781,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@vivliostyle/cli@npm:10.3.0":
-  version: 10.3.0
-  resolution: "@vivliostyle/cli@npm:10.3.0"
+"@vivliostyle/cli@npm:10.5.0":
+  version: 10.5.0
+  resolution: "@vivliostyle/cli@npm:10.5.0"
   dependencies:
     "@babel/code-frame": "npm:7.26.2"
     "@bluwy/giget-core": "npm:0.1.3"
@@ -1794,9 +1794,9 @@ __metadata:
     "@npmcli/arborist": "npm:9.1.7"
     "@puppeteer/browsers": "npm:2.10.5"
     "@vivliostyle/jsdom": "npm:25.0.1-vivliostyle-cli.1"
-    "@vivliostyle/vfm": "npm:2.5.0"
-    "@vivliostyle/viewer": "npm:2.40.0"
-    ajv: "npm:8.17.1"
+    "@vivliostyle/vfm": "npm:2.6.0"
+    "@vivliostyle/viewer": "npm:2.41.0"
+    ajv: "npm:8.18.0"
     ajv-formats: "npm:3.0.1"
     archiver: "npm:7.0.1"
     bcp-47-match: "npm:2.0.3"
@@ -1805,24 +1805,24 @@ __metadata:
     commander: "npm:13.1.0"
     debug: "npm:4.4.0"
     decamelize: "npm:6.0.0"
-    dompurify: "npm:3.2.5"
+    dompurify: "npm:3.3.2"
     escape-string-regexp: "npm:5.0.0"
     fast-wrap-ansi: "npm:0.1.3"
-    fast-xml-parser: "npm:5.2.1"
+    fast-xml-builder: "npm:1.1.4"
+    fast-xml-parser: "npm:5.5.10"
     fs-extra: "npm:11.2.0"
     github-slugger: "npm:2.0.0"
-    handlebars: "npm:4.7.8"
+    handlebars: "npm:4.7.9"
     hast-util-to-html: "npm:9.0.5"
     hastscript: "npm:9.0.1"
-    lcid: "npm:5.0.0"
     mime-types: "npm:3.0.1"
-    mupdf: "npm:1.26.4"
+    mupdf: "npm:@u1f992/mupdf@1.27.0-patched.1"
     node-fetch-native: "npm:1.6.7"
     node-stream-zip: "npm:1.15.0"
     npm-package-arg: "npm:12.0.2"
-    os-locale: "npm:6.0.2"
+    os-locale: "npm:8.0.0"
     pdf-lib: "npm:1.17.1"
-    picomatch: "npm:4.0.2"
+    picomatch: "npm:4.0.4"
     press-ready: "npm:4.0.3"
     puppeteer-core: "npm:24.27.0"
     resolve-pkg: "npm:2.0.0"
@@ -1848,11 +1848,11 @@ __metadata:
   bin:
     vivliostyle: dist/cli.js
     vs: dist/cli.js
-  checksum: 10c0/390e6cf7c4d6bb6885c6913331a4df67bab24b5f5f51ebd528732335b07f1a728d3a943d993a743106d23e4c4b734213e18105832be5b83685e5e6c510ec577e
+  checksum: 10c0/fcd24de2878976faa69d2fbf206b7b6cbd9c0b1499cb0c428c3b370d020a1a0289ec4490929ceb3614addebe6a902cc0b3fb5d09a9c1cc454d99eaf6088f0e62
   languageName: node
   linkType: hard
 
-"@vivliostyle/core@npm:^2.40.0":
+"@vivliostyle/core@npm:^2.41.0":
   version: 2.42.0
   resolution: "@vivliostyle/core@npm:2.42.0"
   dependencies:
@@ -1895,9 +1895,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@vivliostyle/vfm@npm:2.5.0":
-  version: 2.5.0
-  resolution: "@vivliostyle/vfm@npm:2.5.0"
+"@vivliostyle/vfm@npm:2.6.0":
+  version: 2.6.0
+  resolution: "@vivliostyle/vfm@npm:2.6.0"
   dependencies:
     "@types/hast": "npm:^2.0.0"
     "@types/mdast": "npm:^3.0.0"
@@ -1937,18 +1937,18 @@ __metadata:
     unist-util-visit-parents: "npm:^5.1.3"
   bin:
     vfm: lib/cli.js
-  checksum: 10c0/4c9b4820d44fb279c2679a7e1fb6a45e69cf9663f45d760af4536b55e49143806cfd429425936a127ce2ddd1276b0f21f87e4d9bfede38b526fd05c2da04cfd3
+  checksum: 10c0/312f2dcd4c83ab21907b66f37acf9eab2e8cb86598336609f74f0e2cf42a18924511b8d00a1c2c859bbc136a15cfb33af9ebe1d676aa0b29186d173a48e8798a
   languageName: node
   linkType: hard
 
-"@vivliostyle/viewer@npm:2.40.0":
-  version: 2.40.0
-  resolution: "@vivliostyle/viewer@npm:2.40.0"
+"@vivliostyle/viewer@npm:2.41.0":
+  version: 2.41.0
+  resolution: "@vivliostyle/viewer@npm:2.41.0"
   dependencies:
-    "@vivliostyle/core": "npm:^2.40.0"
+    "@vivliostyle/core": "npm:^2.41.0"
     i18next-ko: "npm:^3.0.1"
     knockout: "npm:^3.5.0"
-  checksum: 10c0/5257f47f25fdedd87d524bdaa1035dbb0ea97b98e0d333b86a4b12b888845890a0713391164c381f8bd063f31a15681a3f4a79bc65118a7356d48b87db819d48
+  checksum: 10c0/ede88efd50fef1e3c831ce1b3686d5a3dbe1ec2a11187e7c712d6507490a688ac212d14667cd8e2b2c279d655ff06a3572f8d8f514655a1a4155e57da66294b9
   languageName: node
   linkType: hard
 
@@ -2006,15 +2006,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"ajv@npm:8.17.1":
-  version: 8.17.1
-  resolution: "ajv@npm:8.17.1"
+"ajv@npm:8.18.0":
+  version: 8.18.0
+  resolution: "ajv@npm:8.18.0"
   dependencies:
     fast-deep-equal: "npm:^3.1.3"
     fast-uri: "npm:^3.0.1"
     json-schema-traverse: "npm:^1.0.0"
     require-from-string: "npm:^2.0.2"
-  checksum: 10c0/ec3ba10a573c6b60f94639ffc53526275917a2df6810e4ab5a6b959d87459f9ef3f00d5e7865b82677cb7d21590355b34da14d1d0b9c32d75f95a187e76fff35
+  checksum: 10c0/e7517c426173513a07391be951879932bdf3348feaebd2199f5b901c20f99d60db8cd1591502d4d551dc82f594e82a05c4fe1c70139b15b8937f7afeaed9532f
   languageName: node
   linkType: hard
 
@@ -2912,7 +2912,7 @@ __metadata:
   dependencies:
     "@biomejs/biome": "npm:2.4.12"
     "@textlint-ja/textlint-rule-preset-ai-writing": "npm:^1.6.1"
-    "@vivliostyle/cli": "npm:10.3.0"
+    "@vivliostyle/cli": "npm:10.5.0"
     npm-run-all2: "npm:^8.0.4"
     pdf-lib: "npm:^1.17.1"
     textlint: "npm:^15.5.1"
@@ -3136,15 +3136,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"dompurify@npm:3.2.5":
-  version: 3.2.5
-  resolution: "dompurify@npm:3.2.5"
+"dompurify@npm:3.3.2":
+  version: 3.3.2
+  resolution: "dompurify@npm:3.3.2"
   dependencies:
     "@types/trusted-types": "npm:^2.0.7"
   dependenciesMeta:
     "@types/trusted-types":
       optional: true
-  checksum: 10c0/b564167cc588933ad2d25c185296716bdd7124e9d2a75dac76efea831bb22d1230ce5205a1ab6ce4c1010bb32ac35f7a5cb2dd16c78cbf382111f1228362aa59
+  checksum: 10c0/8989525f003dd062e829137982b5412143421342991b2732bd621a1efd98b2c3cdc4f37547601d0727d3bc20f1d0eb2a0ecca287d3688f168cdb54ced867ca8f
   languageName: node
   linkType: hard
 
@@ -3739,14 +3739,34 @@ __metadata:
   languageName: node
   linkType: hard
 
-"fast-xml-parser@npm:5.2.1":
-  version: 5.2.1
-  resolution: "fast-xml-parser@npm:5.2.1"
+"fast-xml-builder@npm:1.1.4":
+  version: 1.1.4
+  resolution: "fast-xml-builder@npm:1.1.4"
   dependencies:
-    strnum: "npm:^2.0.5"
+    path-expression-matcher: "npm:^1.1.3"
+  checksum: 10c0/d5dfc0660f7f886b9f42747e6aa1d5e16c090c804b322652f65a5d7ffb93aa00153c3e1276cd053629f9f4c4f625131dc6886677394f7048e827e63b97b18927
+  languageName: node
+  linkType: hard
+
+"fast-xml-builder@npm:^1.1.4":
+  version: 1.1.5
+  resolution: "fast-xml-builder@npm:1.1.5"
+  dependencies:
+    path-expression-matcher: "npm:^1.1.3"
+  checksum: 10c0/b814ba5559cb3140de46d2846045607ab4d4c0bfc312a49d22c91efb9f7cd7004971314841e5823eeb467a5bf403e3ade8371b7912200e111df027d42ae51715
+  languageName: node
+  linkType: hard
+
+"fast-xml-parser@npm:5.5.10":
+  version: 5.5.10
+  resolution: "fast-xml-parser@npm:5.5.10"
+  dependencies:
+    fast-xml-builder: "npm:^1.1.4"
+    path-expression-matcher: "npm:^1.2.1"
+    strnum: "npm:^2.2.2"
   bin:
     fxparser: src/cli/cli.js
-  checksum: 10c0/56839040975f66a1b825dd705bbf7fd622b605f59b994c80a5eda2fb971d553dca7341f094b5c04ae5277164f24e93603cc1f0fb90e22a57411bf350bede48b9
+  checksum: 10c0/7525e670e75d4a3da1c8fa25024879e3ddd06190ca7c390c18c2443e7aea6b9921c311207feb2901dc1728ac64220ddd838ca201e0fb564de158d9d18b9d170f
   languageName: node
   linkType: hard
 
@@ -4129,9 +4149,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"handlebars@npm:4.7.8":
-  version: 4.7.8
-  resolution: "handlebars@npm:4.7.8"
+"handlebars@npm:4.7.9":
+  version: 4.7.9
+  resolution: "handlebars@npm:4.7.9"
   dependencies:
     minimist: "npm:^1.2.5"
     neo-async: "npm:^2.6.2"
@@ -4143,7 +4163,7 @@ __metadata:
       optional: true
   bin:
     handlebars: bin/handlebars
-  checksum: 10c0/7aff423ea38a14bb379316f3857fe0df3c5d66119270944247f155ba1f08e07a92b340c58edaa00cfe985c21508870ee5183e0634dcb53dd405f35c93ef7f10d
+  checksum: 10c0/22f8105a7e68e81aff2662bb434edf05f757d21d850731d71cec886d69c10cd33d3c43e34b2892968ec62de8241611851d3d0674c8ef324ea3e01dc66262faa9
   languageName: node
   linkType: hard
 
@@ -4773,20 +4793,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"invert-kv@npm:^3.0.0":
-  version: 3.0.1
-  resolution: "invert-kv@npm:3.0.1"
-  checksum: 10c0/a3d90951a635e35dea9c9a5fd749e981e9c54e8a362ad80b2253dad03b9257314b7c4e4d250d61bcd79698ccd5f4c6b0c750cd991bb5ce16352bf830e77ea64b
-  languageName: node
-  linkType: hard
-
-"invert-kv@npm:^4.2.0":
-  version: 4.2.0
-  resolution: "invert-kv@npm:4.2.0"
-  checksum: 10c0/33d400194d3945403b13472192fd09b6698f6cb27ee5fa7075fa1363a18bfe9fc2563e48611456c87533fbd57b0c17ce24ad475c5e754af1938e656b70e15b12
-  languageName: node
-  linkType: hard
-
 "ip-address@npm:10.1.0, ip-address@npm:^10.0.1":
   version: 10.1.0
   resolution: "ip-address@npm:10.1.0"
@@ -5388,24 +5394,6 @@ __metadata:
   dependencies:
     readable-stream: "npm:^2.0.5"
   checksum: 10c0/ea4e509a5226ecfcc303ba6782cc269be8867d372b9bcbd625c88955df1987ea1a20da4643bf9270336415a398d33531ebf0d5f0d393b9283dc7c98bfcbd7b69
-  languageName: node
-  linkType: hard
-
-"lcid@npm:5.0.0":
-  version: 5.0.0
-  resolution: "lcid@npm:5.0.0"
-  dependencies:
-    invert-kv: "npm:^4.2.0"
-  checksum: 10c0/0e57e55e55d7e5200110116ac4294b1b3cef628d01d64a9d62265ab534b9e5dcfbabcf07f9d92b1c274ff8ef5a18fa5458fed321b2095ede9f862b6c4c5b4d6d
-  languageName: node
-  linkType: hard
-
-"lcid@npm:^3.1.1":
-  version: 3.1.1
-  resolution: "lcid@npm:3.1.1"
-  dependencies:
-    invert-kv: "npm:^3.0.0"
-  checksum: 10c0/43a39c39d92d756b9671691bb36ac2667c44c4a7e30f55403dc9c98ca4e7bba8c2b35599e8d7967163d65c1697e0d136596e9a9b9bccbd2292caf915c77416a4
   languageName: node
   linkType: hard
 
@@ -6167,10 +6155,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"mupdf@npm:1.26.4":
-  version: 1.26.4
-  resolution: "mupdf@npm:1.26.4"
-  checksum: 10c0/c9df202cecf426ec5bfb015fb1fcaf06a3b951178a56ce2682771e3b196b7c398963214f2c78531f7aeaad65afe4b4bcd40d08e44e84db99409aea454dc26ec8
+"mupdf@npm:@u1f992/mupdf@1.27.0-patched.1":
+  version: 1.27.0-patched.1
+  resolution: "@u1f992/mupdf@npm:1.27.0-patched.1"
+  checksum: 10c0/ac16fcb236a553d93921b88d9f5a17ccb60f527ad63a6a7e4d88725acc0e77254175720c82bd7d3ffd929796e0fbde059c478339d3a64adad52277c4d54b1aae
   languageName: node
   linkType: hard
 
@@ -6533,12 +6521,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"os-locale@npm:6.0.2":
-  version: 6.0.2
-  resolution: "os-locale@npm:6.0.2"
-  dependencies:
-    lcid: "npm:^3.1.1"
-  checksum: 10c0/15778a074367ff91ab7a3701f374fca8897cdea39e5c542c4df58a6ada0b811f0e98eb0e3a5401ca7dcf29bd20f37c9786864dbe051b363c56ecd2f481f90254
+"os-locale@npm:8.0.0":
+  version: 8.0.0
+  resolution: "os-locale@npm:8.0.0"
+  checksum: 10c0/5e7bea7afcbfb70c8b36424aadf85f7f170aabc7b50735f73ebe45046082a346f354bc9b79718bd304c0d7f2439825258617b67c7d9440cff7e88131b5426329
   languageName: node
   linkType: hard
 
@@ -6725,6 +6711,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"path-expression-matcher@npm:^1.1.3, path-expression-matcher@npm:^1.2.1":
+  version: 1.5.0
+  resolution: "path-expression-matcher@npm:1.5.0"
+  checksum: 10c0/646cb5bc66cd7d809a52288336f3ac1e6223f156fd8e912936e490e590f7f93e8056d4fd25fcbcc7da61bb698fa520112cb050372a3f65e7b79bd4afa0f77610
+  languageName: node
+  linkType: hard
+
 "path-is-absolute@npm:^1.0.0":
   version: 1.0.1
   resolution: "path-is-absolute@npm:1.0.1"
@@ -6806,14 +6799,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"picomatch@npm:4.0.2":
-  version: 4.0.2
-  resolution: "picomatch@npm:4.0.2"
-  checksum: 10c0/7c51f3ad2bb42c776f49ebf964c644958158be30d0a510efd5a395e8d49cb5acfed5b82c0c5b365523ce18e6ab85013c9ebe574f60305892ec3fa8eee8304ccc
-  languageName: node
-  linkType: hard
-
-"picomatch@npm:^4.0.2, picomatch@npm:^4.0.4":
+"picomatch@npm:4.0.4, picomatch@npm:^4.0.2, picomatch@npm:^4.0.4":
   version: 4.0.4
   resolution: "picomatch@npm:4.0.4"
   checksum: 10c0/e2c6023372cc7b5764719a5ffb9da0f8e781212fa7ca4bd0562db929df8e117460f00dff3cb7509dacfc06b86de924b247f504d0ce1806a37fac4633081466b0
@@ -8252,7 +8238,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"strnum@npm:^2.0.5":
+"strnum@npm:^2.2.2":
   version: 2.2.3
   resolution: "strnum@npm:2.2.3"
   checksum: 10c0/1ee78101f1cd73a5b32f63cfd0be501bd246801a002f5987efef903a49e9297d1b63574e302ab3c06ee5e715c524d6cbdfef010e372ec1ea848e0179836cc208
