@@ -11,5 +11,5 @@
       "@/*": ["./scripts/*"]
     }
   },
-  "include": ["scripts/**/*.ts"]
+  "include": ["scripts/**/*.ts", "scripts/**/*.cts"]
 }
