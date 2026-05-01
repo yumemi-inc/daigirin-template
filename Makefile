@@ -79,7 +79,7 @@ open:
 .PHONY: cover
 ## Docker内でカバー画像挿入スクリプトを実行
 cover:
-	$(NODE_RUN) node ./scripts/InsertCoverImage.js
+	$(NODE_RUN) node ./scripts/InsertCoverImage.ts
 
 .PHONY: clean
 ## 生成ファイルをすべて削除

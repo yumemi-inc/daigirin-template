@@ -1688,7 +1688,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/node@npm:*":
+"@types/node@npm:*, @types/node@npm:^25.6.0":
   version: 25.6.0
   resolution: "@types/node@npm:25.6.0"
   dependencies:
@@ -2912,6 +2912,7 @@ __metadata:
   dependencies:
     "@biomejs/biome": "npm:2.4.12"
     "@textlint-ja/textlint-rule-preset-ai-writing": "npm:^1.6.1"
+    "@types/node": "npm:^25.6.0"
     "@vivliostyle/cli": "npm:10.5.0"
     npm-run-all2: "npm:^8.0.4"
     pdf-lib: "npm:^1.17.1"
@@ -2921,6 +2922,7 @@ __metadata:
     textlint-rule-preset-ja-technical-writing: "npm:^12.0.2"
     textlint-rule-prh: "npm:^6.1.0"
     textlint-rule-spellcheck-tech-word: "npm:^5.0.0"
+    typescript: "npm:^6.0.3"
   languageName: unknown
   linkType: soft
 
@@ -9164,6 +9166,26 @@ __metadata:
     typed-array-buffer: "npm:^1.0.3"
     typed-array-byte-offset: "npm:^1.0.4"
   checksum: 10c0/4995828640f8079cfbc9e3b4b8fc2e0eeb109edd1a2596806325ae07306dba1cd947e6ed6f63391aa7d5af0ea4f40fddf1b6eb863f8a59869a9dfc5dcfd8eac2
+  languageName: node
+  linkType: hard
+
+"typescript@npm:^6.0.3":
+  version: 6.0.3
+  resolution: "typescript@npm:6.0.3"
+  bin:
+    tsc: bin/tsc
+    tsserver: bin/tsserver
+  checksum: 10c0/4a25ff5045b984370f48f196b3a0120779b1b343d40b9a68d114ea5e5fff099809b2bb777576991a63a5cd59cf7bffd96ff6fe10afcefbcb8bd6fb96ad4b6606
+  languageName: node
+  linkType: hard
+
+"typescript@patch:typescript@npm%3A^6.0.3#optional!builtin<compat/typescript>":
+  version: 6.0.3
+  resolution: "typescript@patch:typescript@npm%3A6.0.3#optional!builtin<compat/typescript>::version=6.0.3&hash=5786d5"
+  bin:
+    tsc: bin/tsc
+    tsserver: bin/tsserver
+  checksum: 10c0/2f25c74e65663c248fa1ade2b8459d9ce5372ff9dad07067310f132966ebec1d93f6c42f0baf77a6b6a7a91460463f708e6887013aaade22111037457c6b25df
   languageName: node
   linkType: hard
 

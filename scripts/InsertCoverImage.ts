@@ -1,6 +1,5 @@
-// biome-ignore lint/style/useNodejsImportProtocol: プロジェクトの都合で CommonJS を使用するため
-const fs = require('fs')
-const { PDFDocument } = require('pdf-lib')
+import * as fs from 'node:fs'
+import { PDFDocument } from 'pdf-lib'
 
 /**
  * 本文 PDF に表紙画像を挿入するスクリプト
