@@ -6,7 +6,10 @@
     "types": ["node"],
     "noEmit": true,
     "strict": false,
-    "skipLibCheck": true
+    "skipLibCheck": true,
+    "paths": {
+      "@/*": ["./scripts/*"]
+    }
   },
   "include": ["scripts/**/*.ts"]
 }
