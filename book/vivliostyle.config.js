@@ -12,16 +12,16 @@ module.exports = {
   ],
   entry: [
     // 目次
-    'pages/index.md',
+    'generated/index.md',
     // はじめに
     'pages/preface.md',
     // 各章の原稿（articles ディレクトリから自動取得）
     ...getArticleEntries(),
 
     // 著者紹介
-    'pages/authors.md',
+    'generated/authors.md',
     // 奥付
-    'pages/colophon.md',
+    'generated/colophon.md',
   ],
   entryContext: './manuscripts',
   output: ['output/ebook.pdf'],

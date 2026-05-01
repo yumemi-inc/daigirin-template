@@ -1,5 +1,9 @@
 ---
 class: content
+author: サンプル0の著者
+profile: |
+  サンプル0の自己紹介です。
+  この文章は著者紹介ページに自動で掲載されます。
 ---
 
 <div class="doc-header">
