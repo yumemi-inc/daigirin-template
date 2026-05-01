@@ -115,6 +115,8 @@ corepack enable
 corepack enable yarn
 ```
 
+Node.js 24 以降では、scripts 配下の TypeScript ファイルも Node の組み込み TypeScript 実行でそのまま扱えます。追加のトランスパイラや `ts-node` は不要です。
+
 ### 実行
 
 - `yarn start` : pdf を生成して開く（`make run` 相当）
