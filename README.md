@@ -38,8 +38,41 @@ make pdf_press
 
 ## 原稿の追加方法
 
-- [book/manuscripts](book/manuscripts) ディレクトリの中に、拡張子 `.md` の Markdown ファイルを作成します。
-- [book/vivliostyle.config.js](book/vivliostyle.config.js) ファイル内の `entry` 配列に、その Markdown ファイル名を追加します。
+原稿ファイルは [book/manuscripts](book/manuscripts) ディレクトリ以下に配置します。ディレクトリ構成は次のとおりです。
+
+```
+book/manuscripts/
+├── articles/          # 記事ファイルを配置するディレクトリ
+│   ├── your_chapter.md
+│   └── images_your_chapter/
+├── config/
+│   └── articles.yml   # 記事の順番を制御するファイル（オプション）
+└── pages/             # はじめに・あとがきなど記事以外のページ
+    ├── index.md       # 目次
+    ├── preface.md     # はじめに
+    ├── authors.md     # 著者紹介
+    └── colophon.md    # 奥付
+```
+
+### 記事の追加
+
+1. [book/manuscripts/articles](book/manuscripts/articles) ディレクトリ内に、拡張子 `.md` の Markdown ファイルを作成します。
+2. PDF ビルド時に `articles/` ディレクトリ内の Markdown ファイルが自動的に検出されます。[book/vivliostyle.config.js](book/vivliostyle.config.js) を手動で編集する必要はありません。
+
+### 記事の順番の制御
+
+- **`config/articles.yml` が存在する場合**: そのファイルに記載されたファイル名の順番で記事が設定されます。
+- **`config/articles.yml` を削除した場合**: `articles/` ディレクトリ内のファイルがアルファベット順で自動設定されます。
+
+`config/articles.yml` の記述例：
+
+```yml
+# 記事の順番を制御するファイル（オプション）
+# このファイルを削除すると、articles ディレクトリ内のファイルがアルファベット順で自動設定されます。
+# 記事ファイルのファイル名のみを記載してください（パスは不要）。
+- your_chapter.md
+- another_chapter.md
+```
 
 ## 文章校正
 

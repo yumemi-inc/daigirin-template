@@ -1,3 +1,46 @@
+const fs = require('node:fs')
+const path = require('node:path')
+const { parse: parseYaml } = require('yaml')
+
+/**
+ * articles ディレクトリから記事エントリを取得する
+ *
+ * config/articles.yml が存在する場合はその順番に従い、
+ * 存在しない場合は articles ディレクトリ内のファイルをアルファベット順で返します。
+ *
+ * @returns 記事エントリのパス配列（"articles/filename.md" 形式）
+ */
+function getArticleEntries() {
+  const manuscriptsDir = path.resolve(__dirname, 'manuscripts')
+  const articlesDir = path.join(manuscriptsDir, 'articles')
+  const configFile = path.join(manuscriptsDir, 'config', 'articles.yml')
+
+  if (!fs.existsSync(articlesDir)) {
+    return []
+  }
+
+  const allFiles = fs
+    .readdirSync(articlesDir)
+    .filter((f) => f.endsWith('.md'))
+    .sort()
+
+  let orderedFiles
+
+  if (fs.existsSync(configFile)) {
+    const yamlContent = fs.readFileSync(configFile, 'utf8')
+    const parsed = parseYaml(yamlContent)
+    if (Array.isArray(parsed)) {
+      orderedFiles = parsed
+    } else {
+      orderedFiles = allFiles
+    }
+  } else {
+    orderedFiles = allFiles
+  }
+
+  return orderedFiles.map((f) => `articles/${f}`)
+}
+
 module.exports = {
   title: 'ゆめみより ' /*\'23'*/,
   author: 'ゆめみより製作委員会',
@@ -10,16 +53,16 @@ module.exports = {
   ],
   entry: [
     // 目次
-    'index.md',
+    'pages/index.md',
     // はじめに
-    'preface.md',
-    // 各章の原稿
-    'sample_chapter.md', // サンプル用ページです。執筆時は削除してください。
+    'pages/preface.md',
+    // 各章の原稿（articles ディレクトリから自動取得）
+    ...getArticleEntries(),
 
     // 著者紹介
-    'authors.md',
+    'pages/authors.md',
     // 奥付
-    'colophon.md',
+    'pages/colophon.md',
   ],
   entryContext: './manuscripts',
   output: ['output/ebook.pdf'],
