@@ -3,11 +3,11 @@ class: content
 ---
 
 <div class="doc-header">
-  <div class="doc-title">サンプルチャプターのタイトル</div>
-  <div class="doc-author">サンプルチャプターの著者</div>
+  <div class="doc-title">サンプル0のタイトル</div>
+  <div class="doc-author">サンプル0の著者</div>
 </div>
 
-# サンプルチャプターのタイトル
+# サンプル0のタイトル
 
 次の文章は、でたらめ文章ジェネレーター [^BullshitGenerator-Japanese] で生成した、検証用の文章です（内容に意味はないです）。textlint の警告が出ていますが、`textlint-disable` で無視しています。
 
@@ -48,7 +48,7 @@ int main(int argc, char* argv[]){
 
 ## 画像
 
-![サンプル画像](./images_sample_chapter/sample_image.jpg)
+![サンプル画像](./images_sample/sample_image.jpg)
 
 <!-- 
 マークダウン記法でも幅を指定することもできます。
