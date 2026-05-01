@@ -1,5 +1,9 @@
 ---
 class: content
+author: サンプル1の著者
+profile: |
+  サンプル1の自己紹介です。
+  複数行プロフィールの例です。
 ---
 
 <div class="doc-header">
