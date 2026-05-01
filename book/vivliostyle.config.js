@@ -1,45 +1,9 @@
-const fs = require('node:fs')
 const path = require('node:path')
-const { parse: parseYaml } = require('yaml')
+const { getArticleEntries } = require('./getArticleEntries')
 
-/**
- * articles ディレクトリから記事エントリを取得する
- *
- * config/articles.yml が存在する場合はその順番に従い、
- * 存在しない場合は articles ディレクトリ内のファイルをアルファベット順で返します。
- *
- * @returns 記事エントリのパス配列（"articles/filename.md" 形式）
- */
-function getArticleEntries() {
-  const manuscriptsDir = path.resolve(__dirname, 'manuscripts')
-  const articlesDir = path.join(manuscriptsDir, 'articles')
-  const configFile = path.join(manuscriptsDir, 'config', 'articles.yml')
-
-  if (!fs.existsSync(articlesDir)) {
-    return []
-  }
-
-  const allFiles = fs
-    .readdirSync(articlesDir)
-    .filter((f) => f.endsWith('.md'))
-    .sort()
-
-  let orderedFiles
-
-  if (fs.existsSync(configFile)) {
-    const yamlContent = fs.readFileSync(configFile, 'utf8')
-    const parsed = parseYaml(yamlContent)
-    if (Array.isArray(parsed)) {
-      orderedFiles = parsed
-    } else {
-      orderedFiles = allFiles
-    }
-  } else {
-    orderedFiles = allFiles
-  }
-
-  return orderedFiles.map((f) => `articles/${f}`)
-}
+const manuscriptsDir = path.resolve(__dirname, 'manuscripts')
+const articlesDir = path.join(manuscriptsDir, 'articles')
+const configFile = path.join(manuscriptsDir, 'config', 'articles.yml')
 
 module.exports = {
   title: 'ゆめみより ' /*\'23'*/,
@@ -57,7 +21,7 @@ module.exports = {
     // はじめに
     'pages/preface.md',
     // 各章の原稿（articles ディレクトリから自動取得）
-    ...getArticleEntries(),
+    ...getArticleEntries(articlesDir, configFile),
 
     // 著者紹介
     'pages/authors.md',
