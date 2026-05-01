@@ -1,9 +1,4 @@
-const path = require('node:path')
-const { getArticleEntries } = require('./getArticleEntries')
-
-const manuscriptsDir = path.resolve(__dirname, 'manuscripts')
-const articlesDir = path.join(manuscriptsDir, 'articles')
-const configFile = path.join(manuscriptsDir, 'config', 'articles.yml')
+const { getArticleEntries } = require('../scripts/getArticleEntries.cts')
 
 module.exports = {
   title: 'ゆめみより ' /*\'23'*/,
@@ -21,7 +16,7 @@ module.exports = {
     // はじめに
     'pages/preface.md',
     // 各章の原稿（articles ディレクトリから自動取得）
-    ...getArticleEntries(articlesDir, configFile),
+    ...getArticleEntries(),
 
     // 著者紹介
     'pages/authors.md',
