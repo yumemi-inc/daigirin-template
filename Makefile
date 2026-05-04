@@ -30,8 +30,8 @@ DOCKER_COMPOSE = \
 
 VIVLIOSTYLE_CLI = $(DOCKER) run \
 	--rm \
-	-v $(BOOK_DIR):/local \
-	-w /local \
+	-v $(MAKEFILE_DIR):/local \
+	-w /local/book \
 	$(VIVLIOSTYLE_CLI_IMAGE_NAME):$(VIVLIOSTYLE_CLI_IMAGE_TAG) \
 
 NODE_RUN = $(DOCKER) run \
@@ -91,6 +91,8 @@ clean: \
 ## pdf関係の生成物を削除
 clean_pdf:
 	rm -rf $(OUTPUT_DIR)
+	rm -rf $(BOOK_DIR)/manuscripts/generated
+	rm -rf $(BOOK_DIR)/manuscripts/edited
 
 .PHONY: clean_docker
 ## Docker関係の生成物を削除
