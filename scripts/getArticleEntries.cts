@@ -77,7 +77,7 @@ function getArticleFiles(articlesDir: string, articlesConfigPath: string) {
       parsed = YAML.parse(content)
     } catch (e) {
       throw new Error(
-        `articles.yml の YAML パースに失敗しました。ファイルの記述を確認してください。\n${e}`,
+        `articles.yml の YAML パースに失敗しました。ファイルの記述を確認してください。\n${e instanceof Error ? e.message : String(e)}`,
       )
     }
     // 配列形式・articles キー形式の両方を受け付ける。
@@ -135,7 +135,7 @@ function getEntryConfigItems(
     parsed = YAML.parse(content)
   } catch (e) {
     throw new Error(
-      `entry.yml の YAML パースに失敗しました。ファイルの記述を確認してください。\n${e}`,
+      `entry.yml の YAML パースに失敗しました。ファイルの記述を確認してください。\n${e instanceof Error ? e.message : String(e)}`,
     )
   }
   // ルート配列と entries 配列のどちらでも読み込めるようにする。
