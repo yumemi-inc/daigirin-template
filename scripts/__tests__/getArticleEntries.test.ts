@@ -12,6 +12,9 @@ const {
   toEntryFilePath,
   toTocHrefPath,
   uniqueEntryPaths,
+  getGeneratedEntryPath,
+  getBookEntries,
+  getTocItems,
 } = require('../getArticleEntries.cts') as {
   getArticleFiles: (articlesDir: string, articlesConfigPath: string) => string[]
   getEntryConfigItems: (configPath: string) => Array<Record<string, unknown>>
@@ -23,6 +26,26 @@ const {
   toEntryFilePath: (filePath: string) => string
   toTocHrefPath: (filePath: string) => string
   uniqueEntryPaths: (entryPaths: string[]) => string[]
+  getGeneratedEntryPath: (
+    fileName: string,
+    dirs?: { editedDir?: string; generatedDir?: string },
+  ) => string
+  getBookEntries: (paths?: {
+    configPath?: string
+    editedDir?: string
+    generatedDir?: string
+    articlesDir?: string
+    articlesConfigPath?: string
+  }) => string[]
+  getTocItems: (paths?: {
+    configPath?: string
+    editedDir?: string
+    generatedDir?: string
+  }) => Array<{
+    type: 'generated' | 'page' | 'articles'
+    title?: string
+    file?: string
+  }>
 }
 
 describe('getArticleFiles', () => {
@@ -183,5 +206,210 @@ describe('entry config utilities', () => {
         'articles/sample0.md',
       ]),
     ).toEqual(['generated/index.md', 'pages/preface.md', 'articles/sample0.md'])
+  })
+})
+
+describe('getGeneratedEntryPath', () => {
+  let tmpDir: string
+  let editedDir: string
+  let generatedDir: string
+
+  beforeEach(() => {
+    tmpDir = fs.mkdtempSync(
+      path.join(os.tmpdir(), 'daigirin-generated-entry-test-'),
+    )
+    editedDir = path.join(tmpDir, 'edited')
+    generatedDir = path.join(tmpDir, 'generated')
+    fs.mkdirSync(editedDir, { recursive: true })
+    fs.mkdirSync(generatedDir, { recursive: true })
+  })
+
+  afterEach(() => {
+    fs.rmSync(tmpDir, { recursive: true, force: true })
+  })
+
+  test('edited/ のファイルが存在する場合は edited/ を優先する', () => {
+    fs.writeFileSync(path.join(editedDir, 'index.md'), '')
+    expect(getGeneratedEntryPath('index.md', { editedDir, generatedDir })).toBe(
+      'edited/index.md',
+    )
+  })
+
+  test('edited/ になく generated/ に存在する場合は generated/ を返す', () => {
+    fs.writeFileSync(path.join(generatedDir, 'index.md'), '')
+    expect(getGeneratedEntryPath('index.md', { editedDir, generatedDir })).toBe(
+      'generated/index.md',
+    )
+  })
+
+  test('どちらにもファイルがない場合は generated/ を返す', () => {
+    expect(getGeneratedEntryPath('index.md', { editedDir, generatedDir })).toBe(
+      'generated/index.md',
+    )
+  })
+})
+
+describe('getBookEntries', () => {
+  let tmpDir: string
+  let editedDir: string
+  let generatedDir: string
+  let configPath: string
+
+  beforeEach(() => {
+    tmpDir = fs.mkdtempSync(
+      path.join(os.tmpdir(), 'daigirin-book-entries-test-'),
+    )
+    editedDir = path.join(tmpDir, 'edited')
+    generatedDir = path.join(tmpDir, 'generated')
+    configPath = path.join(tmpDir, 'entry.yml')
+    fs.mkdirSync(editedDir, { recursive: true })
+    fs.mkdirSync(generatedDir, { recursive: true })
+  })
+
+  afterEach(() => {
+    fs.rmSync(tmpDir, { recursive: true, force: true })
+  })
+
+  function paths(extra?: Record<string, string>) {
+    return { configPath, editedDir, generatedDir, ...extra }
+  }
+
+  test('page エントリの .html ファイルは .md に正規化される', () => {
+    fs.writeFileSync(
+      configPath,
+      '- type: page\n  title: はじめに\n  file: pages/preface.html\n  toc: true\n',
+    )
+    const result = getBookEntries(paths())
+    expect(result).toContain('pages/preface.md')
+    expect(result).not.toContain('pages/preface.html')
+  })
+
+  test('generated エントリは edited/ が存在すれば edited/ を優先する', () => {
+    fs.writeFileSync(configPath, '- type: generated\n  id: index\n  toc: false\n')
+    fs.writeFileSync(path.join(editedDir, 'index.md'), '')
+    expect(getBookEntries(paths())).toContain('edited/index.md')
+  })
+
+  test('generated エントリは edited/ がなければ generated/ を返す', () => {
+    fs.writeFileSync(configPath, '- type: generated\n  id: index\n  toc: false\n')
+    expect(getBookEntries(paths())).toContain('generated/index.md')
+  })
+
+  test('generated/page/articles が混在した entry.yml を正しく処理する', () => {
+    const articlesDir = path.join(tmpDir, 'articles')
+    fs.mkdirSync(articlesDir, { recursive: true })
+    fs.writeFileSync(path.join(articlesDir, 'ch1.md'), '')
+    fs.writeFileSync(
+      configPath,
+      [
+        '- type: generated',
+        '  id: index',
+        '  toc: false',
+        '- type: page',
+        '  title: はじめに',
+        '  file: pages/preface.md',
+        '  toc: true',
+        '- type: articles',
+        '  toc: true',
+      ].join('\n'),
+    )
+    const result = getBookEntries(paths({ articlesDir }))
+    expect(result).toContain('generated/index.md')
+    expect(result).toContain('pages/preface.md')
+    expect(result).toContain('articles/ch1.md')
+  })
+})
+
+describe('getTocItems', () => {
+  let tmpDir: string
+  let editedDir: string
+  let generatedDir: string
+  let configPath: string
+
+  beforeEach(() => {
+    tmpDir = fs.mkdtempSync(
+      path.join(os.tmpdir(), 'daigirin-toc-items-test-'),
+    )
+    editedDir = path.join(tmpDir, 'edited')
+    generatedDir = path.join(tmpDir, 'generated')
+    configPath = path.join(tmpDir, 'entry.yml')
+    fs.mkdirSync(editedDir, { recursive: true })
+    fs.mkdirSync(generatedDir, { recursive: true })
+  })
+
+  afterEach(() => {
+    fs.rmSync(tmpDir, { recursive: true, force: true })
+  })
+
+  function paths() {
+    return { configPath, editedDir, generatedDir }
+  }
+
+  test('toc: false の項目は目次から除外される', () => {
+    fs.writeFileSync(
+      configPath,
+      [
+        '- type: generated',
+        '  id: index',
+        '  toc: false',
+        '- type: page',
+        '  title: はじめに',
+        '  file: pages/preface.md',
+        '  toc: true',
+      ].join('\n'),
+    )
+    const result = getTocItems(paths())
+    expect(result).toHaveLength(1)
+    expect(result[0]).toMatchObject({ type: 'page', title: 'はじめに' })
+  })
+
+  test('toc: true の全項目が目次に含まれる', () => {
+    fs.writeFileSync(
+      configPath,
+      [
+        '- type: generated',
+        '  id: index',
+        '  toc: true',
+        '- type: page',
+        '  title: はじめに',
+        '  file: pages/preface.md',
+        '  toc: true',
+        '- type: articles',
+        '  toc: true',
+      ].join('\n'),
+    )
+    const result = getTocItems(paths())
+    expect(result).toHaveLength(3)
+    expect(result[0]).toMatchObject({ type: 'generated' })
+    expect(result[1]).toMatchObject({ type: 'page' })
+    expect(result[2]).toMatchObject({ type: 'articles' })
+  })
+
+  test('page の目次リンクは .md が .html に変換される', () => {
+    fs.writeFileSync(
+      configPath,
+      '- type: page\n  title: はじめに\n  file: pages/preface.md\n  toc: true\n',
+    )
+    const result = getTocItems(paths())
+    expect(result[0]).toMatchObject({ file: 'pages/preface.html' })
+  })
+
+  test('generated エントリで edited/ 優先の場合、目次リンクも edited/ になる', () => {
+    fs.writeFileSync(
+      configPath,
+      '- type: generated\n  id: authors\n  toc: true\n',
+    )
+    fs.writeFileSync(path.join(editedDir, 'authors.md'), '')
+    const result = getTocItems(paths())
+    expect(result[0]).toMatchObject({ file: 'edited/authors.html' })
+  })
+
+  test('generated エントリで edited/ がない場合、目次リンクは generated/ になる', () => {
+    fs.writeFileSync(
+      configPath,
+      '- type: generated\n  id: authors\n  toc: true\n',
+    )
+    const result = getTocItems(paths())
+    expect(result[0]).toMatchObject({ file: 'generated/authors.html' })
   })
 })

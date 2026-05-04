@@ -246,13 +246,19 @@ function getGeneratedTitle(id: GeneratedId, title?: string) {
 /**
  * 手動編集用ファイルが存在する場合はそちらを優先して返します。
  */
-function getGeneratedEntryPath(fileName: string) {
-  const editedPath = path.join(editedDir, fileName)
+function getGeneratedEntryPath(
+  fileName: string,
+  dirs: { editedDir?: string; generatedDir?: string } = {},
+) {
+  const eDir = dirs.editedDir ?? editedDir
+  const gDir = dirs.generatedDir ?? generatedDir
+
+  const editedPath = path.join(eDir, fileName)
   if (fs.existsSync(editedPath)) {
     return `edited/${fileName}`
   }
 
-  const generatedPath = path.join(generatedDir, fileName)
+  const generatedPath = path.join(gDir, fileName)
   if (fs.existsSync(generatedPath)) {
     return `generated/${fileName}`
   }
@@ -274,29 +280,53 @@ function uniqueEntryPaths(entryPaths: string[]) {
   })
 }
 
+type BookEntryPaths = {
+  configPath?: string
+  editedDir?: string
+  generatedDir?: string
+  articlesDir?: string
+  articlesConfigPath?: string
+}
+
 /**
  * vivliostyle.config.js の entry を自動生成します。
  */
-function getBookEntries() {
-  const items = getEntryConfigItems(entryConfigPath)
+function getBookEntries(paths: BookEntryPaths = {}) {
+  const cfgPath = paths.configPath ?? entryConfigPath
+  const dirs = {
+    editedDir: paths.editedDir ?? editedDir,
+    generatedDir: paths.generatedDir ?? generatedDir,
+  }
+  const aDir = paths.articlesDir ?? articlesDir
+  const aCfgPath = paths.articlesConfigPath ?? articlesConfigPath
+
+  const items = getEntryConfigItems(cfgPath)
 
   return uniqueEntryPaths(
     items.flatMap((item: EntryConfigItem) => {
       if (item.type === 'generated') {
-        return [getGeneratedEntryPath(getGeneratedFileName(item.id))]
+        return [getGeneratedEntryPath(getGeneratedFileName(item.id), dirs)]
       }
 
       if (item.type === 'page') {
         return [toEntryFilePath(item.file)]
       }
 
-      return getArticleEntries()
+      return getArticleFiles(aDir, aCfgPath).map(
+        (file: string) => `articles/${file}`,
+      )
     }),
   )
 }
 
-function getTocItems() {
-  const items = getEntryConfigItems(entryConfigPath)
+function getTocItems(paths: BookEntryPaths = {}) {
+  const cfgPath = paths.configPath ?? entryConfigPath
+  const dirs = {
+    editedDir: paths.editedDir ?? editedDir,
+    generatedDir: paths.generatedDir ?? generatedDir,
+  }
+
+  const items = getEntryConfigItems(cfgPath)
 
   // toc: true の項目だけを目次用データへ変換する。
   return items
@@ -304,7 +334,7 @@ function getTocItems() {
     .map((item: EntryConfigItem) => {
       if (item.type === 'generated') {
         const fileName = getGeneratedFileName(item.id)
-        const entryPath = getGeneratedEntryPath(fileName)
+        const entryPath = getGeneratedEntryPath(fileName, dirs)
         return {
           type: 'generated' as const,
           title: getGeneratedTitle(item.id, item.title),
