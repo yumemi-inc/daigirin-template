@@ -8,11 +8,18 @@
   "scripts": {
     "lint": "textlint ./book/manuscripts/",
     "start": "run-s build open",
-    "build": "cd ./book/ && vivliostyle build",
-    "build:press": "cd ./book/ && vivliostyle build --config vivliostyle.config.press.local.js",
+    "generate": "node ./scripts/generate-manuscripts.cts",
+    "edit": "run-s generate _prepare:edit",
+    "build": "run-s generate _build:ebook",
+    "build:press": "run-s generate _build:press:vivliostyle",
+    "_prepare:edit": "node ./scripts/prepare-editable-manuscripts.cts",
+    "_build:ebook": "cd ./book/ && vivliostyle build",
+    "_build:press:vivliostyle": "cd ./book/ && vivliostyle build --config vivliostyle.config.press.local.js",
     "open": "open ./book/output/ebook.pdf",
-    "clean": "rm -rf ./book/output/",
+    "clean": "rm -rf ./book/output/ ./book/manuscripts/generated/",
+    "clean:edited": "rm -rf ./book/manuscripts/edited/",
     "cover": "node ./scripts/InsertCoverImage.ts",
+    "test": "vitest run",
     "check": "biome check",
     "check-write": "biome check --write"
   },
@@ -29,7 +36,9 @@
     "textlint-rule-preset-ja-technical-writing": "^12.0.2",
     "textlint-rule-prh": "^6.1.0",
     "textlint-rule-spellcheck-tech-word": "^5.0.0",
-    "typescript": "^6.0.3"
+    "typescript": "^6.0.3",
+    "vitest": "^4.1.5",
+    "yaml": "^2.8.3"
   },
   "packageManager": "yarn@4.14.1"
 }

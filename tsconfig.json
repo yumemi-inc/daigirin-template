@@ -3,7 +3,7 @@
     "target": "ESNext",
     "module": "NodeNext",
     "moduleResolution": "NodeNext",
-    "types": ["node"],
+    "types": ["node", "vitest/globals"],
     "noEmit": true,
     "strict": false,
     "skipLibCheck": true,
@@ -11,5 +11,5 @@
       "@/*": ["./scripts/*"]
     }
   },
-  "include": ["scripts/**/*.ts"]
+  "include": ["scripts/**/*.ts", "scripts/**/*.cts"]
 }

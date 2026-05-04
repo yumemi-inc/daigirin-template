@@ -1,0 +1,39 @@
+# generate-manuscripts.cts の動作設定ファイル
+
+# 著者紹介のプロフィールテンプレート
+# 使用可能な変数: {author} (著者名), {title} (記事タイトル、複数の場合は読点区切り), {profile} (プロフィール文)
+profile_template: |
+  ### {author}（{title}）
+
+  {profile}
+
+# 目次ページの articles 項目テンプレート
+# 使用可能な変数: {title} (記事タイトル), {author} (著者名), {file} (拡張子なしファイル名)
+articles_toc: |
+  {title} | {author}
+
+# 奥付（colophon.md）の設定
+# title と著作権の発行名は vivliostyle.config.js から自動取得されます。
+
+# 版の履歴（自由文・複数行可）
+# 例:
+#   edition_history: |
+#     2023年5月15日 初版
+#     2023年5月20日 初版 2刷
+#     2023年6月15日 第二版
+edition_history: 初版
+
+# 奥付の行定義（label と value の組みの配列）
+# 行を自由に追加・変更・削除できます。
+colophon_rows:
+  - label: 発行
+    value: ゆめみより製作委員会
+  - label: 表紙
+    value: ''
+  - label: 印刷
+    value: ''
+  - label: 連絡先
+    value: https://x.com/yumemiinc
+
+# コピーライト年（例: 2023）
+copyright_year: ''
