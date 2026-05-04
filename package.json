@@ -16,7 +16,7 @@
     "_build:ebook": "cd ./book/ && vivliostyle build",
     "_build:press:vivliostyle": "cd ./book/ && vivliostyle build --config vivliostyle.config.press.local.js",
     "open": "open ./book/output/ebook.pdf",
-    "clean": "rm -rf ./book/output/",
+    "clean": "rm -rf ./book/output/ ./book/manuscripts/generated/ ./book/manuscripts/edited/",
     "cover": "node ./scripts/InsertCoverImage.ts",
     "test": "node --experimental-vm-modules node_modules/.bin/jest",
     "check": "biome check",
