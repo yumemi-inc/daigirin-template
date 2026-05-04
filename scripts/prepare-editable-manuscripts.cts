@@ -12,12 +12,19 @@ const manuscriptsDir = path.join(__dirname, '../book/manuscripts')
 const generatedDir = path.join(manuscriptsDir, 'generated')
 const editedDir = path.join(manuscriptsDir, 'edited')
 
+/**
+ * CLI オプションを解釈する。現在は --force のみ対応。
+ */
 function parseOptions(argv: string[]) {
   return {
     force: argv.includes('--force'),
   }
 }
 
+/**
+ * generated/*.md を edited へコピーする。
+ * safe モードでは既存ファイルを上書きしない。
+ */
 function copyGeneratedToEdited(options: { force: boolean }) {
   if (!fs.existsSync(generatedDir)) {
     console.log('Skipped: manuscripts/generated does not exist.')
@@ -37,6 +44,7 @@ function copyGeneratedToEdited(options: { force: boolean }) {
     const sourcePath = path.join(generatedDir, fileName)
     const targetPath = path.join(editedDir, fileName)
 
+    // force でないときは、手動編集済みファイルを保護するためスキップする。
     if (!options.force && fs.existsSync(targetPath)) {
       console.log(`Skipped: manuscripts/edited/${fileName} (already exists)`)
       skipped += 1

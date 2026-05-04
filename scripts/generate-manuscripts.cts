@@ -13,8 +13,6 @@ const {
   parseFrontMatter,
   resolveArticleTitle,
   resolveArticleAuthor,
-  applyTemplate,
-  getArticlesTocLabel,
   generateIndex,
   generateAuthors,
   generateColophon,
@@ -33,6 +31,10 @@ const GENERATED_AUTHORS_FILE = 'authors.md'
 const GENERATED_COLOPHON_FILE = 'colophon.md'
 const GENERATE_MODE = 'force'
 
+/**
+ * generate.yml を読み込む。
+ * 設定ファイルがない、またはオブジェクト形式でない場合は空設定として扱う。
+ */
 function loadGenerateConfig(configPath: string) {
   if (!fs.existsSync(configPath)) {
     return {}
@@ -45,6 +47,9 @@ function loadGenerateConfig(configPath: string) {
   return parsed
 }
 
+/**
+ * 生成ファイルを書き出し、ログしやすい相対パスを表示する。
+ */
 function writeGeneratedFile(filePath: string, content: string) {
   fs.writeFileSync(filePath, content)
   const relativePath = path.relative(manuscriptsDir, filePath)
@@ -54,6 +59,7 @@ function writeGeneratedFile(filePath: string, content: string) {
 
 if (require.main === module) {
   const vivliostyleConfig = require('../book/vivliostyle.config.js')
+  // config 側が空文字を返しても既定値へフォールバックする。
   const bookTitle =
     typeof vivliostyleConfig.title === 'string'
       ? vivliostyleConfig.title.trim() || DEFAULT_BOOK_TITLE
@@ -67,6 +73,7 @@ if (require.main === module) {
   const generateConfig = loadGenerateConfig(generateConfigPath)
 
   const articleFiles = getArticleFiles(articlesDir, articlesConfigPath)
+  // 記事ごとに front matter を解決して、生成に必要な情報へ正規化する。
   const articles = articleFiles.map((file: string) => {
     const filePath = path.join(articlesDir, file)
     const content = fs.readFileSync(filePath, 'utf8')
@@ -87,6 +94,7 @@ if (require.main === module) {
 
   let generatedCount = 0
 
+  // 生成本数を明示的にカウントし、終了ログで確認しやすくする。
   if (
     writeGeneratedFile(
       indexPath,

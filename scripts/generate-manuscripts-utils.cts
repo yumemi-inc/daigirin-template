@@ -4,7 +4,11 @@
 
 const YAML = require('yaml')
 
+/**
+ * 記事本文先頭の front matter を抽出してオブジェクト化する。
+ */
 function parseFrontMatter(content: string) {
+  // --- ... --- ブロックを先頭から最短一致で取り出す。
   const match = content.match(/^---\r?\n([\s\S]*?)\r?\n---/)
   if (!match) return {}
   const parsed = YAML.parse(match[1])
@@ -12,11 +16,16 @@ function parseFrontMatter(content: string) {
   return parsed
 }
 
+/**
+ * 記事タイトルを決定する。
+ * front matter の title、本文中の H1、ファイル名の順で採用する。
+ */
 function resolveArticleTitle(
   frontMatter: Record<string, unknown>,
   content: string,
   fileName: string,
 ) {
+  // 優先順位: front matter title -> H1 見出し -> ファイル名。
   const frontMatterTitle =
     typeof frontMatter.title === 'string' ? frontMatter.title.trim() : ''
   if (frontMatterTitle) {
@@ -32,11 +41,19 @@ function resolveArticleTitle(
   return fileName.replace('.md', '')
 }
 
+/**
+ * front matter から著者名を取得する。
+ * 値がない場合は空文字を返す。
+ */
 function resolveArticleAuthor(frontMatter: Record<string, unknown>) {
   return typeof frontMatter.author === 'string' ? frontMatter.author.trim() : ''
 }
 
+/**
+ * テンプレート文字列のプレースホルダーを与えられた値で置換する。
+ */
 function applyTemplate(template: string, values: Record<string, string>) {
+  // {key} 形式のプレースホルダーを全置換する。
   return Object.entries(values).reduce(
     (result: string, [key, value]: [string, string]) =>
       result.replaceAll(`{${key}}`, value),
@@ -44,10 +61,15 @@ function applyTemplate(template: string, values: Record<string, string>) {
   )
 }
 
+/**
+ * 記事目次ラベルを生成する。
+ * generate.yml の articles_toc テンプレートを適用し、空なら title を使う。
+ */
 function getArticlesTocLabel(
   article: { file: string; title: string; author: string },
   generateConfig: Record<string, unknown>,
 ) {
+  // 未設定時でも目次が空にならないよう、既定テンプレートを持たせる。
   const templateRaw = generateConfig.articles_toc
   const template =
     typeof templateRaw === 'string' && templateRaw.trim().length > 0
@@ -63,6 +85,10 @@ function getArticlesTocLabel(
   return label || article.title
 }
 
+/**
+ * index.md（目次ページ）本文を生成する。
+ * 固定ページ項目と articles 展開項目を1つの目次へ組み立てる。
+ */
 function generateIndex(
   articles: Array<{
     file: string
@@ -93,6 +119,7 @@ function generateIndex(
     '',
   ]
 
+  // entry.yml 由来の tocItems をそのまま走査し、articles は展開して出力する。
   for (const item of tocItems) {
     if (item.type === 'articles') {
       for (const article of articles) {
@@ -113,6 +140,10 @@ function generateIndex(
   return lines.join('\n')
 }
 
+/**
+ * authors.md（著者紹介ページ）本文を生成する。
+ * 著者ごとに記事タイトルを集約し、プロフィールテンプレートへ反映する。
+ */
 function generateAuthors(
   articles: Array<{
     file: string
@@ -145,6 +176,7 @@ function generateAuthors(
       authorMap.set(author, { titles: [], profile: '' })
     }
 
+    // 同一著者の記事タイトルを蓄積し、profile は最初の非空値を採用する。
     const entry = authorMap.get(author)
     const title = article.title
     const profile = typeof fm.profile === 'string' ? fm.profile.trim() : ''
@@ -189,6 +221,10 @@ function generateAuthors(
   return lines.join('\n')
 }
 
+/**
+ * colophon.md（奥付ページ）本文を生成する。
+ * 設定値が未指定の項目は既定値で補完する。
+ */
 function generateColophon(
   bookTitle: string,
   publisherName: string,
@@ -224,6 +260,7 @@ function generateColophon(
     ],
   )
 
+  // 文字列配列で組み立てることで、テンプレート変更時の差分を追いやすくする。
   const lines = [
     '---',
     'class: exclude-hashira',

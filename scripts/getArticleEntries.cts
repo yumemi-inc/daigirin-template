@@ -41,12 +41,14 @@ const GENERATED_FILE_NAME_MAP: Record<GeneratedId, string> = {
   colophon: 'colophon.md',
 }
 
+// generated タイプで title 未指定時に使う見出し。
 const GENERATED_DEFAULT_TITLE_MAP: Record<GeneratedId, string> = {
   index: '目次',
   authors: '著者紹介',
   colophon: '奥付',
 }
 
+// entry.yml がない場合や不正な場合のフォールバック構成。
 const DEFAULT_ENTRY_CONFIG: EntryConfigItem[] = [
   { type: 'generated', id: 'index', toc: false },
   { type: 'page', title: 'はじめに', file: 'pages/preface.md', toc: true },
@@ -71,11 +73,13 @@ function getArticleFiles(articlesDir: string, articlesConfigPath: string) {
   if (fs.existsSync(articlesConfigPath)) {
     const content = fs.readFileSync(articlesConfigPath, 'utf8')
     const parsed = YAML.parse(content)
+    // 配列形式・articles キー形式の両方を受け付ける。
     const files = Array.isArray(parsed)
       ? parsed
       : Array.isArray(parsed?.articles)
         ? parsed.articles
         : []
+    // .md だけを対象にし、実在するファイルだけを残す。
     const validFiles = files
       .filter((file: unknown) => typeof file === 'string')
       .map((file: string) => file.trim())
@@ -120,12 +124,14 @@ function getEntryConfigItems(
 
   const content = fs.readFileSync(configPath, 'utf8')
   const parsed = YAML.parse(content)
+  // ルート配列と entries 配列のどちらでも読み込めるようにする。
   const items = Array.isArray(parsed)
     ? parsed
     : Array.isArray(parsed?.entries)
       ? parsed.entries
       : []
 
+  // 設定値を型安全に正規化し、不正なエントリは捨てる。
   const normalized = items
     .filter((item: unknown) => typeof item === 'object' && item !== null)
     .map(
@@ -243,6 +249,7 @@ function getGeneratedEntryPath(fileName: string) {
 function uniqueEntryPaths(entryPaths: string[]) {
   const seen = new Set<string>()
 
+  // 同一パスは先頭の1件だけ採用し、Vivliostyle の出力衝突を避ける。
   return entryPaths.filter((entryPath: string) => {
     if (seen.has(entryPath)) {
       return false
@@ -277,6 +284,7 @@ function getBookEntries() {
 function getTocItems() {
   const items = getEntryConfigItems(entryConfigPath)
 
+  // toc: true の項目だけを目次用データへ変換する。
   return items
     .filter((item: EntryConfigItem) => item.toc)
     .map((item: EntryConfigItem) => {
