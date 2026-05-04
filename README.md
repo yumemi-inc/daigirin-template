@@ -68,7 +68,7 @@ book/manuscripts/
 
 ### front matter
 
-各記事ファイルの先頭に次の front matter を記述してください。
+各記事ファイルの先頭に次の front matter を記述してください。サンプル用のマークダウンファイルを参照してください。
 
 ```yaml
 ---
@@ -79,7 +79,7 @@ profile: 著者の自己紹介文
 ---
 ```
 
-`profile` は YAML ブロックスカラー `|` で複数行で記述できます。
+`profile` は YAML ブロックスカラー `|` で複数行で記述できます。改行は文末にスペース２つか `<br>` タグを設定してください。
 
 ```yaml
 profile: |
@@ -102,9 +102,9 @@ profile: |
 - another_chapter.md
 ```
 
-## 自動生成ファイル
+## 編集作業向けの自動生成ファイル
 
-次のファイルが自動生成対象です。
+次のファイルが自動生成対象です。これらは編集者が対象であり、執筆者は対応不要です。
 
 - **`book/manuscripts/generated/index.md`**（目次）: 各記事の `title` を一覧化します。
 - **`book/manuscripts/generated/authors.md`**（著者紹介）: 各記事の `author` と `profile` を集約します。
@@ -189,10 +189,6 @@ profile_template: |
 articles_toc: |
   {title}({author})
 ```
-
-### 編集作業
-
-自動生成された記事の偶数ページの調整などは、`yarn edit` で生成した `edited/` 配下のファイルに対して行ってください。この作業は、編集者向けで、執筆者は不要です。
 
 ## 文章校正
 
