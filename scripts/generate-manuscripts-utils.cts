@@ -123,7 +123,9 @@ function generateIndex(
   for (const item of tocItems) {
     if (item.type === 'articles') {
       for (const article of articles) {
-        const htmlFile = article.file.replace('.md', '.html')
+        const htmlFile = article.file.endsWith('.md')
+          ? article.file.slice(0, -3) + '.html'
+          : article.file
         const title = getArticlesTocLabel(article, generateConfig)
         lines.push(`1. [${title}](../articles/${htmlFile})`)
       }
