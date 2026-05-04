@@ -201,9 +201,9 @@ function generateAuthors(
     const title = titles.length > 0 ? titles.join('、') : '無題'
     const profileText = profile || '著者の自己紹介を記述してください。'
     const section = profileTemplate
-      .replace('{author}', author)
-      .replace('{title}', title)
-      .replace('{profile}', profileText)
+      .replaceAll('{author}', author)
+      .replaceAll('{title}', title)
+      .replaceAll('{profile}', profileText)
     lines.push(section)
     lines.push('')
   }
