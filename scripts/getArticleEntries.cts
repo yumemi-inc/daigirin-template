@@ -72,7 +72,14 @@ function getArticleFiles(articlesDir: string, articlesConfigPath: string) {
 
   if (fs.existsSync(articlesConfigPath)) {
     const content = fs.readFileSync(articlesConfigPath, 'utf8')
-    const parsed = YAML.parse(content)
+    let parsed: unknown
+    try {
+      parsed = YAML.parse(content)
+    } catch (e) {
+      throw new Error(
+        `articles.yml の YAML パースに失敗しました。ファイルの記述を確認してください。\n${e}`,
+      )
+    }
     // 配列形式・articles キー形式の両方を受け付ける。
     const files = Array.isArray(parsed)
       ? parsed
@@ -123,7 +130,14 @@ function getEntryConfigItems(
   }
 
   const content = fs.readFileSync(configPath, 'utf8')
-  const parsed = YAML.parse(content)
+  let parsed: unknown
+  try {
+    parsed = YAML.parse(content)
+  } catch (e) {
+    throw new Error(
+      `entry.yml の YAML パースに失敗しました。ファイルの記述を確認してください。\n${e}`,
+    )
+  }
   // ルート配列と entries 配列のどちらでも読み込めるようにする。
   const items = Array.isArray(parsed)
     ? parsed
