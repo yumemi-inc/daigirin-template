@@ -79,7 +79,7 @@ function getArticlesTocLabel(
   const label = applyTemplate(template, {
     title: article.title,
     author: article.author,
-    file: article.file.replace('.md', ''),
+    file: article.file.replace(/\.md$/, ''),
   }).trim()
 
   return label || article.title
