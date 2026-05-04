@@ -71,6 +71,11 @@ install_node_modules:
 generate: install_node_modules
 	$(NODE_RUN) node ./scripts/generate-manuscripts.cts
 
+.PHONY: edit
+## 自動生成ファイルを edited/ へコピーする
+edit: generate
+	$(NODE_RUN) node ./scripts/prepare-editable-manuscripts.cts
+
 .PHONY: pdf
 ## pdfを生成
 pdf:
