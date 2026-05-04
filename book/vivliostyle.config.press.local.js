@@ -5,7 +5,9 @@ module.exports = {
   theme: [...config.theme, 'theme/theme-press'],
   output: {
     path: './output/press.pdf',
-    preflight: 'press-ready-local',
-    preflightOption: ['gray-scale'],
+    pdfPostprocess: {
+      preflight: 'press-ready-local',
+      preflightOption: ['gray-scale'],
+    },
   },
 }
