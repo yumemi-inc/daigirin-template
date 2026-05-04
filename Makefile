@@ -109,6 +109,10 @@ clean: \
 clean_pdf:
 	rm -rf $(OUTPUT_DIR)
 	rm -rf $(BOOK_DIR)/manuscripts/generated
+
+.PHONY: clean_edited
+## 手動編集用ディレクトリを明示的に削除
+clean_edited:
 	rm -rf $(BOOK_DIR)/manuscripts/edited
 
 .PHONY: clean_docker
