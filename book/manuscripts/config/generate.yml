@@ -1,7 +1,7 @@
 # generate-manuscripts.cts の動作設定ファイル
 
 # 著者紹介のプロフィールテンプレート
-# 使用可能な変数: {author} (著者名), {title} (記事タイトル、複数の場合はコンマ区切り), {profile} (プロフィール文)
+# 使用可能な変数: {author} (著者名), {title} (記事タイトル、複数の場合は読点区切り), {profile} (プロフィール文)
 profile_template: |
   ### {author}（{title}）
 
