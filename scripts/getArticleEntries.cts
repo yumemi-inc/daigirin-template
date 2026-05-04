@@ -11,6 +11,49 @@ const YAML = require('yaml')
 const manuscriptsDir = path.join(__dirname, '../book/manuscripts')
 const articlesDir = path.join(manuscriptsDir, 'articles')
 const articlesConfigPath = path.join(manuscriptsDir, 'config', 'articles.yml')
+const entryConfigPath = path.join(manuscriptsDir, 'config', 'entry.yml')
+const generatedDir = path.join(manuscriptsDir, 'generated')
+const editedDir = path.join(manuscriptsDir, 'edited')
+
+type GeneratedId = 'index' | 'authors' | 'colophon'
+
+type EntryConfigItem =
+  | {
+      type: 'generated'
+      id: GeneratedId
+      title?: string
+      toc: boolean
+    }
+  | {
+      type: 'page'
+      title: string
+      file: string
+      toc: boolean
+    }
+  | {
+      type: 'articles'
+      toc: boolean
+    }
+
+const GENERATED_FILE_NAME_MAP: Record<GeneratedId, string> = {
+  index: 'index.md',
+  authors: 'authors.md',
+  colophon: 'colophon.md',
+}
+
+const GENERATED_DEFAULT_TITLE_MAP: Record<GeneratedId, string> = {
+  index: '目次',
+  authors: '著者紹介',
+  colophon: '奥付',
+}
+
+const DEFAULT_ENTRY_CONFIG: EntryConfigItem[] = [
+  { type: 'generated', id: 'index', toc: false },
+  { type: 'page', title: 'はじめに', file: 'pages/preface.md', toc: true },
+  { type: 'articles', toc: true },
+  { type: 'generated', id: 'authors', toc: false },
+  { type: 'generated', id: 'colophon', toc: false },
+]
 
 /**
  * articles.yml または articles ディレクトリから記事ファイルの一覧を取得します。
@@ -63,4 +106,214 @@ function getArticleEntries() {
   )
 }
 
-module.exports = { getArticleFiles, getArticleEntries }
+/**
+ * entry.yml から本全体の entry 設定を読み込みます。
+ * @param {string} configPath - entry.yml のパス
+ * @returns {EntryConfigItem[]} entry 設定の配列
+ */
+function getEntryConfigItems(
+  configPath: string = entryConfigPath,
+): EntryConfigItem[] {
+  if (!fs.existsSync(configPath)) {
+    return DEFAULT_ENTRY_CONFIG
+  }
+
+  const content = fs.readFileSync(configPath, 'utf8')
+  const parsed = YAML.parse(content)
+  const items = Array.isArray(parsed)
+    ? parsed
+    : Array.isArray(parsed?.entries)
+      ? parsed.entries
+      : []
+
+  const normalized = items
+    .filter((item: unknown) => typeof item === 'object' && item !== null)
+    .map(
+      (item: {
+        type?: unknown
+        id?: unknown
+        title?: unknown
+        file?: unknown
+        toc?: unknown
+      }) => {
+        const type = typeof item.type === 'string' ? item.type.trim() : ''
+        const toc = typeof item.toc === 'boolean' ? item.toc : true
+
+        if (type === 'generated') {
+          const id =
+            item.id === 'index' ||
+            item.id === 'authors' ||
+            item.id === 'colophon'
+              ? item.id
+              : undefined
+          if (!id) {
+            return null
+          }
+          return {
+            type: 'generated' as const,
+            id,
+            title: typeof item.title === 'string' ? item.title.trim() : '',
+            toc,
+          }
+        }
+
+        if (type === 'articles') {
+          return {
+            type: 'articles' as const,
+            toc,
+          }
+        }
+
+        if (type === 'page') {
+          const title = typeof item.title === 'string' ? item.title.trim() : ''
+          const file = typeof item.file === 'string' ? item.file.trim() : ''
+          if (!title || !file) {
+            return null
+          }
+          return {
+            type: 'page' as const,
+            title,
+            file,
+            toc,
+          }
+        }
+
+        return null
+      },
+    )
+    .filter(
+      (item: EntryConfigItem | null): item is EntryConfigItem => item !== null,
+    )
+
+  if (normalized.length === 0) {
+    return DEFAULT_ENTRY_CONFIG
+  }
+
+  return normalized
+}
+
+/**
+ * entry.yml の file を vivliostyle entry 用パスに正規化します。
+ */
+function toEntryFilePath(filePath: string) {
+  if (filePath.endsWith('.html')) {
+    return `${filePath.slice(0, -'.html'.length)}.md`
+  }
+  return filePath
+}
+
+/**
+ * entry.yml の file を目次リンク用パスに正規化します。
+ */
+function toTocHrefPath(filePath: string) {
+  if (filePath.endsWith('.md')) {
+    return `${filePath.slice(0, -'.md'.length)}.html`
+  }
+  return filePath
+}
+
+function getGeneratedFileName(id: GeneratedId) {
+  return GENERATED_FILE_NAME_MAP[id]
+}
+
+function getGeneratedTitle(id: GeneratedId, title?: string) {
+  if (typeof title === 'string' && title.trim().length > 0) {
+    return title.trim()
+  }
+  return GENERATED_DEFAULT_TITLE_MAP[id]
+}
+
+/**
+ * 手動編集用ファイルが存在する場合はそちらを優先して返します。
+ */
+function getGeneratedEntryPath(fileName: string) {
+  const editedPath = path.join(editedDir, fileName)
+  if (fs.existsSync(editedPath)) {
+    return `edited/${fileName}`
+  }
+
+  const generatedPath = path.join(generatedDir, fileName)
+  if (fs.existsSync(generatedPath)) {
+    return `generated/${fileName}`
+  }
+
+  return `generated/${fileName}`
+}
+
+function uniqueEntryPaths(entryPaths: string[]) {
+  const seen = new Set<string>()
+
+  return entryPaths.filter((entryPath: string) => {
+    if (seen.has(entryPath)) {
+      return false
+    }
+
+    seen.add(entryPath)
+    return true
+  })
+}
+
+/**
+ * vivliostyle.config.js の entry を自動生成します。
+ */
+function getBookEntries() {
+  const items = getEntryConfigItems(entryConfigPath)
+
+  return uniqueEntryPaths(
+    items.flatMap((item: EntryConfigItem) => {
+      if (item.type === 'generated') {
+        return [getGeneratedEntryPath(getGeneratedFileName(item.id))]
+      }
+
+      if (item.type === 'page') {
+        return [toEntryFilePath(item.file)]
+      }
+
+      return getArticleEntries()
+    }),
+  )
+}
+
+function getTocItems() {
+  const items = getEntryConfigItems(entryConfigPath)
+
+  return items
+    .filter((item: EntryConfigItem) => item.toc)
+    .map((item: EntryConfigItem) => {
+      if (item.type === 'generated') {
+        const fileName = getGeneratedFileName(item.id)
+        const entryPath = getGeneratedEntryPath(fileName)
+        return {
+          type: 'generated' as const,
+          title: getGeneratedTitle(item.id, item.title),
+          file: toTocHrefPath(entryPath),
+        }
+      }
+
+      if (item.type === 'page') {
+        return {
+          type: 'page' as const,
+          title: item.title,
+          file: toTocHrefPath(item.file),
+        }
+      }
+
+      return {
+        type: 'articles' as const,
+      }
+    })
+}
+
+module.exports = {
+  getArticleFiles,
+  getArticleEntries,
+  getEntryConfigItems,
+  toEntryFilePath,
+  toTocHrefPath,
+  getGeneratedFileName,
+  getGeneratedTitle,
+  getGeneratedEntryPath,
+  uniqueEntryPaths,
+  getBookEntries,
+  getTocItems,
+}

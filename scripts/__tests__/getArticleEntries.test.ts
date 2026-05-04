@@ -4,8 +4,25 @@ import * as os from 'node:os'
 import * as path from 'node:path'
 
 const require = createRequire(import.meta.url)
-const { getArticleFiles } = require('../getArticleEntries.cts') as {
+const {
+  getArticleFiles,
+  getEntryConfigItems,
+  getGeneratedFileName,
+  getGeneratedTitle,
+  toEntryFilePath,
+  toTocHrefPath,
+  uniqueEntryPaths,
+} = require('../getArticleEntries.cts') as {
   getArticleFiles: (articlesDir: string, articlesConfigPath: string) => string[]
+  getEntryConfigItems: (configPath: string) => Array<Record<string, unknown>>
+  getGeneratedFileName: (id: 'index' | 'authors' | 'colophon') => string
+  getGeneratedTitle: (
+    id: 'index' | 'authors' | 'colophon',
+    title?: string,
+  ) => string
+  toEntryFilePath: (filePath: string) => string
+  toTocHrefPath: (filePath: string) => string
+  uniqueEntryPaths: (entryPaths: string[]) => string[]
 }
 
 describe('getArticleFiles', () => {
@@ -79,5 +96,92 @@ describe('getArticleFiles', () => {
     fs.writeFileSync(configPath(), '- b.md\r\n- a.md\r\n')
     const result = getArticleFiles(articlesDir(), configPath())
     expect(result).toEqual(['b.md', 'a.md'])
+  })
+})
+
+describe('entry config utilities', () => {
+  let tmpDir: string
+
+  beforeEach(() => {
+    tmpDir = fs.mkdtempSync(
+      path.join(os.tmpdir(), 'daigirin-entry-config-test-'),
+    )
+  })
+
+  afterEach(() => {
+    fs.rmSync(tmpDir, { recursive: true, force: true })
+  })
+
+  const configPath = () => path.join(tmpDir, 'entry.yml')
+
+  test('entry.yml の構成定義を読み込める', () => {
+    fs.writeFileSync(
+      configPath(),
+      [
+        '- type: generated',
+        '  id: index',
+        '  toc: false',
+        '- type: page',
+        '  title: はじめに',
+        '  file: pages/preface.md',
+        '  toc: true',
+        '- type: articles',
+        '  toc: true',
+      ].join('\n'),
+    )
+
+    const result = getEntryConfigItems(configPath())
+    expect(result).toEqual([
+      { type: 'generated', id: 'index', title: '', toc: false },
+      { type: 'page', title: 'はじめに', file: 'pages/preface.md', toc: true },
+      { type: 'articles', toc: true },
+    ])
+  })
+
+  test('page の toc が未指定の場合は true になる', () => {
+    fs.writeFileSync(
+      configPath(),
+      '- type: page\n  title: はじめに\n  file: pages/preface.md\n',
+    )
+
+    const result = getEntryConfigItems(configPath())
+    expect(result).toEqual([
+      { type: 'page', title: 'はじめに', file: 'pages/preface.md', toc: true },
+    ])
+  })
+
+  test('generated の id からファイル名を解決できる', () => {
+    expect(getGeneratedFileName('index')).toBe('index.md')
+    expect(getGeneratedFileName('authors')).toBe('authors.md')
+    expect(getGeneratedFileName('colophon')).toBe('colophon.md')
+  })
+
+  test('generated のタイトルは未指定時に既定値を返す', () => {
+    expect(getGeneratedTitle('index')).toBe('目次')
+    expect(getGeneratedTitle('authors')).toBe('著者紹介')
+    expect(getGeneratedTitle('colophon')).toBe('奥付')
+    expect(getGeneratedTitle('authors', '執筆者')).toBe('執筆者')
+  })
+
+  test('entry 用パスは html を md に変換する', () => {
+    expect(toEntryFilePath('pages/preface.html')).toBe('pages/preface.md')
+    expect(toEntryFilePath('pages/preface.md')).toBe('pages/preface.md')
+  })
+
+  test('目次リンク用パスは md を html に変換する', () => {
+    expect(toTocHrefPath('pages/preface.md')).toBe('pages/preface.html')
+    expect(toTocHrefPath('pages/preface.html')).toBe('pages/preface.html')
+  })
+
+  test('entry パスの重複は先頭のみ残す', () => {
+    expect(
+      uniqueEntryPaths([
+        'generated/index.md',
+        'pages/preface.md',
+        'pages/preface.md',
+        'articles/sample0.md',
+        'articles/sample0.md',
+      ]),
+    ).toEqual(['generated/index.md', 'pages/preface.md', 'articles/sample0.md'])
   })
 })
