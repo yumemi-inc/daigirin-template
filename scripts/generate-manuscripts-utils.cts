@@ -38,7 +38,7 @@ function resolveArticleTitle(
     return headingTitle
   }
 
-  return fileName.replace('.md', '')
+  return fileName.replace(/\.md$/, '')
 }
 
 /**
