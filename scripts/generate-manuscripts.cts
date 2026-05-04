@@ -40,7 +40,14 @@ function loadGenerateConfig(configPath: string) {
     return {}
   }
   const content = fs.readFileSync(configPath, 'utf8')
-  const parsed = YAML.parse(content)
+  let parsed: unknown
+  try {
+    parsed = YAML.parse(content)
+  } catch (e) {
+    throw new Error(
+      `generate.yml の YAML パースに失敗しました。ファイルの記述を確認してください。\n${e instanceof Error ? e.message : String(e)}`,
+    )
+  }
   if (!parsed || typeof parsed !== 'object' || Array.isArray(parsed)) {
     return {}
   }
