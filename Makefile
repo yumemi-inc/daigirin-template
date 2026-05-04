@@ -61,14 +61,26 @@ run: \
 lint:
 	$(DOCKER_COMPOSE) run --rm lint
 
+.PHONY: install_node_modules
+## node_modules が無ければインストール
+install_node_modules:
+	$(NODE_RUN) sh -lc 'corepack enable yarn && [ -d node_modules ] && [ "$$(ls -A node_modules 2>/dev/null)" ] || yarn install --immutable'
+
+.PHONY: generate
+## 原稿の自動生成（index.md, authors.md, colophon.md）
+generate: install_node_modules
+	$(NODE_RUN) node ./scripts/generate-manuscripts.cts
+
 .PHONY: pdf
 ## pdfを生成
 pdf:
+	$(MAKE) generate
 	$(VIVLIOSTYLE_CLI) build
 
 .PHONY: pdf_press
 ## プレス版のpdfを生成
 pdf_press:
+	$(MAKE) generate
 	$(VIVLIOSTYLE_CLI) build --config vivliostyle.config.press.docker.js
 
 .PHONY: open
@@ -78,7 +90,7 @@ open:
 
 .PHONY: cover
 ## Docker内でカバー画像挿入スクリプトを実行
-cover:
+cover: install_node_modules
 	$(NODE_RUN) node ./scripts/InsertCoverImage.ts
 
 .PHONY: clean
