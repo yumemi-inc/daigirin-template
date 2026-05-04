@@ -7,6 +7,11 @@ profile_template: |
 
   {profile}
 
+# 目次ページの articles 項目テンプレート
+# 使用可能な変数: {title} (記事タイトル), {author} (著者名), {file} (拡張子なしファイル名)
+articles_toc: |
+  {title} | {author}
+
 # 奥付（colophon.md）の設定
 # title と著作権の発行名は vivliostyle.config.js から自動取得されます。
 

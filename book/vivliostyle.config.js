@@ -1,4 +1,4 @@
-const { getArticleEntries } = require('../scripts/getArticleEntries.cts')
+const { getBookEntries } = require('../scripts/getArticleEntries.cts')
 
 module.exports = {
   title: 'ゆめみより ' /*\'23'*/,
@@ -10,19 +10,7 @@ module.exports = {
     '@mitsuharu/vivliostyle-theme-noto-sans-jp@0.1.4',
     'theme/theme-custom',
   ],
-  entry: [
-    // 目次
-    'generated/index.md',
-    // はじめに
-    'pages/preface.md',
-    // 各章の原稿（articles ディレクトリから自動取得）
-    ...getArticleEntries(),
-
-    // 著者紹介
-    'generated/authors.md',
-    // 奥付
-    'generated/colophon.md',
-  ],
+  entry: getBookEntries(),
   entryContext: './manuscripts',
   output: ['output/ebook.pdf'],
   workspaceDir: '.vivliostyle',
