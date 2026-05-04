@@ -128,7 +128,7 @@ yarn edit
 
 ### entry.yml の構成設定
 
-本の構成順（`vivliostyle.config.js` の `entry`）は [book/manuscripts/config/entry.yml](book/manuscripts/config/entry.yml) で定義します。`position` は廃止し、1つずつ順番に書きます。
+本の構成順（`vivliostyle.config.js` の `entry`）は [book/manuscripts/config/entry.yml](book/manuscripts/config/entry.yml) で定義します。
 
 `type` には次の固定値を使います。
 
@@ -190,9 +190,9 @@ articles_toc: |
   {title}({author})
 ```
 
-### 偶数ページ開始の調整
+### 編集作業
 
-著者紹介ページは CSS の `break-before: left` で偶数ページ開始に固定しています。著者紹介の文量が増減しても、必要に応じて空白ページが自動挿入されます。
+自動生成された記事の偶数ページの調整などは、`yarn edit` で生成した `edited/` 配下のファイルに対して行ってください。
 
 ## 文章校正
 
