@@ -17,7 +17,7 @@
     "check-write": "biome check --write"
   },
   "devDependencies": {
-    "@biomejs/biome": "2.4.12",
+    "@biomejs/biome": "2.4.13",
     "@textlint-ja/textlint-rule-preset-ai-writing": "^1.6.1",
     "@types/node": "^25.6.0",
     "@vivliostyle/cli": "10.5.0",
