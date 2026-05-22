@@ -19,7 +19,7 @@
   "devDependencies": {
     "@biomejs/biome": "2.4.15",
     "@textlint-ja/textlint-rule-preset-ai-writing": "^1.6.1",
-    "@types/node": "^25.6.0",
+    "@types/node": "^25.7.0",
     "@vivliostyle/cli": "10.5.0",
     "npm-run-all2": "^8.0.4",
     "pdf-lib": "^1.17.1",
