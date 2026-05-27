@@ -24,15 +24,9 @@
     "check-write": "biome check --write"
   },
   "devDependencies": {
-<<<<<<< HEAD
     "@biomejs/biome": "2.4.15",
     "@textlint-ja/textlint-rule-preset-ai-writing": "^1.7.0",
     "@types/node": "^25.7.0",
-=======
-    "@biomejs/biome": "2.4.12",
-    "@textlint-ja/textlint-rule-preset-ai-writing": "^1.6.1",
-    "@types/node": "^25.6.0",
->>>>>>> 4872d5f (feat: auto-configure article entries from manuscripts/articles/ directory)
     "@vivliostyle/cli": "10.5.0",
     "npm-run-all2": "^8.0.4",
     "pdf-lib": "^1.17.1",
