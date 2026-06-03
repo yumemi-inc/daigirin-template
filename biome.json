@@ -8,15 +8,16 @@
   "files": {
     "ignoreUnknown": false,
     "includes": [
-      "!prh-rules",
-      "!node_modules",
-      "!**/.vivliostyle",
       "**/*.md",
       "**/*.js",
       "**/*.ts",
+      "**/*.cts",
       "**/*.json",
       "**/*.yml",
-      "**/*.yaml"
+      "**/*.yaml",
+      "!prh-rules/**/*",
+      "!node_modules/**/*",
+      "!**/.vivliostyle/**/*"
     ]
   },
   "formatter": {

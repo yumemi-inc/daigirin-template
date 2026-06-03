@@ -1,3 +1,5 @@
+const { getBookEntries } = require('../scripts/getArticleEntries.cts')
+
 module.exports = {
   title: 'ゆめみより ' /*\'23'*/,
   author: 'ゆめみより製作委員会',
@@ -8,19 +10,7 @@ module.exports = {
     '@mitsuharu/vivliostyle-theme-noto-sans-jp@0.1.4',
     'theme/theme-custom',
   ],
-  entry: [
-    // 目次
-    'index.md',
-    // はじめに
-    'preface.md',
-    // 各章の原稿
-    'sample_chapter.md', // サンプル用ページです。執筆時は削除してください。
-
-    // 著者紹介
-    'authors.md',
-    // 奥付
-    'colophon.md',
-  ],
+  entry: getBookEntries(),
   entryContext: './manuscripts',
   output: ['output/ebook.pdf'],
   workspaceDir: '.vivliostyle',

@@ -1,0 +1,35 @@
+# 本の構成順を定義する設定
+# type:
+#   - generated: 自動生成ファイルを配置（id は index/authors/colophon の固定値）
+#   - page: 任意の固定ページを配置（title と file の指定が必要）
+#   - articles: 記事一覧（articles.yml または articles ディレクトリ）を配置
+# toc:
+#   - true:  index.md（目次）に表示する
+#   - false: index.md（目次）に表示しない
+- type: generated
+  title: 目次
+  id: index
+  toc: false
+
+- type: page
+  title: はじめに
+  file: pages/preface.md
+  toc: true
+
+- type: page
+  title: ゆめみより製作委員会とは
+  file: pages/preface.md
+  toc: true
+
+- type: articles
+  toc: true
+
+- type: generated
+  title: 著者紹介
+  id: authors
+  toc: false
+
+- type: generated
+  title: 奥付
+  id: colophon
+  toc: false

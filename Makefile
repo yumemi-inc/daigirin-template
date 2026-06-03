@@ -30,8 +30,8 @@ DOCKER_COMPOSE = \
 
 VIVLIOSTYLE_CLI = $(DOCKER) run \
 	--rm \
-	-v $(BOOK_DIR):/local \
-	-w /local \
+	-v $(MAKEFILE_DIR):/local \
+	-w /local/book \
 	$(VIVLIOSTYLE_CLI_IMAGE_NAME):$(VIVLIOSTYLE_CLI_IMAGE_TAG) \
 
 NODE_RUN = $(DOCKER) run \
@@ -61,14 +61,31 @@ run: \
 lint:
 	$(DOCKER_COMPOSE) run --rm lint
 
+.PHONY: install_node_modules
+## node_modules が無ければインストール
+install_node_modules:
+	$(NODE_RUN) sh -lc 'corepack enable yarn && [ -d node_modules ] && [ "$$(ls -A node_modules 2>/dev/null)" ] || yarn install --immutable'
+
+.PHONY: generate
+## 原稿の自動生成（index.md, authors.md, colophon.md）
+generate: install_node_modules
+	$(NODE_RUN) node ./scripts/generate-manuscripts.cts
+
+.PHONY: edit
+## 自動生成ファイルを edited/ へコピーする
+edit: generate
+	$(NODE_RUN) node ./scripts/prepare-editable-manuscripts.cts
+
 .PHONY: pdf
 ## pdfを生成
 pdf:
+	$(MAKE) generate
 	$(VIVLIOSTYLE_CLI) build
 
 .PHONY: pdf_press
 ## プレス版のpdfを生成
 pdf_press:
+	$(MAKE) generate
 	$(VIVLIOSTYLE_CLI) build --config vivliostyle.config.press.docker.js
 
 .PHONY: open
@@ -78,7 +95,7 @@ open:
 
 .PHONY: cover
 ## Docker内でカバー画像挿入スクリプトを実行
-cover:
+cover: install_node_modules
 	$(NODE_RUN) node ./scripts/InsertCoverImage.ts
 
 .PHONY: clean
@@ -91,6 +108,12 @@ clean: \
 ## pdf関係の生成物を削除
 clean_pdf:
 	rm -rf $(OUTPUT_DIR)
+	rm -rf $(BOOK_DIR)/manuscripts/generated
+
+.PHONY: clean_edited
+## 手動編集用ディレクトリを明示的に削除
+clean_edited:
+	rm -rf $(BOOK_DIR)/manuscripts/edited
 
 .PHONY: clean_docker
 ## Docker関係の生成物を削除
