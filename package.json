@@ -27,7 +27,7 @@
     "@biomejs/biome": "2.4.15",
     "@textlint-ja/textlint-rule-preset-ai-writing": "^1.7.0",
     "@types/node": "^25.7.0",
-    "@vivliostyle/cli": "10.5.0",
+    "@vivliostyle/cli": "11.0.0",
     "npm-run-all2": "^8.0.4",
     "pdf-lib": "^1.17.1",
     "textlint": "^15.7.0",
