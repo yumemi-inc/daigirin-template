@@ -27,7 +27,7 @@
     "@biomejs/biome": "2.4.15",
     "@textlint-ja/textlint-rule-preset-ai-writing": "^1.7.0",
     "@types/node": "^25.7.0",
-    "@vivliostyle/cli": "10.5.0",
+    "@vivliostyle/cli": "11.0.2",
     "npm-run-all2": "^8.0.4",
     "pdf-lib": "^1.17.1",
     "textlint": "^15.7.0",
@@ -40,5 +40,5 @@
     "vitest": "^4.1.5",
     "yaml": "^2.8.3"
   },
-  "packageManager": "yarn@4.15.0"
+  "packageManager": "yarn@4.17.0"
 }
