@@ -1832,9 +1832,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@vivliostyle/cli@npm:11.0.3":
-  version: 11.0.3
-  resolution: "@vivliostyle/cli@npm:11.0.3"
+"@vivliostyle/cli@npm:11.1.0":
+  version: 11.1.0
+  resolution: "@vivliostyle/cli@npm:11.1.0"
   dependencies:
     "@babel/code-frame": "npm:7.26.2"
     "@bluwy/giget-core": "npm:0.1.3"
@@ -1846,7 +1846,7 @@ __metadata:
     "@puppeteer/browsers": "npm:3.0.4"
     "@vivliostyle/jsdom": "npm:25.0.1-vivliostyle-cli.2"
     "@vivliostyle/vfm": "npm:2.7.0"
-    "@vivliostyle/viewer": "npm:2.43.2"
+    "@vivliostyle/viewer": "npm:2.44.1"
     ajv: "npm:8.18.0"
     ajv-formats: "npm:3.0.1"
     archiver: "npm:7.0.1"
@@ -1867,7 +1867,7 @@ __metadata:
     hast-util-to-html: "npm:9.0.5"
     hastscript: "npm:9.0.1"
     mime-types: "npm:3.0.1"
-    mupdf: "npm:@u1f992/mupdf@1.27.0-patched.1"
+    mupdf: "npm:1.28.0"
     node-fetch-native: "npm:1.6.7"
     node-stream-zip: "npm:1.15.0"
     npm-package-arg: "npm:12.0.2"
@@ -1892,23 +1892,23 @@ __metadata:
     vite: "npm:8.1.0"
     w3c-xmlserializer: "npm:5.0.0"
     whatwg-mimetype: "npm:4.0.0"
-    yocto-spinner: "npm:1.2.0"
+    yocto-spinner: "npm:1.2.1"
     yoctocolors: "npm:2.1.1"
   peerDependencies:
     vite: ">=8"
   bin:
     vivliostyle: dist/cli.js
     vs: dist/cli.js
-  checksum: 10c0/1e5ed954ee19b4107f40a36330bdb0c70f209bb1ca425e4bb7b742f40087a1548f24e6cd23e71432dc05b4c4302ba2a9108f5712559aa2d74a6174e7ecb84062
+  checksum: 10c0/23ccfed93c7a66106d27ba87d98f107ca5c3cebc2807d9e62d66ecdca6dbbe009a3bc234471511f8b8281d1c5400513d243c55e738c96d554850eda43e225a00
   languageName: node
   linkType: hard
 
-"@vivliostyle/core@npm:^2.43.2":
-  version: 2.43.2
-  resolution: "@vivliostyle/core@npm:2.43.2"
+"@vivliostyle/core@npm:^2.44.1":
+  version: 2.44.1
+  resolution: "@vivliostyle/core@npm:2.44.1"
   dependencies:
     fast-diff: "npm:^1.2.0"
-  checksum: 10c0/0073698f86c4233ba93a4958df979b1bb1e1f0868395ecd26288d7c19fba2c3e140266910025bb3e921487cd5de7a8c4069dff6308e344e469c2890c4715553e
+  checksum: 10c0/65d7e91e6621d8a266a80deba913547b1ba4f0679dd67b287091cf335aa095adc5d6b07525b83c0896c017cc608b44fc2b329dabdfe231ee5b1b4f48ce37c678
   languageName: node
   linkType: hard
 
@@ -1993,14 +1993,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@vivliostyle/viewer@npm:2.43.2":
-  version: 2.43.2
-  resolution: "@vivliostyle/viewer@npm:2.43.2"
+"@vivliostyle/viewer@npm:2.44.1":
+  version: 2.44.1
+  resolution: "@vivliostyle/viewer@npm:2.44.1"
   dependencies:
-    "@vivliostyle/core": "npm:^2.43.2"
+    "@vivliostyle/core": "npm:^2.44.1"
     i18next-ko: "npm:^3.0.1"
     knockout: "npm:^3.5.0"
-  checksum: 10c0/bb4f9b416af4edc17ac33f63eb00d6322b017106598bdefe0513404066f15185331c67081fefd05a259870cc25ac49d008766ca8b4eaa365d3fd5a9f2375edb1
+  checksum: 10c0/7d8d1adfaa762ffae6d282d5966293f0e2cd73b6134278a6c8ff3461b330d0a147ffb42310a73a1d913d5667e4c12af78f68bf94200388dcdeafcb05d223fbe0
   languageName: node
   linkType: hard
 
@@ -2977,7 +2977,7 @@ __metadata:
     "@biomejs/biome": "npm:2.5.5"
     "@textlint-ja/textlint-rule-preset-ai-writing": "npm:^1.7.0"
     "@types/node": "npm:^26.1.1"
-    "@vivliostyle/cli": "npm:11.0.3"
+    "@vivliostyle/cli": "npm:11.1.0"
     npm-run-all2: "npm:^9.0.2"
     pdf-lib: "npm:^1.17.1"
     textlint: "npm:^15.7.0"
@@ -6210,10 +6210,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"mupdf@npm:@u1f992/mupdf@1.27.0-patched.1":
-  version: 1.27.0-patched.1
-  resolution: "@u1f992/mupdf@npm:1.27.0-patched.1"
-  checksum: 10c0/ac16fcb236a553d93921b88d9f5a17ccb60f527ad63a6a7e4d88725acc0e77254175720c82bd7d3ffd929796e0fbde059c478339d3a64adad52277c4d54b1aae
+"mupdf@npm:1.28.0":
+  version: 1.28.0
+  resolution: "mupdf@npm:1.28.0"
+  checksum: 10c0/20c3938af27767da793e6fd6fd14a320dca775a4f10046d97410039f86b78bde85491a8b8926b2a3649fd27a5cacb09aa8e4bc4a92c3e1f518891006d1121756
   languageName: node
   linkType: hard
 
@@ -10327,12 +10327,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"yocto-spinner@npm:1.2.0":
-  version: 1.2.0
-  resolution: "yocto-spinner@npm:1.2.0"
+"yocto-spinner@npm:1.2.1":
+  version: 1.2.1
+  resolution: "yocto-spinner@npm:1.2.1"
   dependencies:
     yoctocolors: "npm:^2.1.1"
-  checksum: 10c0/8d5ee832f022c741a9e2f59fc4c50403517eda405e774b27fbfc64d871a172d4762bc6b50614af0ceff289ebb176ae0e979ead072af9b10b3c176fdb1d1c042e
+  checksum: 10c0/38728d11d33c3f3645ae453a04532f112aff988bec57676449783ebceeea5368f3c2ee18ea8996166efcc472379024f2af57e991f4f1ddba784ab3f8ff9c5678
   languageName: node
   linkType: hard
 
