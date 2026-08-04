@@ -9,15 +9,19 @@ on:
   pull_request_target:
     types: [labeled]
 
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
 permissions:
-  contents: write
+  contents: read
   pull-requests: write
 
 jobs:
   build-and-attach-pdf-on-pr:
     runs-on: ubuntu-latest
-    if: ( github.event.pull_request.head.repo.fork == false ) ||
-        ( contains(github.event.pull_request.labels.*.name, 'Run CI') )
+    if: (github.event_name == 'pull_request' && github.event.pull_request.head.repo.fork == false) ||
+        (github.event_name == 'pull_request_target' && github.event.label.name == 'Run CI')
 
     # 環境変数を定義
     env:
@@ -28,6 +32,8 @@ jobs:
       # リポジトリをチェックアウト
       - name: Checkout repository
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
 
       # Node.js をセットアップ
       - name: Setup Node.js
