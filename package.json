@@ -26,7 +26,7 @@
   "devDependencies": {
     "@biomejs/biome": "2.5.9",
     "@textlint-ja/textlint-rule-preset-ai-writing": "^1.7.0",
-    "@types/node": "^26.1.1",
+    "@types/node": "^26.2.0",
     "@vivliostyle/cli": "11.1.0",
     "npm-run-all2": "^9.0.3",
     "pdf-lib": "^1.17.1",
