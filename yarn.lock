@@ -1435,6 +1435,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@types/command-exists@npm:1.2.3":
+  version: 1.2.3
+  resolution: "@types/command-exists@npm:1.2.3"
+  checksum: 10c0/8e92b72b2e4e85bab6b832b9b95bc0f11b7f2c3b94ffe1ffc577fe70af699d901969e49a6307782bb262c195368ab78111db2fddda4a7dc1c218e319f2b63b9a
+  languageName: node
+  linkType: hard
+
 "@types/deep-eql@npm:*":
   version: 4.0.2
   resolution: "@types/deep-eql@npm:4.0.2"
@@ -1814,9 +1821,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@vivliostyle/cli@npm:11.1.0":
-  version: 11.1.0
-  resolution: "@vivliostyle/cli@npm:11.1.0"
+"@vivliostyle/cli@npm:11.2.0":
+  version: 11.2.0
+  resolution: "@vivliostyle/cli@npm:11.2.0"
   dependencies:
     "@babel/code-frame": "npm:7.26.2"
     "@bluwy/giget-core": "npm:0.1.3"
@@ -1826,9 +1833,10 @@ __metadata:
     "@napi-rs/canvas": "npm:0.1.69"
     "@npmcli/arborist": "npm:9.1.7"
     "@puppeteer/browsers": "npm:3.0.4"
+    "@types/command-exists": "npm:1.2.3"
     "@vivliostyle/jsdom": "npm:25.0.1-vivliostyle-cli.2"
-    "@vivliostyle/vfm": "npm:2.7.0"
-    "@vivliostyle/viewer": "npm:2.44.1"
+    "@vivliostyle/vfm": "npm:2.7.2"
+    "@vivliostyle/viewer": "npm:2.45.0"
     ajv: "npm:8.18.0"
     ajv-formats: "npm:3.0.1"
     archiver: "npm:7.0.1"
@@ -1874,23 +1882,23 @@ __metadata:
     vite: "npm:8.1.0"
     w3c-xmlserializer: "npm:5.0.0"
     whatwg-mimetype: "npm:4.0.0"
-    yocto-spinner: "npm:1.2.1"
+    yocto-spinner: "npm:1.2.2"
     yoctocolors: "npm:2.1.1"
   peerDependencies:
     vite: ">=8"
   bin:
     vivliostyle: dist/cli.js
     vs: dist/cli.js
-  checksum: 10c0/23ccfed93c7a66106d27ba87d98f107ca5c3cebc2807d9e62d66ecdca6dbbe009a3bc234471511f8b8281d1c5400513d243c55e738c96d554850eda43e225a00
+  checksum: 10c0/1cb217a2b8dc6cdb88c0a48d6c93ab0fdb0a95fc2d4abc25011a90f6e443a22b74420dbd22fde9ecae575a30153111489ff910c353183066ee4e384063941fbd
   languageName: node
   linkType: hard
 
-"@vivliostyle/core@npm:^2.44.1":
-  version: 2.44.1
-  resolution: "@vivliostyle/core@npm:2.44.1"
+"@vivliostyle/core@npm:^2.45.0":
+  version: 2.45.0
+  resolution: "@vivliostyle/core@npm:2.45.0"
   dependencies:
     fast-diff: "npm:^1.2.0"
-  checksum: 10c0/65d7e91e6621d8a266a80deba913547b1ba4f0679dd67b287091cf335aa095adc5d6b07525b83c0896c017cc608b44fc2b329dabdfe231ee5b1b4f48ce37c678
+  checksum: 10c0/640e99987caba424400ca3a71533fc3c8a1e756fa2faa5a178044c7515e98a34523bacbec043b2944f2106f88207b01321cf95e3462ea9ea21af829c1fdecf2d
   languageName: node
   linkType: hard
 
@@ -1928,20 +1936,113 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@vivliostyle/vfm@npm:2.7.0":
-  version: 2.7.0
-  resolution: "@vivliostyle/vfm@npm:2.7.0"
+"@vivliostyle/remark-footnote-dpub@npm:1.0.1":
+  version: 1.0.1
+  resolution: "@vivliostyle/remark-footnote-dpub@npm:1.0.1"
+  dependencies:
+    "@types/hast": "npm:^2.0.0"
+    "@types/unist": "npm:^2.0.0"
+    "@vivliostyle/vfm-internal-utils": "npm:1.0.1"
+    hast-util-select: "npm:^5.0.5"
+    hastscript: "npm:^7.2.0"
+    mdast-util-to-hast: "npm:^11.3.0"
+    unified: "npm:^9.2.0"
+    unist-builder: "npm:^3.0.1"
+    valibot: "npm:1.2.0"
+  checksum: 10c0/41303f761528cb7c5f78243daa69064a383174ffbc300e15160266f7c64accac7651d3ab4039744cd0da22d547134e48ffb2a83950c7f79164cbcfeb002f6588
+  languageName: node
+  linkType: hard
+
+"@vivliostyle/remark-footnote-gcpm@npm:1.0.1":
+  version: 1.0.1
+  resolution: "@vivliostyle/remark-footnote-gcpm@npm:1.0.1"
+  dependencies:
+    "@types/hast": "npm:^2.0.0"
+    "@vivliostyle/vfm-internal-utils": "npm:1.0.1"
+    hastscript: "npm:^7.2.0"
+    mdast-util-to-hast: "npm:^11.3.0"
+    unified: "npm:^9.2.0"
+    valibot: "npm:1.2.0"
+  checksum: 10c0/cfdde24156d8433a991b0217b943236b828fd815853eabfd7aa5076cd30f388877cf903f751bc365d0c1e324aabb2ba7f1e236f843f758992137160e8bc50cc7
+  languageName: node
+  linkType: hard
+
+"@vivliostyle/remark-footnote-pandoc@npm:1.0.1":
+  version: 1.0.1
+  resolution: "@vivliostyle/remark-footnote-pandoc@npm:1.0.1"
+  dependencies:
+    "@types/hast": "npm:^2.0.0"
+    "@types/unist": "npm:^2.0.0"
+    hast-util-select: "npm:^5.0.5"
+    hastscript: "npm:^7.2.0"
+    unified: "npm:^9.2.0"
+    unist-builder: "npm:^3.0.1"
+    valibot: "npm:1.2.0"
+  checksum: 10c0/b525dc7b0162159e39fdd8299361134246d418fa4d42934c67f4fce06dc9d1de9ca2fe291543ea0ab2c4df3b5e93e8707368cc6d769c1b7bf9a008622b748293
+  languageName: node
+  linkType: hard
+
+"@vivliostyle/remark-ruby@npm:1.0.1":
+  version: 1.0.1
+  resolution: "@vivliostyle/remark-ruby@npm:1.0.1"
+  dependencies:
+    "@types/mdast": "npm:^3.0.0"
+    "@types/unist": "npm:^2.0.0"
+    mdast-util-to-hast: "npm:^11.3.0"
+    unified: "npm:^9.2.0"
+    unist-builder: "npm:^3.0.1"
+  checksum: 10c0/2dedb33eac78d51fa03a8e03696ba61fb67f1943bfda80cfa3587ddb50e4ba9c8268f2e6fd7bacdace82cebc9563f2c773d894b496f2aefda97f64bb9e5fd396
+  languageName: node
+  linkType: hard
+
+"@vivliostyle/remark-sectionize@npm:1.0.1":
+  version: 1.0.1
+  resolution: "@vivliostyle/remark-sectionize@npm:1.0.1"
   dependencies:
     "@types/hast": "npm:^2.0.0"
     "@types/mdast": "npm:^3.0.0"
+    "@types/unist": "npm:^2.0.0"
+    unist-util-find-after: "npm:^4.0.1"
+    unist-util-visit-parents: "npm:^5.1.3"
+    vfile: "npm:^4.2.1"
+  checksum: 10c0/90217654a7ee4aaaebfba8435d95ad2e56b969a017976edea7e5d2e15be88927ad27ba6898d840c9f7cd4d5c4340f9e53b8b7b40e648d1a820e850c33543412b
+  languageName: node
+  linkType: hard
+
+"@vivliostyle/vfm-internal-utils@npm:1.0.1":
+  version: 1.0.1
+  resolution: "@vivliostyle/vfm-internal-utils@npm:1.0.1"
+  dependencies:
+    "@types/hast": "npm:^2.0.0"
+    hastscript: "npm:^7.2.0"
+    valibot: "npm:1.2.0"
+  checksum: 10c0/6038aabb3efcb454fcaab4129f142fc6afac645a68e1729b8f719f91ac26fae6ecfd5eb157d7cb1c5f6ba1b29d83e09af33a4df12b8aad460a1b5360c1b70da9
+  languageName: node
+  linkType: hard
+
+"@vivliostyle/vfm@npm:2.7.2":
+  version: 2.7.2
+  resolution: "@vivliostyle/vfm@npm:2.7.2"
+  dependencies:
+    "@types/hast": "npm:^2.0.0"
+    "@types/mdast": "npm:^3.0.0"
+    "@types/unist": "npm:^2.0.0"
+    "@vivliostyle/remark-footnote-dpub": "npm:1.0.1"
+    "@vivliostyle/remark-footnote-gcpm": "npm:1.0.1"
+    "@vivliostyle/remark-footnote-pandoc": "npm:1.0.1"
+    "@vivliostyle/remark-ruby": "npm:1.0.1"
+    "@vivliostyle/remark-sectionize": "npm:1.0.1"
+    "@vivliostyle/vfm-internal-utils": "npm:1.0.1"
     debug: "npm:^4.4.3"
     doctype: "npm:^3.0.1"
     github-slugger: "npm:^2.0.0"
     hast-util-find-and-replace: "npm:^3.2.1"
+    hast-util-from-html: "npm:^1.0.2"
     hast-util-is-element: "npm:^2.1.3"
+    hast-util-raw: "npm:^6.1.0"
     hast-util-select: "npm:^5.0.5"
     hastscript: "npm:^7.2.0"
-    js-yaml: "npm:^4.1.0"
+    js-yaml: "npm:^4.2.0"
     md-attr-parser: "npm:^1.3.0"
     mdast-util-find-and-replace: "npm:^2.2.2"
     mdast-util-to-hast: "npm:^11.3.0"
@@ -1958,6 +2059,7 @@ __metadata:
     remark-parse: "npm:^8.0.2"
     remark-rehype: "npm:^8.1.0"
     remark-shortcodes: "npm:^0.3.1"
+    temml: "npm:^0.13.0"
     to-vfile: "npm:^6.1.0"
     unified: "npm:^9.2.0"
     unist-builder: "npm:^3.0.1"
@@ -1968,21 +2070,23 @@ __metadata:
     unist-util-select: "npm:^4.0.3"
     unist-util-visit: "npm:^4.1.2"
     unist-util-visit-parents: "npm:^5.1.3"
+    uri-js: "npm:^4.4.1"
     valibot: "npm:1.2.0"
+    vfile: "npm:^4.0.0"
   bin:
     vfm: lib/cli.js
-  checksum: 10c0/77d1687cc0565783852b0cb7617822652120e1e29b4c8c1dcb3316ace3af16237e31d0f4b57552be297d6087db864a30d682d5fe654995d0e84642eebffe17b0
+  checksum: 10c0/12a167ef840c1b20e2885695f10425cb014df8bf697c8dc16a345dee4b84c4319cdca4588ec6c0d5c5b7b5cbfb804855c212ff7b1e81b0333ef06c5f6825af6a
   languageName: node
   linkType: hard
 
-"@vivliostyle/viewer@npm:2.44.1":
-  version: 2.44.1
-  resolution: "@vivliostyle/viewer@npm:2.44.1"
+"@vivliostyle/viewer@npm:2.45.0":
+  version: 2.45.0
+  resolution: "@vivliostyle/viewer@npm:2.45.0"
   dependencies:
-    "@vivliostyle/core": "npm:^2.44.1"
+    "@vivliostyle/core": "npm:^2.45.0"
     i18next-ko: "npm:^3.0.1"
     knockout: "npm:^3.5.0"
-  checksum: 10c0/7d8d1adfaa762ffae6d282d5966293f0e2cd73b6134278a6c8ff3461b330d0a147ffb42310a73a1d913d5667e4c12af78f68bf94200388dcdeafcb05d223fbe0
+  checksum: 10c0/92f2b7c515cce124f36eed51b20de9e2804bc8a8d32accfa1613b673838f955098b0d51d205b6797ec5b793d39fd31b75f8c97482e41a0618c0e92f3010f5c64
   languageName: node
   linkType: hard
 
@@ -2887,7 +2991,7 @@ __metadata:
     "@biomejs/biome": "npm:2.5.9"
     "@textlint-ja/textlint-rule-preset-ai-writing": "npm:^1.7.0"
     "@types/node": "npm:^26.2.0"
-    "@vivliostyle/cli": "npm:11.1.0"
+    "@vivliostyle/cli": "npm:11.2.0"
     npm-run-all2: "npm:^9.0.3"
     pdf-lib: "npm:^1.17.1"
     textlint: "npm:^15.8.0"
@@ -3985,6 +4089,19 @@ __metadata:
   languageName: node
   linkType: hard
 
+"hast-util-from-html@npm:^1.0.2":
+  version: 1.0.2
+  resolution: "hast-util-from-html@npm:1.0.2"
+  dependencies:
+    "@types/hast": "npm:^2.0.0"
+    hast-util-from-parse5: "npm:^7.0.0"
+    parse5: "npm:^7.0.0"
+    vfile: "npm:^5.0.0"
+    vfile-message: "npm:^3.0.0"
+  checksum: 10c0/a07cf6e3d15214a0ce81f1ed83824adc36d342339a2902077d194779666f0701977ba4cfea388c41a2ab5973a9a36890b8b409932e83400a68e18e021adcc7d3
+  languageName: node
+  linkType: hard
+
 "hast-util-from-parse5@npm:^5.0.0":
   version: 5.0.3
   resolution: "hast-util-from-parse5@npm:5.0.3"
@@ -4009,6 +4126,21 @@ __metadata:
     vfile-location: "npm:^3.2.0"
     web-namespaces: "npm:^1.0.0"
   checksum: 10c0/c5e7ee40347c3850ece717e37c3e277ca233848ebca341f68c2afbefdb912da415a2fd06940edc3ea4882ad520e1cac7bf3fcf66c31ae97e1bcf953fcb6a7db5
+  languageName: node
+  linkType: hard
+
+"hast-util-from-parse5@npm:^7.0.0":
+  version: 7.1.2
+  resolution: "hast-util-from-parse5@npm:7.1.2"
+  dependencies:
+    "@types/hast": "npm:^2.0.0"
+    "@types/unist": "npm:^2.0.0"
+    hastscript: "npm:^7.0.0"
+    property-information: "npm:^6.0.0"
+    vfile: "npm:^5.0.0"
+    vfile-location: "npm:^4.0.0"
+    web-namespaces: "npm:^2.0.0"
+  checksum: 10c0/c1002816d0235ff0a1e888d71c191d3ecfbaba510aaef86eec00edcba8803a3e0ad901bb0e5430a9d2aee2d52c31aabacae8282394dc519c333017a46c68d1c8
   languageName: node
   linkType: hard
 
@@ -4252,7 +4384,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"hastscript@npm:^7.2.0":
+"hastscript@npm:^7.0.0, hastscript@npm:^7.2.0":
   version: 7.2.0
   resolution: "hastscript@npm:7.2.0"
   dependencies:
@@ -4930,7 +5062,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"js-yaml@npm:^4.1.0, js-yaml@npm:^4.1.1":
+"js-yaml@npm:^4.1.1":
   version: 4.1.1
   resolution: "js-yaml@npm:4.1.1"
   dependencies:
@@ -4938,6 +5070,17 @@ __metadata:
   bin:
     js-yaml: bin/js-yaml.js
   checksum: 10c0/561c7d7088c40a9bb53cc75becbfb1df6ae49b34b5e6e5a81744b14ae8667ec564ad2527709d1a6e7d5e5fa6d483aa0f373a50ad98d42fde368ec4a190d4fae7
+  languageName: node
+  linkType: hard
+
+"js-yaml@npm:^4.2.0":
+  version: 4.3.2
+  resolution: "js-yaml@npm:4.3.2"
+  dependencies:
+    argparse: "npm:^2.0.1"
+  bin:
+    js-yaml: bin/js-yaml.js
+  checksum: 10c0/dedd34c2e8fef1d504687f1bc94ed0ee1311a1f78770fa2800352c6d59c635ccf555009d74e9afe529ae62199da2b1ccef30e53dc84dcd8d2d8187c22574bc97
   languageName: node
   linkType: hard
 
@@ -6425,7 +6568,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"parse5@npm:^7.1.2":
+"parse5@npm:^7.0.0, parse5@npm:^7.1.2":
   version: 7.3.0
   resolution: "parse5@npm:7.3.0"
   dependencies:
@@ -6706,7 +6849,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"punycode@npm:^2.3.1":
+"punycode@npm:^2.1.0, punycode@npm:^2.3.1":
   version: 2.3.1
   resolution: "punycode@npm:2.3.1"
   checksum: 10c0/14f76a8206bc3464f794fb2e3d3cc665ae416c01893ad7a02b23766eb07159144ee612ad67af5e84fa4479ccfe67678c4feb126b0485651b302babf66f04f9e9
@@ -7939,6 +8082,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"temml@npm:^0.13.0":
+  version: 0.13.5
+  resolution: "temml@npm:0.13.5"
+  checksum: 10c0/4cda33c25578b3c9405bb3be74c19b8c6f4da40d44eef820996e4f4124e1d4116f9d6441264b8dd9a58e35d02326d37eed90f9fe86e40e87cc52caefde747934
+  languageName: node
+  linkType: hard
+
 "terminal-link@npm:4.0.0":
   version: 4.0.0
   resolution: "terminal-link@npm:4.0.0"
@@ -9152,6 +9302,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"unist-util-stringify-position@npm:^3.0.0":
+  version: 3.0.3
+  resolution: "unist-util-stringify-position@npm:3.0.3"
+  dependencies:
+    "@types/unist": "npm:^2.0.0"
+  checksum: 10c0/14550027825230528f6437dad7f2579a841780318569851291be6c8a970bae6f65a7feb24dabbcfce0e5e68cacae85bf12cbda3f360f7c873b4db602bdf7bb21
+  languageName: node
+  linkType: hard
+
 "unist-util-stringify-position@npm:^4.0.0":
   version: 4.0.0
   resolution: "unist-util-stringify-position@npm:4.0.0"
@@ -9270,6 +9429,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"uri-js@npm:^4.4.1":
+  version: 4.4.1
+  resolution: "uri-js@npm:4.4.1"
+  dependencies:
+    punycode: "npm:^2.1.0"
+  checksum: 10c0/4ef57b45aa820d7ac6496e9208559986c665e49447cb072744c13b66925a362d96dd5a46c4530a6b8e203e5db5fe849369444440cb22ecfc26c679359e5dfa3c
+  languageName: node
+  linkType: hard
+
 "util-deprecate@npm:^1.0.2, util-deprecate@npm:~1.0.1":
   version: 1.0.2
   resolution: "util-deprecate@npm:1.0.2"
@@ -9338,6 +9506,16 @@ __metadata:
   languageName: node
   linkType: hard
 
+"vfile-location@npm:^4.0.0":
+  version: 4.1.0
+  resolution: "vfile-location@npm:4.1.0"
+  dependencies:
+    "@types/unist": "npm:^2.0.0"
+    vfile: "npm:^5.0.0"
+  checksum: 10c0/77097e819579214d3346aaa2b06e4d23e2413221ac4914679d312cf64973011b76f0e2424fa8f18987befcd6ed60f4f6c4c6ebd5d5326062173a95f6b4445a96
+  languageName: node
+  linkType: hard
+
 "vfile-message@npm:^2.0.0":
   version: 2.0.4
   resolution: "vfile-message@npm:2.0.4"
@@ -9345,6 +9523,16 @@ __metadata:
     "@types/unist": "npm:^2.0.0"
     unist-util-stringify-position: "npm:^2.0.0"
   checksum: 10c0/ce50d90e0e5dc8f995f39602dd2404f1756388a54209c983d259b17c15e6f262a53546977a638065bc487d0657799fa96f4c1ba6b2915d9724a4968e9c7ff1c8
+  languageName: node
+  linkType: hard
+
+"vfile-message@npm:^3.0.0":
+  version: 3.1.4
+  resolution: "vfile-message@npm:3.1.4"
+  dependencies:
+    "@types/unist": "npm:^2.0.0"
+    unist-util-stringify-position: "npm:^3.0.0"
+  checksum: 10c0/c4ccf9c0ced92d657846fd067fefcf91c5832cdbe2ecc431bb67886e8c959bf7fc05a9dbbca5551bc34c9c87a0a73854b4249f65c64ddfebc4d59ea24a18b996
   languageName: node
   linkType: hard
 
@@ -9358,7 +9546,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"vfile@npm:4.2.1, vfile@npm:^4.0.0":
+"vfile@npm:4.2.1, vfile@npm:^4.0.0, vfile@npm:^4.2.1":
   version: 4.2.1
   resolution: "vfile@npm:4.2.1"
   dependencies:
@@ -9367,6 +9555,18 @@ __metadata:
     unist-util-stringify-position: "npm:^2.0.0"
     vfile-message: "npm:^2.0.0"
   checksum: 10c0/4816aecfedc794ba4d3131abff2032ef0e825632cfa8cd20dd9d83819ef260589924f4f3e8fa30e06da2d8e60d7ec8ef7d0af93e0483df62890738258daf098a
+  languageName: node
+  linkType: hard
+
+"vfile@npm:^5.0.0":
+  version: 5.3.7
+  resolution: "vfile@npm:5.3.7"
+  dependencies:
+    "@types/unist": "npm:^2.0.0"
+    is-buffer: "npm:^2.0.0"
+    unist-util-stringify-position: "npm:^3.0.0"
+    vfile-message: "npm:^3.0.0"
+  checksum: 10c0/c36bd4c3f16ec0c6cbad0711ca99200316bbf849d6b07aa4cb5d9062cc18ae89249fe62af9521926e9659c0e6bc5c2c1da0fe26b41fb71e757438297e1a41da4
   languageName: node
   linkType: hard
 
@@ -9525,6 +9725,13 @@ __metadata:
   version: 1.1.4
   resolution: "web-namespaces@npm:1.1.4"
   checksum: 10c0/05b5782c32a33ef94fa7a412afdebc9d0d3cc7b59db31d2cc7bd80de3e237d4b6309cb5f156d06e3a837b9826c9414448c25111ec1d4407d2025ffeb7bea4f62
+  languageName: node
+  linkType: hard
+
+"web-namespaces@npm:^2.0.0":
+  version: 2.0.1
+  resolution: "web-namespaces@npm:2.0.1"
+  checksum: 10c0/df245f466ad83bd5cd80bfffc1674c7f64b7b84d1de0e4d2c0934fb0782e0a599164e7197a4bce310ee3342fd61817b8047ff04f076a1ce12dd470584142a4bd
   languageName: node
   linkType: hard
 
@@ -9886,12 +10093,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"yocto-spinner@npm:1.2.1":
-  version: 1.2.1
-  resolution: "yocto-spinner@npm:1.2.1"
+"yocto-spinner@npm:1.2.2":
+  version: 1.2.2
+  resolution: "yocto-spinner@npm:1.2.2"
   dependencies:
     yoctocolors: "npm:^2.1.1"
-  checksum: 10c0/38728d11d33c3f3645ae453a04532f112aff988bec57676449783ebceeea5368f3c2ee18ea8996166efcc472379024f2af57e991f4f1ddba784ab3f8ff9c5678
+  checksum: 10c0/d1cf681e3057884d038bbafc568e572baba03f52ef1c435e3de1a2fef6d7aff671d44eeb9452315e5322a638e0c9b6de22be3d81539f9e4234725e49eb75a015
   languageName: node
   linkType: hard
 
